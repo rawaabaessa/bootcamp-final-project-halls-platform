@@ -1,0 +1,62 @@
+:root{
+    --blue: #cdac33;
+    --light: #bbb;
+}
+.group{
+    text-align: center;
+}
+.group input.checkbox{
+    display: none;
+}
+.group .list{
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 100px; */
+    /* height: 100px; */
+    /* grid-template-columns: repeat(3, 100px); */
+    /* grid-template-rows: repeat(2, 100px); */
+    gap: 20px;
+}
+.group .list .item{
+    border: 1px solid var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    position: relative;
+    transition: 0.5s;
+    width: 100px;
+    height: 100px;
+}
+.group .list .item .check{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--light);
+}
+.group .list .item .check i:nth-child(2){
+    display: none;
+}
+.group .list .item h2{
+    margin: 0;
+    font-weight: 100;
+    font-size: 15px;
+}
+.group .list .item .logo-type{
+    font-size: 33px;
+    margin-bottom: 5px;
+}
+
+input.checkbox:checked + .item{
+    border: 1px solid var(--blue);
+    box-shadow: 0 1px 5px var(--blue);
+    color: var(--blue);
+}
+input.checkbox:checked + .item .check i:nth-child(1){
+    display: none;
+}
+input.checkbox:checked + .item .check i:nth-child(2){
+    display: block;
+    color: var(--blue);
+}

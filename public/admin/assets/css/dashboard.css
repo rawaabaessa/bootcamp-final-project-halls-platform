@@ -1,0 +1,44 @@
+.crud-icon{
+    margin-left: 5px;
+    color: #cdac33;
+}
+.submit-buttons{
+    text-align: right;
+}
+
+.checked{
+    color: #cdac33;
+    margin-left: 5px;
+}
+.price-sr,
+input[type='file']::-webkit-file-upload-button{
+    background-color: #cdac33;
+    color: white;
+    border-color: #cdac33;
+}
+.border-radius-7{
+    border-radius: 7px;
+}
+.border-top{
+    border-top: 1px solid #cdac33;
+}
+.upload-box{
+   font-size:16px;
+   background : white;
+   border-radius : 50px;
+   /* box-shadow: 5px 5px 10px black; */
+   width:350px;
+   outline: none;
+}
+/* ::-webkit-file-upload-button{
+color : white;
+background : #cdac33;
+padding : 20px;
+border: none ;
+border-radius: 20px;
+box-shadow: rgba(145,158,171,0.2) 0px 0px 2px 0px,rgba(145,158,171,0.12) 0px 12px 24px -4px;
+outline : none ;
+}
+::-webkit-file-upload-button:hover{
+    background: #a68b29;
+} */

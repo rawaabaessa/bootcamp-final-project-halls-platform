@@ -1,0 +1,97 @@
+:root{
+    --main-color:#cdac33;
+    --hover-color:#a68b29;
+}
+*{
+    font-family: 'Tajawal', sans-serif;
+  }
+#container{
+  max-width: 720px;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 30px;
+    box-shadow: rgba(145,158,171,0.2) 0px 0px 2px 0px,rgba(145,158,171,0.12) 0px 12px 24px -4px;
+}
+.form-label{
+    /* font-weight: 600; */
+    /* font-size: 14px; */
+}
+input[type='file']::-webkit-file-upload-button{
+    background-color: var(--main-color);
+    color: white;
+    border-color: var(--main-color);
+}
+/* input[type='file']:hover{
+    background-color: #a68b29;
+    border-color: #a68b29;
+} */
+
+.submit-btn{
+    background-color: #fff !important;
+    color: var(--main-color) !important;
+    font-size: 12px !important;
+    padding: 10px 45px !important;
+    border: 1px solid var(--main-color);
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px ;
+    cursor: pointer;
+    /* border-radius: 20px; */
+}
+.submit-btn:hover{
+    background-color: var(--main-color) !important;
+    color: #fff !important;
+    border-color: var(--main-color) !important;
+}
+.steps{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight: bold; */
+}
+.progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    height: 40px;
+    background-color: #ccc;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #fff;
+  }
+  
+  .step {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+    line-height: 40px;
+  }
+  
+  .step.completed {
+    background-color: #a68b29;
+  }
+  
+  .step.completed::after {
+    content: "\2713";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+  }
+  .add-btn{
+    background-color: white !important;
+    border-color: var(--main-color) !important;
+    color: var(--main-color) !important;
+    transition: all 0.5s;
+  }
+  .add-btn:hover{
+    background-color: var(--main-color) !important;
+    color: white !important; 
+  }
