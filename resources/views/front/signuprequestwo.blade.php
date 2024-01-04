@@ -38,7 +38,7 @@
                 <div class="col mb-3">
                     <label class="form-label">الخدمات</label>
                     <div class="group">
-                        <div class="tags-input">
+                        <div class="tags-input" id="services">
                             <ul class="">
                                 <input type="text" name="" id="inputTag">
                             </ul>
@@ -78,24 +78,23 @@
                 <div class="col mb-3">
                     <label class="form-label">الفترات</label>
                     <div>
-                        <div id="fields-container">
+                        <div id="fields-container-dur">
                             <div class="row">
-                              {{-- <span class="col-1">
-                                1
-                              </span> --}}
                               <div class="col-8">
                                 <div class="form-group pb-3">
+                                  <label class="form-label">من</label>
                                   <input type="time" class="form-control" name="title[]" placeholder="من">
                                 </div>
                               </div>
                               <div class="col-4">
                                 <div class="form-group pb-3">
+                                  <label class="form-label">الى</label>
                                   <input type="time" class="form-control" name="price[]" placeholder="الى">
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <button onclick="addFields() " class="btn btn-primry add-btn btn-dasSecond" ><i class="fa-solid fa-plus"></i></button>
+                          <button onclick="addduration() " class="btn btn-primry add-btn btn-dasSecond" ><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
             </div>
@@ -103,7 +102,7 @@
                 <div class="col mb-3">
                     <label class="form-label">المناسبات</label>
                     <div class="group">
-                        <div class="tags-input">
+                        <div class="tags-input" id="occasion">
                             <ul class="">
                                 <input type="text" name="" id="inputTag">
                             </ul>
@@ -141,6 +140,31 @@
                 </div>
             </div>
             <div class="row align-self-start w-100">
+              <div class="col mb-3">
+                  <label class="form-label">الحسابات البنكية</label>
+                  <div>
+                      <div id="fields-container">
+                          <div class="row">
+                            {{-- <span class="col-1">
+                              1
+                            </span> --}}
+                            <div class="col-8">
+                              <div class="form-group pb-3">
+                                <input type="text" class="form-control" name="title[]" placeholder="اسم البنك">
+                              </div>
+                            </div>
+                            <div class="col-4">
+                              <div class="form-group pb-3">
+                                <input type="text" class="form-control" name="price[]" placeholder="رقم الحساب">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button onclick="addFields() " class="btn btn-primry add-btn btn-dasSecond" ><i class="fa-solid fa-plus"></i></button>
+                  </div>
+              </div>
+          </div>
+            <div class="row align-self-start w-100">
                 <div class="col mb-3">
                     <label class="form-label">حسابات التواصل الاجتماعي</label>
                     <div class="row row-cols-1 row-cols-md-3">
@@ -160,60 +184,55 @@
                 </div>
             </div>
             <div class="align-self-start">
-                <a type="submit" class="btn btn-primary submit-btn" href="{{route('front.step2')}}">تقديم</a>
+                <a type="submit" class="btn btn-primary submit-btn" href="{{route('front.joinerequest')}}">تقديم</a>
                 {{-- <button type="submit" class="btn btn-primary">رجوع</button> --}}
               </div>
         </div>
-        
         {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
         <script src="{{asset('assets/js/inputtag.js')}}"></script>
         <script>
+        function addFields() {
+          var container = document.getElementById("fields-container");
 
-//  var counter = 2;
+          var newTitleField = document.createElement("div");
+          newTitleField.classList.add("form-group");
+          newTitleField.innerHTML = `
+            <div class="row">
+              <div class="col-8">
+                <div class="form-group pb-3">
+                  <input type="text" class="form-control" name="title[]" placeholder="أدخل الخدمة الاضافية">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group pb-3">
+                  <input type="number" class="form-control" name="price[]" placeholder="أدخل السعر">
+                </div>
+              </div>
+            </div>
+          `;
+          container.appendChild(newTitleField);
+        }
+        function addduration() {
+          var container = document.getElementById("fields-container-dur");
 
-function addFields() {
-  var container = document.getElementById("fields-container");
-
-  var newTitleField = document.createElement("div");
-  newTitleField.classList.add("form-group");
-  newTitleField.innerHTML = `
-    <div class="row">
-      <div class="col-8">
-        <div class="form-group pb-3">
-          <input type="text" class="form-control" name="title[]" placeholder="أدخل الخدمة الاضافية">
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group pb-3">
-          <input type="number" class="form-control" name="price[]" placeholder="أدخل السعر">
-        </div>
-      </div>
-    </div>
-  `;
-  container.appendChild(newTitleField);
-}
-function addduration() {
-  var container = document.getElementById("fields-container");
-
-  var newTitleField = document.createElement("div");
-  newTitleField.classList.add("form-group");
-  newTitleField.innerHTML = `
-    <div class="row">
-      <div class="col-8">
-        <div class="form-group pb-3">
-          <input type="text" class="form-control" name="title[]" placeholder="أدخل الخدمة الاضافية">
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="form-group pb-3">
-          <input type="number" class="form-control" name="price[]" placeholder="أدخل السعر">
-        </div>
-      </div>
-    </div>
-  `;
-  container.appendChild(newTitleField);
-}  
-  
+          var newTitleField = document.createElement("div");
+          newTitleField.classList.add("form-group");
+          newTitleField.innerHTML = `
+            <div class="row">
+              <div class="col-8">
+                <div class="form-group pb-3">
+                  <input type="time" class="form-control" name="title[]" placeholder="أدخل الخدمة الاضافية">
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group pb-3">
+                  <input type="time" class="form-control" name="price[]" placeholder="أدخل السعر">
+                </div>
+              </div>
+            </div>
+          `;
+          container.appendChild(newTitleField);
+        }
         </script>
     </div>
 </body>

@@ -1,4 +1,5 @@
 @extends('layouts.site')
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> --}}
 @section('content')
 <body>
     
@@ -9,7 +10,7 @@
           <img src="{{asset('assets/images/halls/IMG-20231226-WA0001.jpg')}}" alt="architecture">
           <img src="{{asset('assets/images/halls/IMG-20231226-WA0002.jpg')}}" alt="architecture">
           <div class="more" style="background-image: url(images/1.jpeg);">
-              + 3
+              <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">+ 3</a>
           </div>
       </div>
       <h2 class="text-right hall-heading mb-3">القاعة الملكية</h2>
@@ -17,15 +18,12 @@
     <div class="container">
         <div class="row" dir="rtl">
           <div class="col mb-4">
-            <div class="detail-div">
+            <div class="detail-div" style="justify-content: flex-start">
                 <div class="detail-card" dir="rtl">
                     <i class="fa-solid fa-people-group"></i>
                     <span>300 شخص</span>
                 </div>
-                <div class="detail-card text-right">
-                    <i class="fa-solid fa-coins"></i>
-                    <span>400 شخص</span>
-                </div>
+                
                 <div class="detail-card text-right">
                   <i class="flaticon-floor-plan"></i>
                   <span>1.859 متر</span>
@@ -95,7 +93,7 @@
                     <div class="d-flex justify-content-between mb-2" dir="rtl">
                         <div class="">
                             <input type="checkbox">
-                            <span>طاولات</span>
+                            <span>ضيافة(قهوة و شاي)</span>
                         </div>
                         <span class="services-price">500 رس</span>
                     </div>
@@ -113,8 +111,30 @@
 
       </div>
     </div>
-      
-      
+     <!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary" >
+  Launch demo modal
+</button> --}}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> 
+      {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> --}}
 </body>
 @endsection
 

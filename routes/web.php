@@ -25,6 +25,9 @@ Route::get('signin', [SigninController::class, 'view'])->name('front.signin');
 Route::get('signup', [SignupController::class, 'view'])->name('front.signup');
 Route::get('signup2', [SignupController::class, 'step2'])->name('front.step2');
 Route::get('register', [SignupController::class, 'step2'])->name('front.register');
+Route::get('joinerequest', function(){
+    return view('front.joinrequest');
+})->name('front.joinerequest');
 
 Route::get('halldetails', function(){
     return view('front.halldetails');
@@ -299,6 +302,17 @@ Route::get('tenant/content/socialmedia', function(){
     return view('tenant.content.socialmedia');
 })->name('tenant.content.socialmedia');
 
+Route::get('tenant/content/occasion', function(){
+    return view('tenant.content.occasion');
+})->name('tenant.content.occasion');
+
+Route::get('tenant/content/service', function(){
+    return view('tenant.content.service');
+})->name('tenant.content.service');
+
+Route::get('tenant/content/duration', function(){
+    return view('tenant.content.duration');
+})->name('tenant.content.duration');
 
 //user 
 Route::get('user/reservations/index', function(){

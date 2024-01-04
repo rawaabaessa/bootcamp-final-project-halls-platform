@@ -95,3 +95,23 @@ input[type='file']::-webkit-file-upload-button{
     background-color: var(--main-color) !important;
     color: white !important; 
   }
+.email-icon{
+  font-size: 100px;
+  color: var(--main-color);
+}
+.return-home{
+  color: var(--main-color);
+}
+.return-home:hover{
+  text-decoration: underline;
+  color: var(--main-color);
+}
+.center-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.fs-16{
+  font-size: 16px;
+}

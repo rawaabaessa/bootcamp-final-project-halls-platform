@@ -22,14 +22,14 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">تويتر</label>
+                        <label for="exampleInputEmail1" class="form-label">اكس</label>
                         <div>
                             <input class="form-control" type="text" name="" id="" value="https://www.x.com/rawaa">
                         </div>
                     </div>
                     <div class="mt-3 submit-buttons">
                         <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
-                        <a type="submit" class="btn btn-primary" href="{{route('content.index')}}">رجوع</a>
+                        <a type="submit" class="btn btn-primary" href="{{route('tenant.content.index')}}">رجوع</a>
                       </div>
                 </div>
             </div>

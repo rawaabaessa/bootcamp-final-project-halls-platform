@@ -19,30 +19,42 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="card">
+            <div class="card">
                 <div class="card-body" style="padding: 20px">
                     <div class="row">
                         <div class="col fw-semibold">
-                            صورة البنر
+                             الخدمات
                         </div>
                         <div class="col text-start">
-                            <a href="{{route('content.banner')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                            <a href="{{route('tenant.content.service')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
                         </div>
                     </div>
                 </div>
-            </div> --}}
-            {{-- <div class="card">
+            </div>
+            <div class="card">
                 <div class="card-body" style="padding: 20px">
                     <div class="row">
                         <div class="col fw-semibold">
-                             الوصف
+                             الفترات
                         </div>
                         <div class="col text-start">
-                            <a href="{{route('content.description')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                            <a href="{{route('tenant.content.duration')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
+            <div class="card">
+                <div class="card-body" style="padding: 20px">
+                    <div class="row">
+                        <div class="col fw-semibold">
+                             المناسبات
+                        </div>
+                        <div class="col text-start">
+                            <a href="{{route('tenant.content.occasion')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body" style="padding: 20px">
                     <div class="row">

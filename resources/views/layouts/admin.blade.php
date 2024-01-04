@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="{{asset('admin/assets/css/styles.min.css')}}" />
   <link rel="stylesheet" href="{{asset('admin/assets/css/dashboard.css')}}" />
   <link rel="stylesheet" href="{{asset('admin/assets/css/checkbox.css')}}" />
+  @if (Route::currentRouteName() === 'tenant.content.service' || 
+       Route::currentRouteName() === 'tenant.content.occasion' ||
+       Route::currentRouteName() === 'tenant.content.duration')
+  <link rel="stylesheet" href="{{asset('assets/css/css/inputtag.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/css/signup.css')}}">
+  @endif
   <link rel="stylesheet" href="{{asset('node_modules/bootstrap-icons/font/bootstrap-icons.css')}}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   {{-- <link rel="stylesheet" href="{{asset('assets/vendor/')}}.css"> --}}
@@ -184,14 +190,6 @@
         </li>
         <li class="sidebar-item">
           <a class="sidebar-link @if (Route::currentRouteName() === 'tenant.halls.view' || Route::currentRouteName() === 'tenant.halls.add' || Route::currentRouteName() === 'tenant.halls.edit' || Route::currentRouteName() === 'tenant.halls.delete') active @endif" href="{{route('tenant.halls.index')}}" aria-expanded="false">
-            <span class="hide-menu">فترات الحجز</span>
-            <span>
-              <i class="bi bi-bank"></i>
-            </span>
-          </a>
-        </li>
-        <li class="sidebar-item">
-          <a class="sidebar-link @if (Route::currentRouteName() === 'tenant.halls.view' || Route::currentRouteName() === 'tenant.halls.add' || Route::currentRouteName() === 'tenant.halls.edit' || Route::currentRouteName() === 'tenant.halls.delete') active @endif" href="{{route('tenant.halls.index')}}" aria-expanded="false">
             <span class="hide-menu">القاعات</span>
             <span>
               <i class="bi bi-bank"></i>
@@ -225,11 +223,14 @@
         <li class="sidebar-item">
           <a class="sidebar-link 
               @if (
-                  Route::currentRouteName() === 'content.logo' ||
-                  Route::currentRouteName() === 'content.about' ||
-                  Route::currentRouteName() === 'content.howregister' ||
-                  Route::currentRouteName() === 'content.contact' ||
-                  Route::currentRouteName() === 'content.socialmedia'
+                  Route::currentRouteName() === 'tenant.content.logo' ||
+                  Route::currentRouteName() === 'tenant.content.about' ||
+                  Route::currentRouteName() === 'tenant.content.howregister' ||
+                  Route::currentRouteName() === 'tenant.content.contact' ||
+                  Route::currentRouteName() === 'tenant.content.socialmedia' ||
+                  Route::currentRouteName() === 'tenant.content.duration' ||
+                  Route::currentRouteName() === 'tenant.content.service' ||
+                  Route::currentRouteName() === 'tenant.content.occasion'
                   ) active @endif" href="{{route('tenant.content.index')}}" aria-expanded="false">
             <span class="hide-menu">المحتوى</span>
             <span>
@@ -264,17 +265,6 @@
       </a>
     </li>
   </ul>
-          <!-- <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
-            <div class="d-flex">
-              <div class="unlimited-access-title me-3">
-                <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
-                <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
-              </div>
-              <div class="unlimited-access-img">
-                <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div> -->
         </nav>
         <!-- End Sidebar navigation -->
       </div>
@@ -309,11 +299,11 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" dir="rtl" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="{{route('front.signup')}}" class="d-flex align-items-center gap-2 dropdown-item">
+                    {{-- <a href="{{route('front.signup')}}" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="bi bi-bank"></i>
                       <p class="mb-0 fs-3">تسجيل منشأة</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    </a> --}}
+                    <a href="{{route('user.profile')}}" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">الملف الشخصي</p>
                     </a>
@@ -379,6 +369,14 @@
   {{-- <script src="{{asset('admin/assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script> --}}
   <script src="{{asset('admin/assets/libs/simplebar/dist/simplebar.js')}}"></script>
   <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
+  @if (Route::currentRouteName() === 'tenant.content.service' ||  
+  Route::currentRouteName() === 'tenant.content.duration')
+  <script src="{{asset('assets/js/inputtag.js')}}"></script>
+  <script src="{{asset('assets/js/addfield.js')}}"></script>
+  @endif
+  @if (Route::currentRouteName() === 'tenant.content.occasion')
+  <script src="{{asset('assets/js/inputtagOc.js')}}"></script>
+  @endif
 </body>
 
 </html>

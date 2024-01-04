@@ -23,8 +23,8 @@
                     </div>
                     <div class="mt-3 submit-buttons">
                         <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
-                        <a type="submit" class="btn btn-primary" href="{{route('content.index')}}">رجوع</a>
-                      </div>
+                        <a type="submit" class="btn btn-primary" href="{{route('tenant.content.index')}}">رجوع</a>
+                    </div>
                 </div>
             </div>
             
