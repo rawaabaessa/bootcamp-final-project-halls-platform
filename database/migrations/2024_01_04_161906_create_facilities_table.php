@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('facilities', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('title');
+            $table->string('email')->unique();
+            $table->string('address');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('duration_id');
-            $table->unsignedBigInteger('hall_id');
-            $table->date('date');
-            $table->integer('people_count');
-            $table->string('voucher_image');
-            $table->boolean('status');
+            $table->bigInteger('phone');
+            $table->string('currency');
+            $table->enum('state',['register','step1','step2','approved','complete','reject']);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservations');
+        Schema::dropIfExists('facilities');
     }
 };

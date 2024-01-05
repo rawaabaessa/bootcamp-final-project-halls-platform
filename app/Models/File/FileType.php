@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\account;
+namespace App\Models\File;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+class FileType extends Model
 {
     use HasFactory;
 }

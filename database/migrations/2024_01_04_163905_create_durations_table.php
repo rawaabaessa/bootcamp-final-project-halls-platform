@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('qaah_facilities', function (Blueprint $table) {
+        Schema::create('durations', function (Blueprint $table) {
             $table->id();
+            $table->time('from');
+            $table->time('to');
+            $table->unsignedBigInteger('facility_id');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('qaah_facilities');
+        Schema::dropIfExists('durations');
     }
 };

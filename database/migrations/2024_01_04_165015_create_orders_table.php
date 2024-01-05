@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('file_targets', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('target_name');
-            $table->string('target_id');
-            $table->string('file_id');
+            $table->unsignedBigInteger('service_id');
+            $table->unsignedBigInteger('reservation_id');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('file_targets');
+        Schema::dropIfExists('orders');
     }
 };

@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('qaah_services', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('hall_id');
-            $table->integer('price');
-            $table->boolean('is_free');
+            $table->unsignedBigInteger('directorate_id');
+            $table->unsignedBigInteger('facility_id');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('qaah_services');
+        Schema::dropIfExists('locations');
     }
 };

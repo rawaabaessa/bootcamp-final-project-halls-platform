@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('qaah_permissions', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
+            $table->string('path');
+            $table->unsignedBigInteger('fileType_id');
+            $table->bigInteger('target_id');
+            $table->enum('target_name',['reservation','facility','hall','platform']);
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('qaah_permissions');
+        Schema::dropIfExists('files');
     }
 };

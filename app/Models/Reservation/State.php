@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\File;
+namespace App\Models\Reservation;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FileTarget extends Model
+class State extends Model
 {
     use HasFactory;
 }

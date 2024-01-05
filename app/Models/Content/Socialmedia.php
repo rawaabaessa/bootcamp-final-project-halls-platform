@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Qaah;
+namespace App\Models\Content;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Occation extends Model
+class Socialmedia extends Model
 {
     use HasFactory;
 }

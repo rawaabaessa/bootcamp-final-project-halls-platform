@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\SigninController;
-use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Front\SignupController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Account\SigninController;
+use App\Http\Controllers\Account\SignupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +17,9 @@ use App\Http\Controllers\Front\SignupController;
 */
 
 Route::get('/',[HomeController::class, 'home'])->name('front.home');
-// Route::get('/about',[HomeController::class, 'about'])->name('front.about');
-
-Route::get('signin', [SigninController::class, 'view'])->name('front.signin');
+//
+Route::get('/signin', [SigninController::class, 'view'])->name('account.front.signin');
+Route::post('/signin', [SigninController::class, 'authenticate'])->name('account.front.signin.submit');
 // Route::post('signin', [SigninController::class, 'authenticate']);
 
 Route::get('signup', [SignupController::class, 'view'])->name('front.signup');
@@ -40,6 +40,10 @@ Route::get('mainhall', function(){
 
 //platform
 // user
+Route::get('platform/dashboard', function(){
+    return view('platform.dashboard');
+})->name('platform.dashboard');
+
 Route::get('platform/users', function(){
     return view('platform.users.index');
 })->name('users');

@@ -17,7 +17,7 @@
 <body> 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form action="">
                 <h1 class="mb-10">انشاء حساب</h1>
                 <input type="text" placeholder="الاسم الكامل" dir="rtl" id="">
                 <input type="email" placeholder="البريد الالكتروني" dir="rtl">
@@ -37,7 +37,8 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form action="{{route('account.front.signin.submit')}}" method="post">
+                @csrf
                 <h1 class="mb-10">تسجيل الدخول</h1>
                 <input type="email" placeholder="البريد الالكتروني" dir="rtl">
                 <input type="password" placeholder="كلمة السر" dir="rtl">

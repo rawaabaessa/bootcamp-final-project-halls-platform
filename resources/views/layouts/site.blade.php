@@ -44,7 +44,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <li class="li-login"><a class="getstarted" href="login.html">دخول</a></li>
+              <li class="li-login"><a class="getstarted" href="{{route('account.front.signin')}}">دخول</a></li>
             </li>
 	          <li class="nav-item"><a href="#contact" class="nav-link">تواصل معنا</a></li>
 	          <li class="nav-item"><a href="#halls" class="nav-link">القاعات</a></li>

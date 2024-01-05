@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\account;
+namespace App\Models\Location;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Governorate extends Model
 {
     use HasFactory;
 }
