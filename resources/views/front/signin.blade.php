@@ -17,27 +17,40 @@
 <body> 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form action="">
+            <form action="{{route('signup')}}" method="post">
+                @csrf
                 <h1 class="mb-10">انشاء حساب</h1>
-                <input type="text" placeholder="الاسم الكامل" dir="rtl" id="">
-                <input type="email" placeholder="البريد الالكتروني" dir="rtl">
+                <input type="text" placeholder="الاسم الكامل" name="name" dir="rtl" id="">
+                @error('name')
+                    <div>{{$message}}</div>
+                @enderror
+                <input type="email" placeholder="البريد الالكتروني" name="email" dir="rtl">
+                @error('email')
+                    <div>{{$message}}</div>
+                @enderror
                 <input type="text" placeholder="رقم الهاتف" dir="rtl">
                 <div class="" style="display: flex;gap:4px">
-                    <input type="password" placeholder="كلمة السر" dir="rtl">
-                    <input type="password" placeholder="تاكيد كلمة السر" dir="rtl">
+                    <input type="password" placeholder="كلمة السر" dir="rtl" name="password">
+                    <input type="password" placeholder="تاكيد كلمة السر" dir="rtl" name="password_confirmation">
                 </div>
+                @error('password')
+                    <div>{{$message}}</div>
+                @enderror
                 <div class="radio-group">
-                    <input type="radio" name="role" value="1" id="role1">
+                    <input type="radio" name="role" value="customer" id="role1">
                     <label for="role1" class="radio-label label1">مالك المنشئة <div class="done d-none"><i class="fa-solid fa-check"></i></div></label>
-                    <input type="radio" name="role" value="2" id="role2">
+                    <input type="radio" name="role" value="admin" id="role2">
                     <label for="role2" class="radio-label label2">مستخدم <div class="done d-none"><i class="fa-solid fa-check"></i></div></label>
                 </div>
+                @error('role')
+                    <div>{{$message}}</div>
+                @enderror
                 <button>تسجيل</button>
                 <p>لديك حساب بالفعل ؟ <a href="#" class="forget">تسجيل الدخول</a></p>
             </form>
         </div>
         <div class="form-container sign-in">
-            <form action="{{route('account.front.signin.submit')}}" method="post">
+            <form action="" method="post">
                 @csrf
                 <h1 class="mb-10">تسجيل الدخول</h1>
                 <input type="email" placeholder="البريد الالكتروني" dir="rtl">
@@ -63,7 +76,7 @@
                 <div class="toggle-panel toggle-right">
                     <h1>! مرحبا </h1>
                     <p>قم تسجيل معلوماتك الشخصية لاستخدام خصائص الموقع</p>
-                    <button class="hidden" id="register">التسجيل </button>
+                    <a class="hidden" id="register" href="{{route('signup')}}">التسجيل </a>
                 </div>
             </div>
         </div>

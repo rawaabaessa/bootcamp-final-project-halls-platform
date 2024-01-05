@@ -14,7 +14,7 @@ use App\Services\Account\AccountService;
 class SigninController extends Controller
 {
 
-    public function __construct(private AccountService $service){}
+    // public function __construct(private AccountService $service){}
 
     public function view(Request $request)
     {
@@ -54,4 +54,5 @@ class SigninController extends Controller
                 ->withSuccess('You have successfully signed in!');
         }
     }
+
 }
