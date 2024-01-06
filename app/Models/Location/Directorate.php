@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Directorate extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'governorate_id'
+    ];
 }

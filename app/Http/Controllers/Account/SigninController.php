@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
-
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Account\User;
+use App\Models\Account\Role;
 use App\Services\Account\AccountService;
 
 class SigninController extends Controller
@@ -27,32 +27,68 @@ class SigninController extends Controller
 
     public function authenticate(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:8'
-        ]);
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ];
+
+        // Define custom error messages
+        $messages = [
+            'email.required' => 'الحقل مطلوب',
+            'email.email' => 'عنوان بريد إلكتروني غير صحيح',
+            'password.required' => 'الحقل مطلوب',
+            'password.min' => 'يجب أن لا يقل عن 6 أحرف',
+        ];
+
+        // Validate the request data
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $email = $request->email;
         $password = $request->password;
 
-        
-
-        // Find the user by email
         $user = User::where('email', $email)->first();
-        dd($user);exit;
 
-        // Check the given password against the hashed password
+        if (!$user) {
+            return redirect()->back()->withErrors(['email' => 'المستخدم غير موجود'])->withInput();
+        }
+
         if (!Hash::check($password, $user->password)) {
-            return null;
+            return redirect()->back()->withErrors(['password' => 'كلمة المرور غير صحيحة'])->withInput();
         }
 
-        $credentials = $request->only('username', 'password');
-        if(Auth::attempt($credentials)){
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            //
-            return redirect()->route('platform.dashboard')
-                ->withSuccess('You have successfully signed in!');
+            $user = Auth::user();
+            if ($user->roles->contains('name', 'super-admin')) {
+                // User has the 'super-admin' role, allow access to the admin dashboard
+                return view('platform.dashboard');
+            } else if ($user->roles->contains('name', 'admin')) {
+                // User has the 'admin' role, show an error message or redirect
+                return redirect()->route('front.home');
+            } else if ($user->roles->contains('name', 'content-admin')) {
+                // User has the 'admin' role, show an error message or redirect
+                return redirect()->route('front.home');
+            }
+            else if ($user->roles->contains('name', 'reception')) {
+                // User has the 'admin' role, show an error message or redirect
+                return redirect()->route('front.home');
+            }
+            else if ($user->roles->contains('name', 'customer')) {
+                // User has the 'admin' role, show an error message or redirect
+                return redirect()->route('front.home');
+            }
+            else{
+                return redirect()->route('front.home');
+            }
         }
+    
     }
 
 }

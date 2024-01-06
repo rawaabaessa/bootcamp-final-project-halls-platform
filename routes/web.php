@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Account\SigninController;
 use App\Http\Controllers\Account\SignupController;
+use App\Http\Controllers\Account\SignoutController;
+use App\Http\Controllers\JoinRequest\JoinRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,17 +20,22 @@ use App\Http\Controllers\Account\SignupController;
 
 Route::get('/',[HomeController::class, 'show'])->name('front.home');
 //
-Route::get('/signin', [SigninController::class, 'view'])->name('account.front.signin');
-// Route::post('/signin', [SigninController::class, 'authenticate'])->name('account.front.signin.submit');
-// Route::post('signin', [SigninController::class, 'authenticate']);
+Route::get('/signin', [SigninController::class, 'view'])->name('signin');
+Route::post('/signin', [SigninController::class, 'authenticate']);
+//
 Route::get('/signup', [SignupController::class, 'view'])->name('signup');
 Route::post('/signup', [SignupController::class, 'store']);
+Route::middleware('auth')->group(function(){
+    Route::post('/signout', [SignoutController::class, 'signout'])->name('signout');
 
+});
 
-// Route::get('facility-information', function(){
-//     return view('')
-// })->name('front.step2');
-Route::get('facility-details', [SignupController::class, 'step2'])->name('front.register');
+Route::get('/joinRequest/facilityInfo',[JoinRequestController::class,'viewInfo'])->name('facilityInfo');
+Route::post('/joinRequest/facilityInfo',[JoinRequestController::class,'storeInfo']);
+
+Route::get('/joinRequest/facilityDetails', [JoinRequestController::class, 'viewDetails'])->name('facilitydetails');
+Route::post('/joinRequest/facilityDetails', [JoinRequestController::class, 'storeDetails'])->name('facilitydetails');
+
 // Route::get('joinerequest', function(){
 //     return view('front.joinrequest');
 // })->name('front.joinerequest');

@@ -23,7 +23,6 @@ class SignupController extends Controller
     {
         return view('front.signup');
     }
-
     /**
      * Store a new user.
      *
@@ -54,7 +53,7 @@ class SignupController extends Controller
         // echo "<script>console.log('first if')</script>";
         }
         else{
-            return redirect()->route('user.dashboard')
+            return redirect()->route('facilityInfo')
         ->withSuccess('You have successfully signuped & signed in!');
         }
         

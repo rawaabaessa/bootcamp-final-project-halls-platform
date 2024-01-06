@@ -17,7 +17,7 @@
 <body> 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form action="{{route('signup')}}" method="post">
+            <form action="" method="post">
                 @csrf
                 <h1 class="mb-10">انشاء حساب</h1>
                 <input type="text" placeholder="الاسم الكامل" name="name" dir="rtl" id="">
@@ -50,11 +50,17 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form action="" method="post">
+            <form action="{{route('signin')}}" method="post">
                 @csrf
                 <h1 class="mb-10">تسجيل الدخول</h1>
-                <input type="email" placeholder="البريد الالكتروني" dir="rtl">
-                <input type="password" placeholder="كلمة السر" dir="rtl">
+                <input type="email" name="email" placeholder="البريد الالكتروني" dir="rtl">
+                @error('email')
+                    <div>{{$message}}</div>
+                @enderror
+                <input type="password" name="password" placeholder="كلمة السر" dir="rtl">
+                @error('password')
+                    <div>{{$message}}</div>
+                @enderror
                 <div class="forget-remmeber">
                     <div class="remmeber">
                         <input type="checkbox" name="remmeber" id="">
@@ -62,7 +68,8 @@
                     </div>
                     <a href="#" class="forget">هل نسيت كلمة السر ؟</a>
                 </div>
-                <button>تسجيل الدخول</button>
+                
+                <button type="submit">تسجيل الدخول</button>
                 <p>ليس لديك حساب ؟ <a href="#" class="forget">تسجيل</a></p>
             </form>
         </div>

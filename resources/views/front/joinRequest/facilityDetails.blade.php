@@ -22,18 +22,11 @@
                 </div>
             </div>
             <div class="row">
+              <form>
                 <div class="col my-2 ">
                     <h3>طلب انضمام</h3>
                 </div>
             </div>
-            {{-- <div class="row w-50 mb-3">
-                <div class="col steps py-2" style="border-bottom: 3px solid #cdac33">
-                    <label for="" class="form-label">المعلومات العامة</label>
-                </div>
-                <div class="col steps py-2" style="border-bottom: 1px solid #cdac33">
-                    <label for="" class="form-label">عن المنشأة</label>  
-                </div>
-            </div> --}}
             <div class="row align-self-start w-100">
                 <div class="col mb-3">
                     <label class="form-label">الخدمات</label>
@@ -184,9 +177,10 @@
                 </div>
             </div>
             <div class="align-self-start">
-                <a type="submit" class="btn btn-primary submit-btn" href="{{route('front.joinerequest')}}">تقديم</a>
+                <a type="submit" class="btn btn-primary submit-btn" href="#">تقديم</a>
                 {{-- <button type="submit" class="btn btn-primary">رجوع</button> --}}
               </div>
+            </form>
         </div>
         {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
         <script src="{{asset('assets/js/inputtag.js')}}"></script>
