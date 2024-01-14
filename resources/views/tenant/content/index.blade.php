@@ -14,7 +14,7 @@
                              الشعار 
                         </div>
                         <div class="col text-start">
-                            <a href="{{route('tenant.content.logo')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                            <a href="{{route('tenant.content.logo',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
                         </div>
                     </div>
                 </div>
@@ -23,10 +23,22 @@
                 <div class="card-body" style="padding: 20px">
                     <div class="row">
                         <div class="col fw-semibold">
-                             الخدمات
+                             الخدمات الاساسية
                         </div>
                         <div class="col text-start">
-                            <a href="{{route('tenant.content.service')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                            <a href="{{route('tenant.content.services',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body" style="padding: 20px">
+                    <div class="row">
+                        <div class="col fw-semibold">
+                             الخدمات الاضافية
+                        </div>
+                        <div class="col text-start">
+                            <a href="{{route('tenant.content.extraservice',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
                         </div>
                     </div>
                 </div>
@@ -38,7 +50,7 @@
                              الفترات
                         </div>
                         <div class="col text-start">
-                            <a href="{{route('tenant.content.duration')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                            <a href="{{route('tenant.content.duration',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +62,31 @@
                              المناسبات
                         </div>
                         <div class="col text-start">
-                            <a href="{{route('tenant.content.occasion')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                            <a href="{{route('tenant.content.occasion',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body" style="padding: 20px">
+                    <div class="row">
+                        <div class="col fw-semibold">
+                             الحسابات البنكية
+                        </div>
+                        <div class="col text-start">
+                            <a href="{{route('tenant.content.payment',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body" style="padding: 20px">
+                    <div class="row">
+                        <div class="col fw-semibold">
+                              العملة
+                        </div>
+                        <div class="col text-start">
+                            <a href="{{route('tenant.content.occasion',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
                         </div>
                     </div>
                 </div>
@@ -62,47 +98,11 @@
                             من نحن 
                         </div>
                         <div class="col text-start">
-                            <a href="{{route('tenant.content.about')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                            <a href="{{route('tenant.content.about',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- <div class="card">
-                <div class="card-body" style="padding: 20px">
-                    <div class="row">
-                        <div class="col fw-semibold">
-                            الخدمات 
-                        </div>
-                        <div class="col text-start">
-                            <a href="{{route('content.services')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="card">
-                <div class="card-body" style="padding: 20px">
-                    <div class="row">
-                        <div class="col fw-semibold">
-                            القاعات الاكثر شيوعا  
-                        </div>
-                        <div class="col text-start">
-                            <a href="#"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="card">
-                <div class="card-body" style="padding: 20px">
-                    <div class="row">
-                        <div class="col fw-semibold">
-                             كيفية حجز قاعة 
-                        </div>
-                        <div class="col text-start">
-                            <a href="{{route('tenant.content.howregister')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             <div class="card">
                 <div class="card-body" style="padding: 20px">
                     <div class="row">
@@ -110,7 +110,7 @@
                               تواصل معنا
                         </div>
                         <div class="col text-start">
-                            <a href="{{route('tenant.content.contact')}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
+                            <a href="{{route('tenant.content.contact',['name' => $facility->name])}}"><i class="fa-regular fa-pen-to-square crud-icon"></i></a>
                         </div>
                     </div>
                 </div>

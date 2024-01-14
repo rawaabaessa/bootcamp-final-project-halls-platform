@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('service_id');
-            $table->unsignedBigInteger('reservation_id');
+            $table->string('title');
+            $table->text('discription');
+            $table->string('type');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('contents');
     }
 };

@@ -68,9 +68,8 @@
                     </div>
                     <a href="#" class="forget">هل نسيت كلمة السر ؟</a>
                 </div>
-                
                 <button type="submit">تسجيل الدخول</button>
-                <p>ليس لديك حساب ؟ <a href="#" class="forget">تسجيل</a></p>
+                <p class="d-none">ليس لديك حساب ؟ <a href="{{route('signup.view')}}" class="forget">تسجيل</a></p>
             </form>
         </div>
         <div class="toggle-container">
@@ -83,12 +82,12 @@
                 <div class="toggle-panel toggle-right">
                     <h1>! مرحبا </h1>
                     <p>قم تسجيل معلوماتك الشخصية لاستخدام خصائص الموقع</p>
-                    <a class="hidden" id="register" href="{{route('signup')}}">التسجيل </a>
+                    <a class="click" id="register" style="border:1px solid white" href="{{route('signup.view')}}">التسجيل</a>
                 </div>
             </div>
         </div>
     </div>
     <script src="{{asset('assets/vendor/jquery-3.7.1.min.js')}}"></script>
-    <script src="{{asset('assets/js/login.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/login.js')}}"></script> --}}
 </body>
 </html>

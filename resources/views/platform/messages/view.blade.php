@@ -9,19 +9,19 @@
             <div class="card-body">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">الاسم</label>
-                <p>روعة باعيسى</p>
+                <p>{{$record->name}}</p>
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">الايميل</label>
-                <p>rawaabaessa@gmail.com</p>
+                <p>{{$record->email}}</p>
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">العنوان</label>
-                <p>مشكلة تقنية</p>
+                <p>{{$record->subject}}</p>
               </div> 
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">الموضوع</label>
-                <p>لم اتمكن من الدفع عبر الانترنت</p>
+                <p>{{$record->message}}</p>
                 {{-- <p><i class="fa-solid fa-check checked"></i>تعديل </p> --}}
                 {{-- <p><i class="fa-solid fa-check checked"></i>حذف مستخدم</p> --}}
                 {{-- <p><i class="fa-solid fa-check checked"></i>تعديل محتوى</p> --}}

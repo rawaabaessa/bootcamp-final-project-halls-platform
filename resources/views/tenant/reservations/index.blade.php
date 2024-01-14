@@ -10,8 +10,18 @@
       <div class="col-lg d-flex align-items-stretch">
         <div class="card w-100">
           <div class="card-body p-4">
-            <h5 class="card-title fw-semibold mb-4">الحجوزات</h5>
+            <h5 class="card-title fw-semibold mb-4">حجوزات القاعات</h5>
             <div class="table-responsive">
+              @if (session('success'))
+                  <div class="alert alert-success">
+                      {{ session('success') }}
+                  </div>
+              @endif
+              @if (session('error'))
+                  <div class="alert alert-danger">
+                      {{ session('error') }}
+                  </div>
+              @endif
               <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                   <tr>
@@ -19,19 +29,7 @@
                       <h6 class="fw-semibold mb-0">#</h6>
                     </th>
                     <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">اسم العميل</h6>
-                    </th>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">القاعة</h6>
-                    </th>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">التاريخ</h6>
-                    </th>
-                    <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">الوقت</h6>
-                    </th>
-                    <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">حالة الحجز</h6>
+                      <h6 class="fw-semibold mb-0">اسم القاعة</h6>
                     </th>
                     <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0"></h6>
@@ -39,91 +37,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @php
+                    $counter = 1;
+                  @endphp
+                  @foreach ($facility->halls as $hall)
                   <tr>
-                    <td class=""><h6 class="fw-semibold mb-0">1</h6></td>
+                    <td class=""><h6 class="fw-semibold mb-0">{{$counter}}</h6></td>
                     <td class="">
-                        <h6 class="fw-semibold mb-1">روعة باعيسى</h6>
+                        <h6 class="fw-semibold mb-1">{{$hall->title}}</h6>
                         {{-- <span class="fw-normal">Web Designer</span>                           --}}
                     </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">القاعة الملكية</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">2-2-2023</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">8:00 - 12:00</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                      <p class="mb-0 fw-normal">مأكد</p>
-                    </td>
-                    
                     <td>
-                        <a href="{{route('tenant.reservations.view')}}" class="crud-icon"><i class="fa-regular fa-eye"></i></a>
+                        <a href="{{route('tentant.reservation.list',['name'=> $hall->name])}}" class="crud-icon">الحجوزات</a>
                         {{-- <a href="{{route('tenant.reservations.edit')}}" class="crud-icon"><i class="fa-regular fa-pen-to-square"></i></a> --}}
-                        <a href="{{route('tenant.reservations.delete')}}" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
+                        {{-- <a href="{{route('tenant.reservations.delete')}}" class="crud-icon"><i class="fa-solid fa-trash"></i></a> --}}
                     </td>
-                  </tr>
-                  <tr>
-                    <td class=""><h6 class="fw-semibold mb-0">2</h6></td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">فاطمة بكران</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">القاعة الصغرى</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">2-2-2023</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">8:00 - 12:00</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                      <p class="mb-0 fw-normal">قيد المراجعة</p>
-                    </td>
-                    
-                    <td>
-                        <a href="{{route('tenant.reservations.view')}}" class="crud-icon"><i class="fa-regular fa-eye"></i></a>
-                        {{-- <a href="{{route('tenant.reservations.edit')}}" class="crud-icon"><i class="fa-regular fa-pen-to-square"></i></a> --}}
-                        <a href="{{route('tenant.reservations.delete')}}" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class=""><h6 class="fw-semibold mb-0">3</h6></td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">رغد العطاس</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">قاعة الاميرات</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">2-2-2023</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">8:00 - 12:00</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                      <p class="mb-0 fw-normal">ملغى</p>
-                    </td>
-                    
-                    <td>
-                        <a href="{{route('tenant.reservations.view')}}" class="crud-icon"><i class="fa-regular fa-eye"></i></a>
-                        {{-- <a href="{{route('tenant.reservations.edit')}}" class="crud-icon"><i class="fa-regular fa-pen-to-square"></i></a> --}}
-                        <a href="{{route('tenant.reservations.delete')}}" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
-                    </td>
-                  </tr>
-                                 
+                  </tr>         
+                  @php
+                    $counter++;
+                  @endphp
+                  @endforeach
                 </tbody>
               </table>
             </div>

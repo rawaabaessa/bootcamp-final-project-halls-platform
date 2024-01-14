@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('halls', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('discription');
+            $table->string('title');
+            $table->text('discription')->nullable();
             $table->bigInteger('people_count');
-            $table->float('price');
             $table->bigInteger('area');
             $table->unsignedBigInteger('facility_id');
+            $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Account\Role;
+use App\Models\Qaah\Facility;
+use App\Models\Content\Content;
 
 class User extends Authenticatable
 {
@@ -75,5 +77,13 @@ class User extends Authenticatable
             $role = Role::where('name', $role)->firstOrFail();
         }
         $this->roles()->detach($role);
+    }
+    public function facility()
+    {
+        return $this->hasOne(Facility::class);
+    }
+    public function content()
+    {
+        return $this->hasOne(Content::class);
     }
 }

@@ -9,8 +9,12 @@
             <div class="card-body">
              <p>هل انت متاكد ؟</p>
              <div class="mt-3 submit-buttons">
+              <form method="post" action="{{route('messages.delete',['id'=>$id])}}">
+                @csrf
+                {{-- @method('DELETE') --}}
                 <button type="submit" class="btn btn-primary">حذف</button>
-                <a type="submit" class="btn btn-primary" href="{{route('messages.index')}}">رجوع</a>
+                <a class="btn btn-primary" href="{{route('messages.index')}}">رجوع</a>
+              </form>
               </div>
             </div>
           </div>

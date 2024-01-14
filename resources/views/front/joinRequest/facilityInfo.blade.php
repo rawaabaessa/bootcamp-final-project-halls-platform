@@ -97,6 +97,13 @@
                   @enderror
                 </div>
                 <div class="col mb-3">
+                  <label for="exampleInputEmail1" class="form-label">الشعار</label>
+                <input type="file" name="logo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                @error('logo')
+                    <div>{{$message}}</div>
+                @enderror
+              </div>
+                <div class="col mb-3">
                   <label for="exampleInputEmail1" class="form-label">العنوان</label>
                   <input type="text" class="form-control" name="address" value="{{old('id')}}" id="exampleInputEmail1" aria-describedby="emailHelp">
                   @error('address')
@@ -117,7 +124,7 @@
               </div>
             </form>
         </div>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
     </div>
 </body>
 </html>

@@ -15,7 +15,7 @@
 			<!-- <li class="nav-item"><a href="properties.html" class="nav-link">Properties</a></li> -->
 			<!-- <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li> -->
 			{{-- <li class="nav-item"><a href="#contact" class="nav-link">تسجيل خروج</a></li> --}}
-			<li class="nav-item"><a href="#" class="nav-link">لوحة التحكم</a></li>
+			{{-- <li class="nav-item"><a href="#" class="nav-link">لوحة التحكم</a></li> --}}
 			<li class="nav-item"><a href="#contact" class="nav-link">تواصل معنا</a></li>
 			<li class="nav-item"><a href="#halls" class="nav-link">القاعات</a></li>
 			<li class="nav-item"><a href="#services" class="nav-link">خدماتنا</a></li>
@@ -29,7 +29,7 @@
 		</div>
 	  <a class="navbar-brand" href="{{route('front.home')}}"><img src="{{asset('assets/images/Blue & Red Overlapping House Realtor Logo (1).png')}}" width="80" alt="" srcset=""></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="oi oi-menu"></span> Menu
+		  <span class="oi oi-menu"></span> القائمة
 		</button>
 	  </div>
 	</nav>
@@ -43,26 +43,25 @@
 			<div class="text text-center">
 			  <h1 class="mb-4">اكتشف مجموعة واسعة<br> من أجمل صالات المناسبات في المدينة</h1>
 			  <!-- <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p> -->
-			  <form action="#" class="search-location mt-md-5">
+			  <form action="{{route('front.facilities')}}" class="search-location mt-md-5" method="post">
+				@csrf
 					  <div class="row justify-content-center">
 						  <div class="col-lg-10 align-items-end">
 							  <div class="form-group">
-								<div class="form-field">
-					  <!-- <select name="" id="" class="form-control">
-						<option>اختر المدينة</option>
-						<option>صنعاء</option>
-						<option>المكلا</option>
-						<option>عدن</option>
-					  </select> -->
-							  <input type="text" list="datalistOptions" class="form-control" placeholder="ادخل المدينة">
-					  <datalist id="datalistOptions">
-						<option value="المكلا">
-						<option value="غيل باوزير">
-						<option value="الشحر">
-						<!-- <option value=""> -->
-						<!-- <option value="Chicago"> -->
-					  </datalist>
-							  <button class="search-hero"><span class="ion-ios-search"></span></button>
+								<div class="form-field" dir="rtl">
+					<input type="text" name="search" list="datalistOptions" class="form-control" placeholder="ادخل المدينة">
+					  {{-- <datalist id="datalistOptions">
+						@foreach ($Directorates as $Directorate)
+						<option value="{{$Directorate->name}}" name="{{$Directorate->id}}">
+						@endforeach
+					  </datalist> --}}
+
+					  {{-- <select name="directorate" id="datalistOptions">
+						@foreach ($options as $key => $value)
+						  <option value="{{$key}}">{{$value}}</option>
+						@endforeach
+					  </select> --}}
+							<button type="submit" class="search-hero"><span class="ion-ios-search"></span></button>
 							</div>
 						</div>
 						  </div>
@@ -91,7 +90,7 @@
 
 		<p>
 		
-نحن منصة قاعة، نسعى لتيسير عملية حجز القاعات بطريقة سهلة ومريحة. نقدم منصة شاملة للقاعات للتسجيل فيها وعرض خدماتها بشكل مباشر للعملاء المحتملين. نفهم أهمية القاعات كمرافق حيوية للفعاليات والمناسبات المختلفة، ولذلك نسعى لتوفير تجربة مميزة وموثوقة للعملاء الذين يبحثون عن القاعة المثالية.
+نحن منصة قاعة نسعى لتيسير عملية حجز القاعات بطريقة سهلة ومريحة. نقدم منصة شاملة للقاعات للتسجيل فيها وعرض خدماتها بشكل مباشر للعملاء المحتملين. نفهم أهمية القاعات كمرافق حيوية للفعاليات والمناسبات المختلفة، ولذلك نسعى لتوفير تجربة مميزة وموثوقة للعملاء الذين يبحثون عن القاعة المثالية.
 
 من خلال منصتنا، يمكن لأصحاب القاعات تسجيل ملفاتهم والترويج لخدماتهم بشكل شامل. لدينا مجموعة واسعة من القاعات التي تناسب مختلف الأحداث مثل الحفلات، والمؤتمرات والمناسبات الخاصة. نحرص على توفير معلومات مفصلة وصور جذابة للقاعات، بالإضافة إلى التقييمات والتعليقات من العملاء السابقين لمساعدة العملاء في اتخاذ قرار مستنير.
 
@@ -243,7 +242,7 @@
 	  <div class="container">
 		  <div class="row justify-content-center">
 		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-			<span class="subheading">القاعات الاكثر شيوعا</span>
+			<span class="subheading">القاعات</span>
 		  <!-- <h2 class="mb-2">Exclusive Offer For You</h2> -->
 		</div>
 	  </div>
@@ -259,7 +258,7 @@
 						  <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
 					  </ul>
 					  <h3><a >قاعة الاميرات</a></h3>
-					  <span class="location "><a href="{{route('mainhall')}}" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
+					  <span class="location "><a href="#" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
 			  <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
 					  <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
 						  <i class="fa-regular fa-bookmark"></i>
@@ -278,7 +277,7 @@
 						  <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
 					  </ul>
 					  <h3><a >قاعة الاميرات</a></h3>
-					  <span class="location "><a href="{{route('mainhall')}}" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
+					  <span class="location "><a href="#" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
 			  <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
 					  <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
 						  <i class="fa-regular fa-bookmark"></i>
@@ -297,7 +296,7 @@
 						  <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
 					  </ul>
 					  <h3><a >قاعة الاميرات</a></h3>
-					  <span class="location "><a href="{{route('mainhall')}}" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
+					  <span class="location "><a href="#" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
 			  <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
 					  <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
 						  <i class="fa-regular fa-bookmark"></i>
@@ -372,16 +371,16 @@
 		  <div class="col-md-8">
 			  <div class="row mb-5">
 				<div class="col-md text-center border-height py-4">
-					<div class="icon">
-						<span class="icon-mobile-phone"></span>
+					<div class="icon golden">
+						<i class="fa-solid fa-mobile-screen-button"></i>
 					</div>
-				  <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+				  <p><span>الهاتف</span> <a href="tel://1234567920">739665833</a></p>
 				</div>
 				<div class="col-md text-center py-4">
-					<div class="icon">
+					<div class="icon golden">
 						<span class="icon-envelope-o"></span>
 					</div>
-				  <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+				  <p><span>الايميل</span> <a href="mailto:info@yoursite.com">qaah@gmail.com</a></p>
 				</div>
 			  </div>
 		</div>
@@ -390,21 +389,22 @@
 		<div class="col-md-8 mb-md-5">
 			<h2 class="text-center">إذا كان لديك أي أسئلة<br>
 			من فضلك لا تتردد في ارسال رسالة  لنا</h2>
-		  <form action="#" class="bg-light p-5 contact-form">
+		  <form dir="rtl" action="{{route('messages.store')}}" method="POST" class="bg-light p-5 contact-form" style="background-color: #fbfaf2 !important">
+			@csrf
 			<div class="form-group">
-			  <input type="text" class="form-control" placeholder="Your Name">
+			  <input type="text" class="form-control" name="name" placeholder="الاسم">
 			</div>
 			<div class="form-group">
-			  <input type="text" class="form-control" placeholder="Your Email">
+			  <input type="text" class="form-control" name="email" placeholder="الايميل">
 			</div>
 			<div class="form-group">
-			  <input type="text" class="form-control" placeholder="Subject">
+			  <input type="text" class="form-control" name="subject" placeholder="العنوان">
 			</div>
 			<div class="form-group">
-			  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+			  <textarea id="" cols="30" rows="7" name="message" class="form-control" placeholder="الرسالة"></textarea>
 			</div>
-			<div class="form-group">
-			  <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+			<div class="form-group d-flex justify-content-start">
+			  <input type="submit" value="ارسل رسالة" class="btn btn-primary py-3 px-5">
 			</div>
 		  </form>
 		
@@ -739,7 +739,42 @@
 	  </div>
 	</div>
   </section>		 -->
-
+  {{-- <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  var searchBtn = document.querySelector('.search-hero');
+	  searchBtn.addEventListener('click', function(e) {
+		e.preventDefault(); // منع إرسال النموذج
+  
+		var selectedOption = document.querySelector('#directorate-input').value; // الحصول على القيمة المحددة
+		var optionsList = document.querySelectorAll('#datalistOptions option');
+		var selectedId = '';
+  
+		// البحث عن الهوية المقابلة للقيمة المحددة
+		optionsList.forEach(function(option) {
+		  if (option.value === selectedOption) {
+			selectedId = option.getAttribute('name');
+		  }
+		});
+  
+		// إرسال البيانات المحددة إلى المسار باستخدام AJAX
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', '/facilities/' + selectedId, true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		  if (xhr.status === 200) {
+			// التعامل مع الاستجابة من المسار
+			// يمكنك توجيه المستخدم إلى صفحة جديدة أو تحديث الصفحة الحالية بالبيانات المسترجعة
+		  } else {
+			// التعامل مع الخطأ
+		  }
+		};
+		xhr.onerror = function() {
+		  // التعامل مع الخطأ
+		};
+		xhr.send();
+	  });
+	});
+  </script> --}}
   </body>
 @endsection
     

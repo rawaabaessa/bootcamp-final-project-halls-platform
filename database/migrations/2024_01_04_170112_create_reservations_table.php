@@ -14,13 +14,19 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('duration_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('offer_hall_id');
+            $table->foreign('offer_hall_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('hall_id');
+            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
+            $table->float('hall_price');
             $table->unsignedBigInteger('occasion_id');
+            $table->foreign('occasion_id')->references('id')->on('occasions')->onDelete('cascade');
             $table->date('date');
             $table->integer('poeple_count');
-            $table->unsignedBigInteger('voucher_id');
+            $table->unsignedBigInteger('voucher_id')->nullable();
             $table->unsignedBigInteger('state_id');
+            // $table->foreign('state_id')->references('id')->on('state')->onDelete('cascade');
             $table->timestamps();
         });
     }

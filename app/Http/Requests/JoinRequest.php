@@ -31,7 +31,7 @@ class JoinRequest extends FormRequest
             'license' => 'required',
             'governorate' => 'required',
             'Directorate' => 'required',
-            'identity-NO' => 'required|integer|min:15|max:15'
+            'identity_NO' => 'required|integer|min:15|max:15'
         ];
     }
     public function messages(){
@@ -63,10 +63,10 @@ class JoinRequest extends FormRequest
             'governorate.required' => ' .الحقل مطلوب',
             'directorate.required' => ' .الحقل مطلوب',
     
-            'identity-NO.required' => ' .الحقل مطلوب',
-            'identity-NO.integer' => '.القيمة غير صالحة',
-            'identity-NO.min' => ' .يجب ان لا يقل عن 15 حرف',
-            'identity-NO.max' => ' .يجب ان لا يتجاوز  15 حرف',
+            'identity_NO.required' => ' .الحقل مطلوب',
+            'identity_NO.integer' => '.القيمة غير صالحة',
+            'identity_NO.min' => ' .يجب ان لا يقل عن 15 حرف',
+            'identity_NO.max' => ' .يجب ان لا يتجاوز  15 حرف',
         ];
 
     }

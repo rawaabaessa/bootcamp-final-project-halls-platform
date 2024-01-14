@@ -17,14 +17,15 @@ return new class extends Migration
             $table->string('title')->unique();
             $table->string('email')->unique();
             $table->string('address');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('license');
             $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('directorate_id')->unique();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('directorate_id');
             $table->bigInteger('phone');
             $table->bigInteger('identity_NO');
-            $table->string('currency');
-            $table->enum('state',['register','step1','step2','approved','complete','reject']);
+            $table->string('currency')->nullable();
+            $table->enum('state',['step1','approved','complete','reject']);
             $table->timestamps();
         });
     }

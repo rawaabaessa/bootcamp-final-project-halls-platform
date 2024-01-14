@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Account\User;
+use App\Models\Qaah\Facility;
 use App\Models\Account\Role;
 use App\Services\Account\AccountService;
 
@@ -71,7 +72,33 @@ class SigninController extends Controller
                 return view('platform.dashboard');
             } else if ($user->roles->contains('name', 'admin')) {
                 // User has the 'admin' role, show an error message or redirect
-                return redirect()->route('front.home');
+                $is_exits = Facility::where('user_id', Auth::id())->exists();
+                if(!$is_exits){
+                    return redirect()->route('facilityInfo');
+                }
+                else{
+                    $userfacility = User::find(Auth::id());
+                    $facilityStatus = $userfacility->facility->state;
+                    if($facilityStatus == 'step1'){
+                        //معناته قدم الطلب و لسى ماوافقو
+                        //طلبك قيد المراجعة 
+                        Auth::logout();
+                        return redirect()->route('underview');
+                    }
+                    elseif($facilityStatus == 'approved'){
+                        // تمت الموافقة 
+                        return redirect()->route('tentant.reservation');
+                    }
+                    elseif($facilityStatus == 'reject'){
+                        // تم الرفض  
+                        // return redirect()->route('facilitydetails');
+                    }
+                    elseif($facilityStatus == 'complete'){
+                        //يتحول لصفحة الداشبورد لانه كمل بياناته 
+                        return redirect()->route('tentant.reservation');
+                    }
+                }
+                // return redirect()->route('front.home');
             } else if ($user->roles->contains('name', 'content-admin')) {
                 // User has the 'admin' role, show an error message or redirect
                 return redirect()->route('front.home');

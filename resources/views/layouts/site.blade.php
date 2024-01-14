@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <title>Uptown - Free Bootstrap 4 Template by Colorlib</title>
+    <title>منصة قاعة</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
+    <link rel="shortcut icon" type="image/png" href="{{asset('admin/assets/images/logos/Blue & Red Overlapping House Realtor Logo (2).png')}}" />
+
         <!-- <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +31,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    @if (Route::currentRouteName() === 'halldetails')
+    @if (Route::currentRouteName() === 'front.facilities.details')
     <link rel="stylesheet" href="{{asset('assets/css/css/halldetails.css')}}">
         
     @endif
@@ -44,7 +45,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <li class="li-login"><a class="getstarted" href="{{route('account.front.signin')}}">دخول</a></li>
+              <li class="li-login"><a class="getstarted" href="#">دخول</a></li>
             </li>
 	          <li class="nav-item"><a href="#contact" class="nav-link">تواصل معنا</a></li>
 	          <li class="nav-item"><a href="#halls" class="nav-link">القاعات</a></li>
@@ -58,7 +59,7 @@
 	      </div>
         <a class="navbar-brand" href="index.html"><img src="{{asset('assets/images/Blue & Red Overlapping House Realtor Logo (1).png')}}" width="80" alt="" srcset=""></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
+	        <span class="oi oi-menu"></span> القائمة
 	      </button>
 	    </div>
 	  </nav>
@@ -82,7 +83,7 @@
             <div class="col-md-12 text-center">
       
               <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Website is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Rawaa Baessa</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Website is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a target="_blank">Rawaa Baessa</a>
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
             </div>
           </div>

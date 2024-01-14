@@ -19,6 +19,9 @@
                       <h6 class="fw-semibold mb-0">#</h6>
                     </th>
                     <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">المنشأة</h6>
+                    </th>
+                    <th class="border-bottom-0">
                       <h6 class="fw-semibold mb-0">القاعة</h6>
                     </th>
                     <th class="border-bottom-0">
@@ -27,73 +30,59 @@
                     <th class="border-bottom-0">
                       <h6 class="fw-semibold mb-0">الفترة</h6>
                     </th>
-                    <th class="border-bottom-0">
+                    {{-- <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0">المبلغ</h6>
-                    </th>
+                    </th> --}}
                     <th class="border-bottom-0">
                         <h6 class="fw-semibold mb-0">حالة الحجز</h6>
                     </th>
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0"></h6>
+                  </th>
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($reservations as $reservation)
                   <tr>
                     <td class=""><h6 class="fw-semibold mb-0">1</h6></td>
                     <td class="">
-                        <h6 class="fw-semibold mb-1">القاعة الملكية</h6>
+                      <h6 class="fw-semibold mb-1">{{$reservation->hall->facility->title}}</h6>
+                      {{-- <span class="fw-normal">Web Designer</span>                           --}}
+                  </td>
+                    <td class="">
+                        <h6 class="fw-semibold mb-1">{{$reservation->hall->title}}</h6>
                         {{-- <span class="fw-normal">Web Designer</span>                           --}}
                     </td>
                     <td class="">
-                        <h6 class="fw-semibold mb-1">2-2-2023</h6>
+                        <h6 class="fw-semibold mb-1">{{$reservation->date}}</h6>
                         {{-- <span class="fw-normal">Web Designer</span>                           --}}
                     </td>
                     <td class="">
-                        <h6 class="fw-semibold mb-1">8:00-12:00</h6>
+                        <h6 class="fw-semibold mb-1">{{$reservation->offerHall->duration->from}} - {{$reservation->offerHall->duration->to}}</h6>
                         {{-- <span class="fw-normal">Web Designer</span>                           --}}
                     </td>
-                    <td class="">
+                    {{-- <td class="">
                         <h6 class="fw-semibold mb-1">5000 رس</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
+                    </td> --}}
                     <td class="">
-                      <p class="mb-0 fw-normal">غير مأكد</p>
+                      <p class="mb-0 fw-normal">{{$reservation->state->title}}</p>
                     </td>
                     
                     <td>
-                        <a href="{{route('user.reservations.confirmation')}}" class="crud-icon">تاكيد الحجز</a>
-                        {{-- <a href="{{route('tenant.reservations.view')}}" class="crud-icon"><i class="fa-regular fa-eye"></i></a> --}}
+                      @if ($reservation->state->name == 'unconfirmed')
+                      
+                      <a href="{{route('user.reservation.Detail',['id' => $reservation->id ])}}" class="crud-icon">تاكيد الحجز</a>
+                      @else
+                      <a href="{{route('user.reservation.Detail',['id' => $reservation->id ])}}" class="crud-icon"><i class="fa-regular fa-eye"></i></a>
+
+                      @endif
                         {{-- <a href="{{route('tenant.reservations.edit')}}" class="crud-icon"><i class="fa-regular fa-pen-to-square"></i></a> --}}
                         {{-- <a href="{{route('tenant.reservations.delete')}}" class="crud-icon"><i class="fa-solid fa-trash"></i></a> --}}
                     </td>
                   </tr>
-                  <tr>
-                    <td class=""><h6 class="fw-semibold mb-0">1</h6></td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">القاعة الملكية</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">2-2-2023</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">8:00-12:00</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                        <h6 class="fw-semibold mb-1">5000 رس</h6>
-                        {{-- <span class="fw-normal">Web Designer</span>                           --}}
-                    </td>
-                    <td class="">
-                      <p class="mb-0 fw-normal">مأكد</p>
-                    </td>
-                    
-                    <td>
-                        {{-- <a href="{{route('user.reservations.confirmation')}}" class="crud-icon">تاكيد الحجز</a> --}}
-                        <a href="{{route('user.reservations.view')}}" class="crud-icon"><i class="fa-regular fa-eye"></i></a>
-                        {{-- <a href="{{route('tenant.reservations.edit')}}" class="crud-icon"><i class="fa-regular fa-pen-to-square"></i></a> --}}
-                        {{-- <a href="{{route('tenant.reservations.delete')}}" class="crud-icon"><i class="fa-solid fa-trash"></i></a> --}}
-                    </td>
-                  </tr>
+                  @endforeach
+                  
+                  
                                  
                 </tbody>
               </table>

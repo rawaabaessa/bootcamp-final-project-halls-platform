@@ -12,12 +12,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"> --}}
     <!-- <link rel="stylesheet" href=""> -->
-    <title>login</title>
+    <title>signup</title>
 </head>
 <body> 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form action="{{route('signup')}}" method="post">
+            
+        </div>
+        <div class="form-container sign-in">
+            <form action="{{route('signup.store')}}" method="post">
                 @csrf
                 <h1 class="mb-10">انشاء حساب</h1>
                 <input type="text" placeholder="الاسم الكامل" name="name" dir="rtl" id="">
@@ -30,8 +33,8 @@
                 @enderror
                 <input type="text" placeholder="رقم الهاتف" dir="rtl" name="phone">
                 <div class="" style="display: flex;gap:4px">
-                    <input type="password" placeholder="كلمة السر" dir="rtl" name="password">
                     <input type="password" placeholder="تاكيد كلمة السر" dir="rtl" name="password_confirmation">
+                    <input type="password" placeholder="كلمة السر" dir="rtl" name="password">
                 </div>
                 @error('password')
                     <div>{{$message}}</div>
@@ -46,24 +49,7 @@
                     <div>{{$message}}</div>
                 @enderror
                 <button>تسجيل</button>
-                <p>لديك حساب بالفعل ؟ <a href="#" class="forget">تسجيل الدخول</a></p>
-            </form>
-        </div>
-        <div class="form-container sign-in">
-            <form action="" method="post">
-                {{-- @csrf --}}
-                <h1 class="mb-10">تسجيل الدخول</h1>
-                <input type="email" placeholder="البريد الالكتروني" dir="rtl">
-                <input type="password" placeholder="كلمة السر" dir="rtl">
-                <div class="forget-remmeber">
-                    <div class="remmeber">
-                        <input type="checkbox" name="remmeber" id="">
-                        <label for="remmeber">تذكرني</label>
-                    </div>
-                    <a href="#" class="forget">هل نسيت كلمة السر ؟</a>
-                </div>
-                <button>تسجيل الدخول</button>
-                <p>ليس لديك حساب ؟ <a href="#" class="forget">تسجيل</a></p>
+                <p class="d-none">لديك حساب بالفعل ؟ <a href="{{route('signin')}}" class="forget">تسجيل الدخول</a></p>
             </form>
         </div>
         <div class="toggle-container">
@@ -76,7 +62,7 @@
                 <div class="toggle-panel toggle-right">
                     <h1>! مرحبا </h1>
                     <p>قم تسجيل معلوماتك الشخصية لاستخدام خصائص الموقع</p>
-                    <button class="hidden" id="register">التسجيل </button>
+                    <a class="click" id="register" style="border:1px solid white" href="{{route('signin')}}">التسجيل</a>
                 </div>
             </div>
         </div>

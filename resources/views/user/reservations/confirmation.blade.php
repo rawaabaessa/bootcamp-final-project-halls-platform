@@ -10,14 +10,19 @@
               <div class="row">
                 <div class="col">
                   <h4 class="fw-bold mb-3">تفاصيل الحجز</h4>
-                  <p><i class="fa-solid fa-calendar-days crud-icon"></i> 2-2-2022</p>
-                  <p><i class="fa-solid fa-clock crud-icon"></i> 8:00-12:00</p>
-                  <p><i class="fa-solid fa-person crud-icon"></i> 400</p>
+                  <p><i class="fa-solid fa-calendar-days crud-icon"></i>{{$reservation->date}}</p>
+                  <p><i class="fa-solid fa-clock crud-icon"></i>{{$reservation->offerHall->duration->from}} - {{$reservation->offerHall->duration->to}}</p>
+                  <p><i class="fa-solid fa-person crud-icon"></i>{{$reservation->poeple_count}}</p>
+                  {{-- <h4 class="my-3">الخدمات المطلوبة</h4> --}}
                   <h4 class="my-3">الخدمات المطلوبة</h4>
-                  <p><i class="fa-solid fa-check crud-icon"></i>بروجكتر</p>
-                  <p><i class="fa-solid fa-check crud-icon"></i>فريق تنظيم</p>
+                  @foreach ($reservation->orders as $order)
+                    @if ($order->service->is_free)
+                      <p><i class="fa-solid fa-check crud-icon"></i>{{$order->service->name }}</p>
+                    @endif
+                  @endforeach
+                  {{-- <p><i class="fa-solid fa-check crud-icon"></i>فريق تنظيم</p>
                   <p><i class="fa-solid fa-check crud-icon"></i>مسؤولة عبايات</p>
-                  <p><i class="fa-solid fa-check crud-icon"></i>جهاز تتبع</p>
+                  <p><i class="fa-solid fa-check crud-icon"></i>جهاز تتبع</p> --}}
                 </div>
                 <div class="col">
                   <div class="image">
@@ -25,9 +30,9 @@
                   </div>
                   <div class="row mt-2">
                     <div class="col">
-                      <p><i class="bi bi-bank crud-icon"></i>القاعة الملكية - قاعة ريماس للافراح</p>
+                      <p><i class="bi bi-bank crud-icon"></i>{{$reservation->hall->title}} - {{$reservation->hall->facility->title}}</p>
                       {{-- <p><i class="bi bi-bank crud-icon"></i>قاعة ريماس للافراح</p> --}}
-                      <p><i class="fa-solid fa-location-dot crud-icon"></i>غيل باوزير</p>
+                      <p><i class="fa-solid fa-location-dot crud-icon"></i>{{$reservation->hall->facility->directorate->governorate->name}} - {{$reservation->hall->facility->directorate->name}}</p>
                     </div>
                   </div>
                 </div>
@@ -39,38 +44,58 @@
                   <div class="">
                     <div class="d-flex justify-content-between">
                       <p>القاعة</p>
-                      <p>5000 رس</p>
+                      <p>{{$reservation->hall_price}} رس</p>
                     </div>
+                    @php
+                      $totalPrice = $reservation->hall_price; // تعيين القيمة الابتدائية للسعر الإجمالي بقيمة سعر القاعة
+                    @endphp
                     {{-- الخدمات الاضافية --}}
-                    <div class="d-flex justify-content-between">
-                      <p>صالة طعام</p>
-                      <p>1000 رس</p>
-                    </div>
+                    @foreach ($reservation->orders as $order )
+                    @if (!$order->service->is_free)
+                      <div class="d-flex justify-content-between">
+                        <p>{{$order->service->name}}</p>
+                        <p>{{$order->service->price}} رس</p>
+                      </div>
+                      @php
+                        $totalPrice += $order->service->price; // إضافة سعر الخدمة إلى السعر الإجمالي
+                      @endphp
+                    @endif
+                    @endforeach
                     <div class="d-flex justify-content-between border-top pt-2">
                       <p>الاجمالي</p>
-                      <p>6000 رس</p>
+                      <p>{{$totalPrice}} رس</p>
                     </div>
                   </div>
                 </div>
               </div>
+              @if ($reservation->state->name == 'unconfirmed')
               <div class="row">
                 <div class="">
-                  <h4>رفع السند</h4>
-                  <input class="form-control" type="file" id="formFileMultiple" multiple>
+                  <form action="{{route('user.reservation.upload',['id'=>$reservation->id])}}" method="post" enctype="multipart/form-data">
+                  @csrf
+                    <h4>رفع السند</h4>
+                  <input class="form-control" type="file" id="formFileMultiple" name="voucher">
                   <div id="emailHelp" class="form-text">سيتم ارسال ايميل عند تاكيد حجزك</div>
                 </div>
               </div>
-              <div class="row d-none">
+              @endif
+              @if ($reservation->state->name != 'unconfirmed')
+              <div class="row">
                 <div class="">
                   <h4>السند</h4>
                   <img src="{{asset('assets/images/image_1.jpg')}}" width="300" alt="" srcset="" class="border-radius-7">
                 </div>
+                <input type="hidden" name="id" value="{{$reservation->id}}">
               </div>
+              @endif
               <div class="mt-3 submit-buttons">
+                @if ($reservation->state->name == 'unconfirmed')
                 <button type="submit" class="btn btn-primary">ارسال</button>
-                <a type="submit" class="btn btn-primary" href="{{route('tenant.halls.index')}}">رجوع</a>
+                @endif
+                <a type="submit" class="btn btn-primary" href="{{route('tenant.hall')}}">رجوع</a>
               </div>
             </div>
+          </form>
           </div>
         </div>
       </div>

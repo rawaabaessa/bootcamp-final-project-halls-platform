@@ -1,31 +1,193 @@
 @extends('layouts.site')
 @section('content')
 <body>
-
-  <section class="ftco-section ftco-no-pb my-3" dir="rtl" id="aboutus">
+  <section class="ftco-section ftco-property-details mt-5">
     <div class="container">
-        <div class="row no-gutters">
-            <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({{asset('assets/images/view-luxurious-hotel-interior-space\ \(1\).jpg')}});">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="property-details">
+            {{-- <div class="img" style="background-image: url(images/work-1.jpg);"></div> --}}
+            <div class="text text-center">
+              <img src="{{asset(('storage/logo/' . $facility->logo))}}" width="150">
+              <h2>{{$facility->title}}</h2>
+              <span class="subheading">{{$facility->directorate->governorate->name}} - {{$facility->directorate->name}}</span>
             </div>
-            <div class="col-md-6 wrap-about py-md-5 ftco-animate">
-      <div class="heading-section p-md-5">
-        <h2 class="mb-4">قاعة ريماس للمناسبات</h2>
-        <p>
-        
-نحن منصة قاعة، نسعى لتيسير عملية حجز القاعات بطريقة سهلة ومريحة. نقدم منصة شاملة للقاعات للتسجيل فيها وعرض خدماتها بشكل مباشر للعملاء المحتملين. نفهم أهمية القاعات كمرافق حيوية للفعاليات والمناسبات المختلفة، ولذلك نسعى لتوفير تجربة مميزة وموثوقة للعملاء الذين يبحثون عن القاعة المثالية.
-
-من خلال منصتنا، يمكن لأصحاب القاعات تسجيل ملفاتهم والترويج لخدماتهم بشكل شامل. لدينا مجموعة واسعة من القاعات التي تناسب مختلف الأحداث مثل الحفلات، والمؤتمرات والمناسبات الخاصة. نحرص على توفير معلومات مفصلة وصور جذابة للقاعات، بالإضافة إلى التقييمات والتعليقات من العملاء السابقين لمساعدة العملاء في اتخاذ قرار مستنير.
-
-نحن نعتبر سهولة الحجز والتواصل بين العملاء وأصحاب القاعات أمرًا بالغ الأهمية. لذا، نوفر واجهة مستخدم سهلة الاستخدام وخيارات مرنة للحجز وتخصيص الخدمات المطلوبة. نهتم بتجربة العملاء ونسعى لتحقيق رضاهم التام.
-
-انضم إلى منصتنا اليوم واحصل على فرصة لتسجيل قاعتك والوصول إلى شبكة واسعة من العملاء المحتملين. دعنا نساعدك في نجاح فعالياتك وتوفير القاعة المثالية لاحتياجات عملائك. انضم إلينا واستمتع بتجربة فريدة في تسهيل حجز القاعات.
-      </p>
-      </div>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pills">
+          <div class="bd-example bd-example-tabs">
+            <div class="d-flex justify-content-center">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                <li class="nav-item">
+                  <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">الخدمات</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">نبذة عنا</a>
+                </li>
+                <li class="nav-item">
+                  {{-- <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">التواصل</a> --}}
+                </li>
+              </ul>
+            </div>
+
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+                <div class="row" dir="rtl">
+                  @foreach ($facility->services as $service)
+                  @if ($service->is_free)
+                  <div class="col-md-4 d-flex align-items-center justify-content-center" dir="ltr">
+                    <ul class="features">
+                      <li class="check">{{$service->name}}<span class="ion-ios-checkmark" style="margin-left: 10px;color:#cdac33"></span></li>
+                    </ul>
+                  </div>
+                  @endif
+                  @endforeach
+                </div>
+              </div>
+              <div class="tab-pane fade text-justify" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+                <p style="text-align: right">{{$user->content->discription}}</p>
+                {{-- <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p> --}}
+              </div>
+
+              {{-- <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                <div class="row">
+                   <div class="col-md-7">
+                     <h3 class="head">23 Reviews</h3>
+                     <div class="review d-flex">
+                       <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                       <div class="desc">
+                         <h4>
+                           <span class="text-left">Jacob Webb</span>
+                           <span class="text-right">14 March 2018</span>
+                         </h4>
+                         <p class="star">
+                           <span>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                           </span>
+                           <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+                         </p>
+                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                       </div>
+                     </div>
+                     <div class="review d-flex">
+                       <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+                       <div class="desc">
+                         <h4>
+                           <span class="text-left">Jacob Webb</span>
+                           <span class="text-right">14 March 2018</span>
+                         </h4>
+                         <p class="star">
+                           <span>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                           </span>
+                           <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+                         </p>
+                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                       </div>
+                     </div>
+                     <div class="review d-flex">
+                       <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
+                       <div class="desc">
+                         <h4>
+                           <span class="text-left">Jacob Webb</span>
+                           <span class="text-right">14 March 2018</span>
+                         </h4>
+                         <p class="star">
+                           <span>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                           </span>
+                           <span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+                         </p>
+                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-md-5">
+                     <div class="rating-wrap">
+                       <h3 class="head">Give a Review</h3>
+                       <div class="wrap">
+                         <p class="star">
+                           <span>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             (98%)
+                           </span>
+                           <span>20 Reviews</span>
+                         </p>
+                         <p class="star">
+                           <span>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             (85%)
+                           </span>
+                           <span>10 Reviews</span>
+                         </p>
+                         <p class="star">
+                           <span>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             (70%)
+                           </span>
+                           <span>5 Reviews</span>
+                         </p>
+                         <p class="star">
+                           <span>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             (10%)
+                           </span>
+                           <span>0 Reviews</span>
+                         </p>
+                         <p class="star">
+                           <span>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             <i class="ion-ios-star"></i>
+                             (0%)
+                           </span>
+                           <span>0 Reviews</span>
+                         </p>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+              </div> --}}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
-<section class="ftco-section ftco-no-pb" id="services">
+  </section>
+{{-- <section class="ftco-section ftco-no-pb" id="services">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-12 heading-section text-center ftco-animate mb-5">
@@ -89,7 +251,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> --}}
   <section class="ftco-section goto-here" id="halls">
       <div class="container">
           <div class="row justify-content-center">
@@ -99,63 +261,32 @@
         </div>
       </div>
       <div class="row">
-          <div class="col-md-4">
-              <div class="property-wrap ftco-animate">
-                  <a href="#" class="img" style="background-image: url({{asset('assets/images/work-1.jpg')}});"></a>
-                  <div class="text text-right">
-                      <p class="price"><span class="old-price">600</span><span class="orig-price"><span>500 رس</span></span></p>
-                      <ul class="property_list">
-                          <li><span>3</span><span class="flaticon-bed"></span></li>
-                          <li><span>300</span><i class="fa-solid fa-people-group"></i></li>
-                          <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
-                      </ul>
-                      <h3><a href="{{route('halldetails')}}">القاعة الملكية</a></h3>
-                      <span class="location "><a style="color: #666666;">قاعة ريماس للمناسبات</a></span>
-              <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
-                      <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
-                          <i class="fa-regular fa-bookmark"></i>
-                      </a>
-                  </div>
+         @foreach ($facility->halls as $hall)
+         <div class="col-md-4">
+          <div class="property-wrap ftco-animate">
+              <a href="{{route('front.facilities.details',['name'=>$hall->name])}}" class="img" style="background-image: url({{asset('assets/images/work-1.jpg')}});"></a>
+              <div class="text text-right">
+                  <p class="price"><span class="orig-price"><span>{{$hall->offer_halls->min('price')}} {{$facility->currency}} تبدأ من </span></span></p>
+                  <ul class="property_list">
+                      {{-- <li><span>3</span><span class="flaticon-bed"></span></li> --}}
+                      <li><span>{{$hall->people_count}}</span><i class="fa-solid fa-people-group"></i></li>
+                      <li><span>{{$hall->area}}</span><span class="flaticon-floor-plan"></span></li>
+                  </ul>
+                  {{-- <form> --}}
+                    
+                    <h3><a href="{{route('front.facilities.details',['name'=>$hall->name])}}" >{{$hall->title}}</button></h3>
+                  {{-- </form> --}}
+                  <span class="location "><a style="color: #666666;">{{$facility->title}}</a></span>
+          <span class="location" style="display: block;">{{$facility->directorate->governorate->name}} - {{$facility->directorate->name}}<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
+                  <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
+                      <i class="fa-regular fa-bookmark"></i>
+                  </a>
               </div>
           </div>
-          <div class="col-md-4">
-              <div class="property-wrap ftco-animate">
-                  <a href="#" class="img" style="background-image: url({{asset('assets/images/work-1.jpg')}});"></a>
-                  <div class="text text-right">
-                      <p class="price"><span class="old-price">600</span><span class="orig-price"><span>500 رس</span></span></p>
-                      <ul class="property_list">
-                          <li><span>3</span><span class="flaticon-bed"></span></li>
-                          <li><span>300</span><i class="fa-solid fa-people-group"></i></li>
-                          <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
-                      </ul>
-                      <h3><a href="{{route('halldetails')}}">قاعة الاميرات</a></h3>
-                      <span class="location "><a href="#" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
-              <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
-                      <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
-                          <i class="fa-regular fa-bookmark"></i>
-                      </a>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <div class="property-wrap ftco-animate">
-                  <a href="#" class="img" style="background-image: url({{asset('assets/images/work-1.jpg')}});"></a>
-                  <div class="text text-right">
-                      <p class="price"><span class="old-price">600</span><span class="orig-price"><span>500 رس</span></span></p>
-                      <ul class="property_list">
-                          <li><span>3</span><span class="flaticon-bed"></span></li>
-                          <li><span>300</span><i class="fa-solid fa-people-group"></i></li>
-                          <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
-                      </ul>
-                      <h3><a href="{{route('halldetails')}}">القاعة الصغرى</a></h3>
-                      <span class="location "><a style="color: #666666;">قاعة ريماس للمناسبات</a></span>
-              <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
-                      <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
-                          <i class="fa-regular fa-bookmark"></i>
-                      </a>
-                  </div>
-              </div>
-          </div>
+      </div>
+         @endforeach
+          
+          
       </div>
       </div>
   </section>
@@ -219,46 +350,47 @@
     <div class="container">
       <div class="row d-flex mb-5 contact-info justify-content-center">
           <div class="col-md-8">
-              <div class="row mb-5">
-                <div class="col-md text-center border-height py-4">
-                    <div class="icon">
-                        <span class="icon-mobile-phone"></span>
-                    </div>
-                  <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+            <div class="row mb-5">
+              <div class="col-md text-center border-height py-4">
+                <div class="icon golden">
+                  <i class="fa-solid fa-mobile-screen-button"></i>
                 </div>
-                <div class="col-md text-center py-4">
-                    <div class="icon">
-                        <span class="icon-envelope-o"></span>
-                    </div>
-                  <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                <p><span>الهاتف</span> <a href="tel://1234567920">{{$facility->phone}}</a></p>
+              </div>
+              <div class="col-md text-center py-4">
+                <div class="icon golden">
+                  <span class="icon-envelope-o"></span>
                 </div>
+                <p><span>الايميل</span> <a href="mailto:info@yoursite.com">{{$facility->email}}</a></p>
+              </div>
               </div>
         </div>
       </div>
       <div class="row block-9 justify-content-center mb-5">
         <div class="col-md-8 mb-md-5">
-            <h2 class="text-center">إذا كان لديك أي أسئلة<br>
-            من فضلك لا تتردد في ارسال رسالة  لنا</h2>
-          <form action="#" class="bg-light p-5 contact-form">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Email">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Subject">
-            </div>
-            <div class="form-group">
-              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-            </div>
+          <h2 class="text-center">إذا كان لديك أي أسئلة<br>
+          من فضلك لا تتردد في ارسال رسالة  لنا</h2>
+          <form dir="rtl" action="#" method="POST" class="bg-light p-5 contact-form" style="background-color: #fbfaf2 !important">
+          @csrf
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="الاسم">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="email" placeholder="الايميل">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="subject" placeholder="العنوان">
+          </div>
+          <div class="form-group">
+            <textarea id="" cols="30" rows="7" name="message" class="form-control" placeholder="الرسالة"></textarea>
+          </div>
+          <div class="form-group d-flex justify-content-start">
+            <input type="submit" value="ارسل رسالة" class="btn btn-primary py-3 px-5">
+          </div>
           </form>
         
         </div>
-      </div>
+        </div>
     </div>
   </section>
   <!-- <section class="ftco-section ftco-degree-bg services-section img mx-md-5" style="background-image: url(images/bg_2.jpg);">

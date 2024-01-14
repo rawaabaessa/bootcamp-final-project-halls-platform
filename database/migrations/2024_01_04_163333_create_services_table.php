@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('facility_id');
+            $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade');
             $table->boolean('is_free');
             $table->float('price');
             $table->timestamps();

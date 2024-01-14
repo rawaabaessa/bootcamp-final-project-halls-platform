@@ -22,7 +22,8 @@
                 </div>
             </div>
             <div class="row">
-              <form>
+              <form action="{{route('facilitydetails.store')}}" id="myForm" method="post">
+                @csrf
                 <div class="col my-2 ">
                     <h3>طلب انضمام</h3>
                 </div>
@@ -33,7 +34,7 @@
                     <div class="group">
                         <div class="tags-input" id="services">
                             <ul class="">
-                                <input type="text" name="" id="inputTag">
+                                <input type="text" name="services[]" id="inputTag">
                             </ul>
                         </div>
                         {{-- <div class="removeAll">
@@ -63,7 +64,7 @@
                               </div>
                             </div>
                           </div>
-                          <button onclick="addFields() " class="btn btn-primry add-btn btn-dasSecond" ><i class="fa-solid fa-plus"></i></button>
+                          <button type="button" onclick="addFields() " class="btn btn-primry add-btn btn-dasSecond" ><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
             </div>
@@ -97,7 +98,7 @@
                     <div class="group">
                         <div class="tags-input" id="occasion">
                             <ul class="">
-                                <input type="text" name="" id="inputTag">
+                                <input type="text" name="occasion[]" id="inputTag">
                             </ul>
                         </div>
                         {{-- <div class="removeAll">
@@ -109,8 +110,8 @@
             <div class="row align-self-start w-100">
                 <div class="col mb-3">
                     <label class="form-label">نبذة (من نحن)</label>
-                    <div >
-                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                    <div>
+                        <textarea name="about" id="" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -118,13 +119,13 @@
                 <div class="col mb-3">
                     <label class="form-label">الشعار</label>
                     <div>
-                        <input type="file" name="" id="" class="form-control">
+                        <input type="file" name="logo" id="" class="form-control">
                     </div>
                 </div>
                 <div class="col mb-3">
                     <label class="form-label">العملة</label>
                     <div>
-                        <select name="" id="" class="form-control">
+                        <select name="currency" id="" class="form-control">
                             <option value="">SAR</option>
                             <option value="">USD</option>
                             <option value="">YEM</option>
@@ -227,6 +228,26 @@
           `;
           container.appendChild(newTitleField);
         }
+
+
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // تحديث قيمة الحقل الخفي بقيمة المصفوفة
+        document.getElementById('servicesArrayInput').value = JSON.stringify(tags);
+
+        var formData = new FormData(this);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', this.action, true);
+        xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.send(formData);
+    });
         </script>
     </div>
 </body>
