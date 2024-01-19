@@ -6,10 +6,14 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+<p align="center">
+<img  src="public/assets/images/Blue & Red Overlapping House Realtor Logo (1).png" width="200">
+</p>
+
 
 # Project Name
 
-Project Name: Qaah Platform
+Qaah Platform
 ## Getting Started
 
 1. Make sure you have PHP and Composer installed on your machine.

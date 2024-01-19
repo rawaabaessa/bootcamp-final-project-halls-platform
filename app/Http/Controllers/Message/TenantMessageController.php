@@ -31,13 +31,13 @@ class TenantMessageController extends Controller
         ]);
         return redirect()->back();
     }
-    public function destroy($id){
-        $record = Message::findOrFail($id);
+    public function destroy(Request $request){
+        $record = Message::findOrFail($request->id);
 
         // Delete the record
         $record->delete();
 
-        return redirect()->route('tenant.messages.destroy')->with('success', 'Record deleted successfully');
+        return redirect()->route('tenant.messages.destroy')->with('success', 'تم الحذف بنجاح');
     }
     public function sendreplay(Request $request){
         Mail::to('fatimabukran@gmail.com')->send(new MessageMail($request->reply));

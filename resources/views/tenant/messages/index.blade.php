@@ -78,9 +78,10 @@
                           <p>هل انت متاكد ؟</p>
                         </div>
                         <div class="modal-footer justify-content-start">
-                          <form method="post" action="{{route('tenant.messages.destroy',['id'=>$Message->id])}}">
+                          <form method="post" action="{{route('tenant.messages.destroy')}}">
                             @csrf
                             @method('DELETE')
+                            <input type="hidden" name="id" value="{{$Message->id}}">
                             <button type="submit" class="btn btn-primary">حذف</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">اغلاق</button>
                           </form>

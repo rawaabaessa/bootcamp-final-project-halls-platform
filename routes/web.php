@@ -124,7 +124,7 @@ Route::controller(TenantMessageController::class)->group(function(){
     Route::get('/tenant/messages/index','index')->name('tenant.messages.index');
     // Route::post('/tenant/messages/replay','sendreplay')->name('tenant.messages.replay');
     Route::get('tenant/messages/view/{id}', 'view')->name('tenant.messages.view');
-    Route::delete('tenant/messages/delete/{id}', 'destroy')->name('tenant.messages.destroy');
+    Route::delete('tenant/messages/delete', 'destroy')->name('tenant.messages.destroy');
 });
 Route::post('/tenant/messages/replay',[TenantMessageController::class,'sendreplay'])->name('tenant.messages.replay');
 
