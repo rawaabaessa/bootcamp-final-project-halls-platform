@@ -21,6 +21,7 @@ class SigninController extends Controller
     {
         if (Auth::check()) {
             // User is already signed in, redirect to a different page
+            
             return redirect()->route('platform.dashboard');
         }
         return view('front.signin');
@@ -69,7 +70,7 @@ class SigninController extends Controller
             $user = Auth::user();
             if ($user->roles->contains('name', 'super-admin')) {
                 // User has the 'super-admin' role, allow access to the admin dashboard
-                return view('platform.dashboard');
+                return redirect()->route('platform.facility');
             } else if ($user->roles->contains('name', 'admin')) {
                 // User has the 'admin' role, show an error message or redirect
                 $is_exits = Facility::where('user_id', Auth::id())->exists();
@@ -87,7 +88,7 @@ class SigninController extends Controller
                     }
                     elseif($facilityStatus == 'approved'){
                         // تمت الموافقة 
-                        return redirect()->route('tentant.reservation');
+                        return redirect()->route('tenant.hall');
                     }
                     elseif($facilityStatus == 'reject'){
                         // تم الرفض  

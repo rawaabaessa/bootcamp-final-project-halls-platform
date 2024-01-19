@@ -4688,7 +4688,7 @@ a.close.disabled {
   border-top-right-radius: 0.3rem; }
   .modal-header .close {
     padding: 1rem 1rem;
-    margin: -1rem -1rem -1rem auto; }
+    margin: -1rem auto -1rem -1rem; }
 
 .modal-title {
   margin-bottom: 0;
@@ -10038,4 +10038,8 @@ textarea.form-control {
 
 .golden{
   color: #cdac33;
+}
+
+.link:hover{
+  color: #cdac33 !important;
 }

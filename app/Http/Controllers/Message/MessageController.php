@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Message;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Message\Message;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MessageMail;
 
 class MessageController extends Controller
 {
     public function index(){
-        $Messages = Message::where('user_id', 1)->paginate(1);
+        $Messages = Message::where('user_id', 1)->paginate(3);
         return view('platform.messages.index',compact('Messages'));
     }
     public function store(Request $request){
@@ -24,16 +26,9 @@ class MessageController extends Controller
         return redirect()->route('front.home');
     }
     public function view($id){
-
         $record = Message::findOrFail($id);
         return view('platform.messages.view', compact('record'));
     }
-
-    // public function delete(int $id){
-    //     // $record = Message::find($id);
-    //     return view('platform.messages.delete', compact('id'));
-    // }
-
     public function destroy($id)
     {
         // Find the record to delete
@@ -43,5 +38,9 @@ class MessageController extends Controller
         $record->delete();
 
         return redirect()->route('messages.index')->with('success', 'Record deleted successfully');
+    }
+    public function sendreplay(Request $request){
+        Mail::to('fatimabukran@gmail.com')->send(new MessageMail($request->reply));
+        return redirect()->route('messages.index')->with('success', 'تم ارسال الرد بنجاح');
     }
 }

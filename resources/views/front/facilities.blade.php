@@ -1,18 +1,18 @@
 @extends('layouts.site')
 
 @section('content')
-<section class="ftco-section" style="margin-top: 70px">
+<section class="ftco-section" style="margin-top: 70px" dir="rtl">
     <div class="container">
-    <div class="row @if(count($facilities) == 0) justify-content-center @endif">
-        @if(count($facilities) == 0)
+    <div class="row @if(count($viewModels) == 0) justify-content-center @endif">
+        @if(count($viewModels) == 0)
           <div>
             <p>لاتوجد نتائج</p>
           </div>
         @endif
-        @foreach ($facilities as $facilitie)
+        @foreach ($viewModels as $viewModel)
         <div class="col-md-4">
             <div class="property-wrap ftco-animate">
-                <a href="{{route('front.facilities.main',['name'=>$facilitie->name])}}" class="img" style="background-image: url({{asset('assets/images/work-1.jpg')}});"></a>
+                <a href="{{route('front.facilities.main',['name'=>$viewModel->facility->name])}}" class="img" style="background-image: url({{asset('storage/images/'.$viewModel->firstImage->path)}});"></a>
                 <div class="text text-right">
                     {{-- <p class="price"><span class="old-price">600</span><span class="orig-price"><span>500 رس</span></span></p> --}}
                     <ul class="property_list">
@@ -22,10 +22,10 @@
                     </ul>
                     {{-- <form action="{{route('front.facilities.main',['name'=>$facilitie->name])}}" method="post"> --}}
                         {{-- @csrf --}}
-                    <h3><a href="{{route('front.facilities.main',['name'=>$facilitie->name])}}">{{$facilitie->title}}</a></h3>
+                    <h3><a href="{{route('front.facilities.main',['name'=>$viewModel->facility->name])}}">{{$viewModel->facility->title}}</a></h3>
                     {{-- </form> --}}
                     {{-- <span class="location "><a style="color: #666666;">قاعة ريماس للمناسبات</a></span> --}}
-            <span class="location" style="display: block;">{{$facilitie->directorate->governorate->name}} - {{$facilitie->directorate->name}}<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
+            <span class="location" style="display: block;"  dir="ltr">{{$viewModel->facility->directorate->governorate->name}} - {{$viewModel->facility->directorate->name}}<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
                     <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
                         <i class="fa-regular fa-bookmark"></i>
                     </a>

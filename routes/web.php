@@ -12,6 +12,9 @@ use App\Http\Controllers\Tenant\TenantReservationController;
 use App\Http\Controllers\Tenant\HallController;
 use App\Http\Controllers\Content\ContentController;
 use App\Http\Controllers\Platform\FacilitiesController;
+use App\Http\Controllers\Message\TenantMessageController;
+use App\Http\Controllers\Location\DirectorateController;
+use App\Http\Controllers\User\ProfileController;
 // use App\Http\Controllers\Content\ContentController;
 // use App\Http\Controllers\Message\Message;
 
@@ -31,7 +34,7 @@ Route::controller(HomeController::class)->group(function(){
     // Route::get('/facilities/main/{name}', 'main')->name('front.facilities.main');
     Route::get('/facilities/main/{name}', 'main')->name('front.facilities.main');
     Route::get('/facilities/main/{name}/details', 'details')->name('front.facilities.details');
-    Route::get('/sendmail', 'sendEmail')->name('mail');
+    // Route::get('/sendmail', 'sendEmail')->name('mail');
     
     // Route::post('/facilities/main/{name}/details','reservation')->name('front.facilities.reservation');
 });
@@ -43,34 +46,33 @@ Route::post('/signin', [SigninController::class, 'authenticate']);
 //
 Route::get('/signup', [SignupController::class, 'view'])->name('signup.view');
 Route::post('/signup', [SignupController::class, 'store'])->name('signup.store');
+
 Route::middleware('auth')->group(function(){
-Route::post('/signout', [SignoutController::class, 'signout'])->name('signout');
+    Route::post('/signout', [SignoutController::class, 'signout'])->name('signout');
+    Route::controller(JoinRequestController::class)->group(function(){
+        Route::get('/joinRequest/facilityInfo','viewInfo')->name('facilityInfo');
+        Route::post('/joinRequest/facilityInfo','storeInfo');
 
-});
+        Route::get('/joinRequest/facilityDetails', 'viewDetails')->name('facilitydetails');
+        Route::post('/joinRequest/facilityDetails','storeDetails')->name('facilitydetails.store');
+        
+        Route::get('/joinRequest/facilityInfo/underview', 'underview')->name('underview');
 
-Route::controller(JoinRequestController::class)->group(function(){
-    Route::get('/joinRequest/facilityInfo','viewInfo')->name('facilityInfo');
-    Route::post('/joinRequest/facilityInfo','storeInfo');
+        Route::get('/platform/requests/index','index')->name('requests.index');
+        Route::get('/platform/requests/{name}/view','view')->name('requests.view');
 
-    Route::get('/joinRequest/facilityDetails', 'viewDetails')->name('facilitydetails');
-    Route::post('/joinRequest/facilityDetails','storeDetails')->name('facilitydetails.store');
-    
-    Route::get('/joinRequest/facilityInfo/submit', 'submitdone')->name('submitdone');
-    Route::get('/joinRequest/facilityInfo/underview', 'underview')->name('underview');
+        Route::post('/platform/requests/confirm/{name}','confirm')->name('requests.confirm');
+        Route::post('/platform/requests/reject/{name}','reject')->name('requests.reject');
+        Route::post('/platform/requests/reject/{name}','reject')->name('requests.reject');
 
-    Route::get('/platform/requests/index','index')->name('requests.index');
-    Route::get('/platform/requests/{name}/view','view')->name('requests.view');
-
-    Route::post('/platform/requests/confirm/{name}','confirm')->name('requests.confirm');
-    Route::post('/platform/requests/reject/{name}','reject')->name('requests.reject');
-    Route::post('/platform/requests/reject/{name}','reject')->name('requests.reject');
-
+    });
 });
 
 Route::controller(ReservationController::class)->group(function(){
         Route::post('/facilities/main/{name}/details','reservationCheck')->name('front.facilities.reservationCheck');
         Route::get('/user/reservations/index','userReservations')->name('user.reservation');
         Route::get('/user/reservations/details/{id}','reservationDetails')->name('user.reservation.Detail');
+        Route::post('/user/reservations/cancel','reservationCancel')->name('user.reservation.Cancel');
         Route::post('/user/reservations/details/{id}','upload')->name('user.reservation.upload');
 });
 
@@ -80,7 +82,6 @@ Route::controller(TenantReservationController::class)->group(function(){
     Route::get('/tenant/reservations/{id}/view','view')->name('tentant.reservation.view');
     Route::post('/tenant/reservations/confirm','confirm')->name('tentant.reservation.confirming');
     Route::post('/tenant/reservations/reject','reject')->name('tentant.reservation.reject');
-
 });
 
 Route::controller(HallController::class)->group(function(){
@@ -113,21 +114,23 @@ Route::controller(ContentController::class)->group(function(){
 
 Route::controller(FacilitiesController::class)->group(function(){
     Route::get('/platform/facilities/index','index')->name('platform.facility');
+    Route::get('/platform/facilities/{name}/view','view')->name('platform.facility.view');
     
 });
-Route::get('joinerequest', function(){
-    return view('front.joinrequest');
-})->name('front.joinerequest');
+Route::get('/joinRequest/facilityInfo/submit',[JoinRequestController::class,'submitdone'])->name('submitdone');
+Route::post('/tenant/messages/send', [TenantMessageController::class, 'store'])->name('tenant.messages.store');
+Route::controller(TenantMessageController::class)->group(function(){
+    // Route::post('/tenant/messages/send','store')->name('tenant.messages.store');
+    Route::get('/tenant/messages/index','index')->name('tenant.messages.index');
+    // Route::post('/tenant/messages/replay','sendreplay')->name('tenant.messages.replay');
+    Route::get('tenant/messages/view/{id}', 'view')->name('tenant.messages.view');
+    Route::delete('tenant/messages/delete/{id}', 'destroy')->name('tenant.messages.destroy');
+});
+Route::post('/tenant/messages/replay',[TenantMessageController::class,'sendreplay'])->name('tenant.messages.replay');
 
-// Route::get('halldetails', function(){
-//     return view('front.halldetails');
-// })->name('halldetails');
-
-// Route::get('mainhall', function(){
-//     return view('front.mainhall');
-// })->name('mainhall');
-
-
+// Route::get('joinerequest', function(){
+//     return view('front.joinrequest');
+// })->name('front.joinerequest');
 //platform
 // user
 Route::get('platform/dashboard', function(){
@@ -181,9 +184,14 @@ Route::post('/messages/send', [MessageController::class, 'store'])->name('messag
 Route::controller(MessageController::class)->group(function(){
     Route::get('/platform/messages/index','index')->name('messages.index');
     Route::get('/platform/messages/view/{id}', 'view')->name('messages.view');
-    // Route::post('/platform/messages/send','store')->name('messages.store');
-    // Route::get('/platform/messages/delete/{id}', 'delete')->name('messages.delete');
     Route::delete('/platform/messages/delete/{id}', 'destroy')->name('messages.destroy');
+    Route::post('/tenant/messages/replay', 'sendreplay')->name('messages.sendreplay');
+});
+
+Route::controller(ProfileController::class)->group(function(){
+    Route::get('/user/profile/{id}','view')->name('user.profile');
+    Route::post('/user/profile/update','update')->name('user.profile.update');
+
 });
 // Route::get('platform/messages/index', function(){
 // })->name('messages.index');
@@ -246,14 +254,7 @@ Route::get('platform/content/socialmedia', function(){
     return view('platform.content.socialmedia');
 })->name('content.socialmedia');
 
-//requests
-// Route::get('platform/requests/index', function(){
-//     return view('platform.requests.index');
-// })->name('requests.index');
 
-// Route::get('platform/requests/view', function(){
-//     return view('platform.requests.view');
-// })->name('requests.view');
 
 //city
 Route::get('platform/city/index', function(){
@@ -309,17 +310,17 @@ Route::get('tenant/roles/view', function(){
 
 
 // message
-Route::get('tenant/messages/index', function(){
-    return view('tenant.messages.index');
-})->name('tenant.messages.index');
+// Route::get('tenant/messages/index', function(){
+//     return view('tenant.messages.index');
+// })->name('tenant.messages.index');
 
-Route::get('tenant/messages/view', function(){
-    return view('tenant.messages.view');
-})->name('tenant.messages.view');
+// Route::get('tenant/messages/view', function(){
+//     return view('tenant.messages.view');
+// })->name('tenant.messages.view');
 
-Route::get('tenant/messages/delete', function(){
-    return view('tenant.messages.delete');
-})->name('tenant.messages.delete');
+// Route::get('tenant/messages/delete', function(){
+//     return view('tenant.messages.delete');
+// })->name('tenant.messages.delete');
 
 // halls
 // Route::get('tenant/halls/index', function(){
@@ -433,6 +434,6 @@ Route::get('user/reservations/view', function(){
 })->name('user.reservations.view');
 
 
-Route::get('user/profile',function(){
-    return view('user.profile');
-})->name('user.profile');
+// Route::get('user/profile',function(){
+//     return view('user.profile');
+// })->name('user.profile');

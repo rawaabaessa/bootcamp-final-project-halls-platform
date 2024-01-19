@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="stylesheet" href="{{asset('admin/assets/css/pagination.css')}}">
+
 @php
     $counter = 1;
 @endphp
@@ -15,7 +17,11 @@
           <div class="card-body p-4">
             <h5 class="card-title fw-semibold mb-4">رسائل المستخدمين</h5>
             <div class="table-responsive">
-              
+              @if (session('success'))
+                  <div class="alert alert-success">
+                      {{ session('success') }}
+                  </div>
+              @endif
               <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                   <tr>
@@ -34,6 +40,11 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @if ($Messages->count() == 0)
+                    <tr>
+                      <td colspan="4"><p style="text-align: center">لايوجد رسايل</p></td>
+                    </tr>
+                  @endif
                   @foreach ($Messages as $Message)
                   <tr>
                     <td class=""><h6 class="fw-semibold mb-0">{{$counter}}</h6></td>
@@ -85,9 +96,5 @@
         </div>
       </div>
     </div>
-    
-    {{-- <div class="py-6 px-6 text-center">
-      <p class="mb-0 fs-4">Design and Developed by <a href="https://adminmart.com/" target="_blank" class="pe-1 text-primary text-decoration-underline">AdminMart.com</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
-    </div> --}}
   </div>
 @endsection

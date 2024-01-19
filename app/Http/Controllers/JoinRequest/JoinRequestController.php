@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Mail;
 class JoinRequestController extends Controller
 {
     public function index(){
-        $requests = Facility::orderBy('id', 'desc')->get();
+        $requests = Facility::orderBy('id', 'desc')->paginate(3);
         return view('platform.requests.index',compact('requests'));
     }
 
@@ -170,6 +170,7 @@ class JoinRequestController extends Controller
             'logo' => $newImageNamelogo,
             'user_id' => Auth::id(),
             'directorate_id'=> $request->input('Directorate'),
+            'currency' => $request->input('currency'),
             'state'=>'step1'
         ]);
         Auth::logout();
@@ -204,7 +205,7 @@ class JoinRequestController extends Controller
         $facility = Facility::where('name', $name)->update(['state' => 'reject']);
         if ($facility > 0) {
             //ارسال ايميل لصاحب القاعة
-            Mail::to('fatimabukran@gmail.com')->send(new RejectMail($reques->reason));
+            Mail::to('fatimabukran@gmail.com')->send(new RejectMail($request->reason));
 
             return redirect()->route('requests.index')->with('success', 'تم رفض الطلب بنجاح');
         } elseif ($facility === 0) {

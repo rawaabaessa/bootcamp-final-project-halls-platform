@@ -48,7 +48,7 @@ a, a:hover {
   }
 }
 .profile-card {
-  margin-top: 80px;
+  margin-top: 60px;
   width: 300px;
   /* min-height: 460px; */
   /* margin: auto; */
@@ -147,6 +147,12 @@ a, a:hover {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+}
+.bord:hover{
+  color:#a68b29 !important;
+}
+.bord:active{
+  color:#cdac33 !important ;
 }
 .profile-card-inf {
   display: flex;

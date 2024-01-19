@@ -50,16 +50,15 @@
             <i class="ti ti-x fs-8"></i>
           </div>
         </div>
-        
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar text-right" data-simplebar="">
           
           @if ($user->roles->contains('name', 'super-admin'))
-            <div class="text-right" style="display: flex;justify-content:end">
+            {{-- <div class="text-right" style="display: flex;justify-content:end">
                 <h3>المنصة</h3>
-            </div>
+            </div> --}}
           <ul id="sidebarnav">
-            <li class="nav-small-cap">
+            {{-- <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu text-right">الرئيسية</span>
             </li>
@@ -75,14 +74,14 @@
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu text-right">العناوين</span>
             </li>
-            {{-- <li class="sidebar-item">
-              <a class="sidebar-link @if (Route::currentRouteName() === 'users.create' || Route::currentRouteName() === 'users.edit' || Route::currentRouteName() === 'users.delete' || Route::currentRouteName() === 'users.view') active @endif" href="{{route('city.index')}}" aria-expanded="false">
+            {{-- <li class="sidebar-item"> --}}
+              {{-- <a class="sidebar-link @if (Route::currentRouteName() === 'users.create' || Route::currentRouteName() === 'users.edit' || Route::currentRouteName() === 'users.delete' || Route::currentRouteName() === 'users.view') active @endif" href="{{route('city.index')}}" aria-expanded="false">
                 <span class="hide-menu">العناوين</span>
                 <span>
                   <i class="bi bi-people"></i>
                 </span>
               </a>
-            </li> --}}
+            </li>  --}}
             {{-- <li class="sidebar-item">
               <a class="sidebar-link @if (Route::currentRouteName() === 'users.create' || Route::currentRouteName() === 'users.edit' || Route::currentRouteName() === 'users.delete' || Route::currentRouteName() === 'users.view') active @endif" href="{{route('city.index')}}" aria-expanded="false">
                 <span class="hide-menu">المحافظات</span>
@@ -99,7 +98,7 @@
                 </span>
               </a>
             </li> --}}
-            <li class="nav-small-cap">
+            {{-- <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu text-right">الحسابات</span>
             </li>
@@ -118,13 +117,15 @@
                   <i class="fa-solid fa-user-shield"></i>
                 </span>
               </a>
-            </li>
+            </li> --}}
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">المنشأت</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link @if (Route::currentRouteName() === 'halls.view' || Route::currentRouteName() === 'halls.block') active @endif" href="{{route('platform.facility')}}" aria-expanded="false">
+              <a class="sidebar-link @if (
+                Route::currentRouteName() === 'platform.facility.view') active @endif
+                @if(Str::contains(Route::currentRouteName(), 'platform.facility')) active @endif " href="{{route('platform.facility')}}" aria-expanded="false">
                 <span class="hide-menu">المنشأت</span>
                 <span>
                   <i class="bi bi-bank"></i>
@@ -132,10 +133,12 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link @if (Route::currentRouteName() === 'halls.view' || Route::currentRouteName() === 'halls.block') active @endif" href="{{route('requests.index')}}" aria-expanded="false">
+              <a class="sidebar-link @if (
+                 Route::currentRouteName() === 'requests.view') active @endif
+                 @if(Str::contains(Route::currentRouteName(), 'requests.index')) active @endif " href="{{route('requests.index')}}" aria-expanded="false">
                 <span class="hide-menu">طلبات الانضمام</span>
                 <span>
-                  <i class="bi bi-bank"></i>
+                  <i class="fa-solid fa-user-plus"></i>
                 </span>
               </a>
             </li>
@@ -144,7 +147,9 @@
                 <span class="hide-menu">الرسائل</span>
               </li>
             <li class="sidebar-item">
-              <a class="sidebar-link @if (Route::currentRouteName() === 'messages.view' || Route::currentRouteName() === 'messages.delete') active @endif" href="{{route('messages.index')}}" aria-expanded="false">
+              <a class="sidebar-link @if (Route::currentRouteName() === 'messages.view' ||
+               Route::currentRouteName() === 'messages.delete') active @endif
+               @if(Str::contains(Route::currentRouteName(), 'messages.index')) active @endif" href="{{route('messages.index')}}" aria-expanded="false">
                 <span class="hide-menu">الرسائل</span>
                 <span>
                   <i class="bi bi-envelope-paper"></i>
@@ -191,11 +196,11 @@
             {{-- <h3>المنشأة</h3> --}}
         </div>
       <ul id="sidebarnav">
-        <li class="nav-small-cap ">
+        {{-- <li class="nav-small-cap ">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
           <span class="hide-menu text-right">الحسابات</span>
-        </li>
-        <li class="sidebar-item">
+        </li> --}}
+        {{-- <li class="sidebar-item">
           <a class="sidebar-link @if (Route::currentRouteName() === 'tenant.users.create' || Route::currentRouteName() === 'tenant.users.view' || Route::currentRouteName() === 'tenant.users.edit' || Route::currentRouteName() === 'tenant.users.delete') active @endif" href="{{route('tenant.users')}}" aria-expanded="false">
             <span class="hide-menu">المستخدمين</span>
             <span>
@@ -210,13 +215,13 @@
               <i class="fa-solid fa-user-shield"></i>
             </span>
           </a>
-        </li>
+        </li> --}}
         <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
           <span class="hide-menu">القاعات</span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link @if (Route::currentRouteName() === 'tenant.halls.view' || Route::currentRouteName() === 'tenant.halls.add' || Route::currentRouteName() === 'tenant.halls.edit' || Route::currentRouteName() === 'tenant.halls.delete') active @endif" href="{{route('tenant.hall')}}" aria-expanded="false">
+          <a class="sidebar-link @if (Route::currentRouteName() === 'tenant.hall.view' || Route::currentRouteName() === 'tenant.hall.add' || Route::currentRouteName() === 'tenant.hall.edit' ) active @endif" href="{{route('tenant.hall')}}" aria-expanded="false">
             <span class="hide-menu">القاعات</span>
             <span>
               <i class="bi bi-bank"></i>
@@ -224,13 +229,26 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link @if (Route::currentRouteName() === 'tenant.reservations.add' || Route::currentRouteName() === 'tenant.halls.edit' || Route::currentRouteName() === 'tenant.reservations.delete') active @endif" href="{{route('tentant.reservation')}}" aria-expanded="false">
+          <a class="sidebar-link @if (Route::currentRouteName() === 'tentant.reservation.list' 
+          || Route::currentRouteName() === 'tentant.reservation.view') active @endif" href="{{route('tentant.reservation')}}" aria-expanded="false">
             <span class="hide-menu">الحجوزات</span>
             <span>
               <i class="fa-regular fa-calendar-days"></i>
             </span>
           </a>
         </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">الموقع</span>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="{{route('front.facilities.main',['name'=>$user->facility->name])}}" aria-expanded="false">
+          <span class="hide-menu">موقعي</span>
+          <span>
+            <i class="bi bi-envelope-paper"></i>
+          </span>
+        </a>
+      </li>
         <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">الرسائل</span>
@@ -250,14 +268,14 @@
         <li class="sidebar-item">
           <a class="sidebar-link 
               @if (
-                  Route::currentRouteName() === 'tenant.content.logo' ||
-                  Route::currentRouteName() === 'tenant.content.about' ||
-                  Route::currentRouteName() === 'tenant.content.howregister' ||
-                  Route::currentRouteName() === 'tenant.content.contact' ||
-                  Route::currentRouteName() === 'tenant.content.socialmedia' ||
+                  Route::currentRouteName() === 'tenant.content.services' ||
+                  Route::currentRouteName() === 'tenant.content.extraservice' ||
                   Route::currentRouteName() === 'tenant.content.duration' ||
-                  Route::currentRouteName() === 'tenant.content.service' ||
-                  Route::currentRouteName() === 'tenant.content.occasion'
+                  Route::currentRouteName() === 'tenant.content.occasion' ||
+                  Route::currentRouteName() === 'tenant.content.about' ||
+                  Route::currentRouteName() === 'tenant.content.contact' ||
+                  Route::currentRouteName() === 'tenant.content.payment' ||
+                  Route::currentRouteName() === 'tenant.content.logo'
                   ) active @endif" href="{{route('tenant.content')}}" aria-expanded="false">
             <span class="hide-menu">المحتوى</span>
             <span>
@@ -272,13 +290,16 @@
         {{-- <h5>المستخدم</h5> --}}
     </div>
       <ul id="sidebarnav">
-        
         <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
           <span class="hide-menu text-right">الحجوزات</span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="{{route('user.reservation')}}" aria-expanded="false">
+          <a class="sidebar-link @if (
+            Route::currentRouteName() === 'user.reservation.Detail'
+            )
+            active
+          @endif @if(Str::contains(Route::currentRouteName(), 'user.reservation')) active @endif"  href="{{route('user.reservation')}}" aria-expanded="false">
             <span class="hide-menu">الحجوزات</span>
             <span>
               <i class="bi bi-people"></i>
@@ -286,7 +307,7 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="{{route('user.profile')}}" aria-expanded="false">
+          <a class="sidebar-link" href="{{route('user.profile',['id'=> auth()->id()])}}" aria-expanded="false">
             <span class="hide-menu">الملف الشخصي</span>
             <span>
               <i class="bi bi-people"></i>
@@ -306,7 +327,7 @@
       <!--  Header Start -->
       <header class="app-header" style="box-shadow: 0px 5px 21px -5px #CDD1E1;" dir="rtl">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav" dir="rtl">
+          {{-- <ul class="navbar-nav" dir="rtl">
             <li class="nav-item">
               <a class="nav-link nav-icon-hover" href="javascript:void(0)">
                 <i class="ti ti-bell-ringing"></i>
@@ -318,14 +339,18 @@
                 <i class="ti ti-menu-2"></i>
               </a>
             </li>
-          </ul>
+          </ul> --}}
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row me-auto align-items-center justify-content-start">
               <!-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a> -->
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="{{asset('admin/assets/images/profile/user-1.jpg')}}" alt="" width="35" height="35" class="rounded-circle">
+                  @if ($user->roles->contains('name', 'admin'))
+                  <img src="{{asset('storage/logo/'.$user->facility->logo)}}" alt="" width="35" height="35" class="rounded-circle">
+                  @else
+                  <img src="{{asset('admin/assets/images/profile/user (1).png')}}" alt="" width="30" height="30" class="rounded-circle">
+                  @endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" dir="rtl" aria-labelledby="drop2">
                   <div class="message-body">
@@ -333,15 +358,15 @@
                       <i class="bi bi-bank"></i>
                       <p class="mb-0 fs-3">تسجيل منشأة</p>
                     </a> --}}
-                    <a href="{{route('user.profile')}}" class="d-flex align-items-center gap-2 dropdown-item">
+                    {{-- <a href="{{route('user.profile')}}" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">الملف الشخصي</p>
-                    </a>
+                    </a> --}}
                     {{-- <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a> --}}
-                    <form action="{{route('signout')}}" method="post">
+                    <form action="{{route('signout')}}" method="post" class="d-flex justify-content-center">
                       @csrf
                       <button type="submit" class="btn btn-outline-primary mx-3 mt-2 d-block">تسجيل الخروج</button>
                     </form>

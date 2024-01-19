@@ -24,21 +24,21 @@
             <div class="card">
                 <div class="card-body" style="padding: 20px">
                     
-                  <div class="d-flex flex-column @if(empty($payments)) align-items-center justify-content-center @endif">
-                    @if(empty($payments))
-                        <p>لاتوجد حسابات</p>
+                  <div class="d-flex flex-column @if($payments->count() == 0) align-items-center justify-content-center @endif">
+                    @if($payments->count() == 0)
+                        <p class="mb-0">لاتوجد حسابات</p>
                     @else
                     @foreach ($payments as $payment)
                     <div class="row">
                         <div class="col d-flex justify-content-start">
-                            <p><i class="fa-solid fa-check crud-icon"></i>{{$payment->name}}</p>
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                            <p>{{$payment->number}}</p>
+                            <p class="mb-0"><i class="fa-solid fa-check crud-icon"></i>{{$payment->name}}</p>
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <a href="#" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
+                            <p class="mb-0">{{$payment->number}}</p>
                         </div>
+                        {{-- <div class="col d-flex justify-content-end">
+                            <a href="#" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
+                        </div> --}}
                     </div>
                     @endforeach
                     @endif

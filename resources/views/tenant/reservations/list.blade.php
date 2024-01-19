@@ -1,11 +1,15 @@
 @extends('layouts.admin')
+<link rel="stylesheet" href="{{asset('admin/assets/css/pagination.css')}}">
 
 @section('content')
+@php
+  $counter = 1;
+@endphp
 <div class="container-fluid" dir="rtl">
     <!--  Row 1 -->
-    <div class="mb-3">
+    {{-- <div class="mb-3">
       <a class="btn btn-outline-primary m-1" href="{{route('tenant.reservations.add')}}"><i class="bi bi-person-add"></i> إضافة حجز</a>
-    </div>
+    </div> --}}
     <div class="row">
       <div class="col-lg d-flex align-items-stretch">
         <div class="card w-100">
@@ -51,9 +55,9 @@
                   @endif
                   @foreach ($reservations as $reservation)
                     <tr>
-                      <td class=""><h6 class="fw-semibold mb-0">1</h6></td>
+                      <td class=""><h6 class="fw-semibold mb-0">{{$counter}}</h6></td>
                       <td class="">
-                          <h6 class="fw-semibold mb-1">روعة باعيسى</h6>
+                          <h6 class="fw-semibold mb-1">{{$reservation->user->name}}</h6>
                           {{-- <span class="fw-normal">Web Designer</span>                           --}}
                       </td>
                       <td class="">
@@ -65,7 +69,7 @@
                           {{-- <span class="fw-normal">Web Designer</span>                           --}}
                       </td>
                       <td class="">
-                          <h6 class="fw-semibold mb-1">{{$reservation->offerHall->duration->from}} - {{$reservation->offerHall->duration->to}}</h6>
+                          <h6 class="fw-semibold mb-1">{{$reservation->offerHall->duration->from()}} - {{$reservation->offerHall->duration->to()}}</h6>
                           {{-- <span class="fw-normal">Web Designer</span>                           --}}
                       </td>
                       <td class="">
@@ -78,11 +82,14 @@
                           {{-- <a href="{{route('tenant.reservations.delete')}}" class="crud-icon"><i class="fa-solid fa-trash"></i></a> --}}
                       </td>
                     </tr>
-                    
+                    @php
+                      $counter++;
+                    @endphp
                   @endforeach
                                  
                 </tbody>
               </table>
+              @include('common.pagination', ['paginator' => $reservations]) 
             </div>
           </div>
         </div>

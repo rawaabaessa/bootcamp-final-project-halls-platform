@@ -10,6 +10,7 @@ use App\Models\Qaah\Occasion;
 use App\Models\Qaah\Service;
 use App\Models\Reservation\Order;
 use App\Models\Reservation\State;
+use App\Models\Account\User;
 
 class Reservation extends Model
 {

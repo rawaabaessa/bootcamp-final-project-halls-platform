@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class RejectMail extends Mailable
+class MessageMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class RejectMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('رفض طلب الانضمام')
-            ->view('emails.rejectMail');
+        return $this->subject('رد الاستفسار')
+            ->view('emails.MessageMail');
     }
 }

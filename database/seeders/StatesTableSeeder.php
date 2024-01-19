@@ -18,6 +18,7 @@ class StatesTableSeeder extends Seeder
             ['name' => 'under_review', 'title' => 'قيد المراجعة'],
             ['name' => 'confirmed', 'title' => 'مؤكد'],
             ['name' => 'canceled', 'title' => 'ملغي'],
+            ['name' => 'rejected', 'title' => 'مرفوض'],
         ];
 
         foreach ($states as $state) {

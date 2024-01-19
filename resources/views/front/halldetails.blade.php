@@ -4,7 +4,10 @@
 <body>
       <div class="container">
         <div class="image-grid">
-          @php
+@php
+$occation = $hall->facility->Occasions->count();
+$service = 
+
 $count = 0;
 @endphp
 
@@ -51,7 +54,7 @@ $count = 0;
                 </div>
                 <div class="detail-card text-right">
                     <i class="fa-solid fa-coins"></i>
-                    <span>تبدا من {{$hall->offer_halls->min('price')}} رس</span>
+                    <span>تبدا من {{$hall->offer_halls->min('price')}} {{$hall->facility->currency}}</span>
                 </div>
             </div>
             <div class="mt-4 text-justify">
@@ -60,6 +63,7 @@ $count = 0;
             </div>
           </div>
             <div class="col">
+              @if ($occation > 0)
                 <div class="price">
                   <form method="post" action="{{route('front.facilities.reservationCheck',['name',$hall->name])}}">
                     @csrf
@@ -113,6 +117,7 @@ $count = 0;
                         @enderror
                       </div>
                     </div>
+                    @if ($hall->facility->services->where('is_free', true)->count() > 0)
                     <span class="text-bold mb-2">خدمات اختيارية</span>
                     @foreach ($hall->facility->services as $services)
                     @if ($services->is_free)
@@ -124,20 +129,8 @@ $count = 0;
                       </div>
                     @endif
                     @endforeach
-                    
-                    {{-- <div class="d-flex justify-content-between mb-2" dir="rtl">
-                        <div class="">
-                            <input type="checkbox">
-                            <span>حارسة</span>
-                        </div>
-                    </div> --}}
-                    {{-- <div class="d-flex justify-content-between mb-2" dir="rtl">
-                        <div class="">
-                            <input type="checkbox">
-                            <span>فريق تنظيم</span>
-                        </div>
-                        <span class="services-price"></span>
-                    </div> --}}
+                    @endif
+                    @if ($hall->facility->services->where('is_free', false)->count() > 0)
                     <span class="text-bold mb-2">خدمات اضافية</span>
                     @foreach ($hall->facility->services as $services)
                     @if (!$services->is_free)
@@ -148,10 +141,11 @@ $count = 0;
                             <span>{{$services->name}}</span>
                             {{-- <span class="">القاعة</span> --}}
                         </div>
-                        <span class="services-price">{{$services->price}}</span>
+                        <span class="services-price">{{$services->price}} {{$hall->facility->currency}}</span>
                     </div>
                     @endif
                     @endforeach
+                    @endif
                     {{-- <div class="d-flex justify-content-between mb-2" dir="rtl">
                         <div class="">
                             <input type="checkbox">
@@ -178,7 +172,7 @@ $count = 0;
                         <!-- <input type="checkbox"> -->
                         <span class="">القاعة</span>
                     </div>
-                    <span class="services-price hall-price">0 رس</span>
+                    <span class="services-price hall-price">0 {{$hall->facility->currency}}</span>
                   </div>
                   <div class="service-invoice">
 
@@ -188,7 +182,8 @@ $count = 0;
                             <!-- <input type="checkbox"> -->
                             <span class="text-bold">الاجمالي</span>
                         </div>
-                        <span class="services-price text-bold totla">0 رس</span>
+                        <span class="services-price text-bold totla">0 <span class="text-bold ">{{$hall->facility->currency}}</span></span>
+                        
                     </div>
                     @error('error')
                         <small style="color: red">
@@ -199,6 +194,7 @@ $count = 0;
                       <button type="submit" class="btn btn-primary mt-2 w-100" >احجز الان</button>
                     </form>
                 </div>
+              @endif
             </div>
       </div>
     </div>
@@ -206,7 +202,7 @@ $count = 0;
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div dir="rtl" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-center">
     <div class="modal-content">
       <div class="modal-header">
@@ -276,9 +272,9 @@ $count = 0;
     totalPrice = hallPrice + additionalServicesTotal;
 
     // Update the invoice, hall price, and total price elements
-    invoiceElement.textContent = hallPrice + ' رس';
-    hallPriceElement.textContent = hallPrice + ' رس';
-    totalPriceElement.textContent = totalPrice + ' رس';
+    invoiceElement.textContent = '{{$hall->facility->currency}} ' + hallPrice ;
+    hallPriceElement.textContent = '{{$hall->facility->currency}} ' + hallPrice;
+    totalPriceElement.textContent = '{{$hall->facility->currency}} ' + totalPrice;
 
     // Clear the additional services in the invoice
     additionalServicesElement.innerHTML = '';

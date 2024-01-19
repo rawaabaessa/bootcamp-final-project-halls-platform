@@ -27,10 +27,33 @@
                 {{-- <p><i class="fa-solid fa-check checked"></i>تعديل محتوى</p> --}}
               </div>
              <div class="mt-3 submit-buttons">
+                <a type="button" class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal_1">رد</a>
                 <a type="submit" class="btn btn-primary" href="{{route('messages.index')}}">رجوع</a>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div dir="rtl" class="modal fade" id="exampleModal_1" tabindex="-1" aria-labelledby="exampleModalLabel_1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel_1">ارسال رد</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="{{route('messages.sendreplay')}}">
+          <!-- Use the message ID to display relevant message content -->
+          <textarea type="text" class="form-control" name="reply"></textarea>
+        </div>
+        <div class="modal-footer justify-content-start">
+          
+            @csrf
+            <button type="submit" class="btn btn-primary">ارسال</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">رجوع</button>
+          </form>
         </div>
       </div>
     </div>

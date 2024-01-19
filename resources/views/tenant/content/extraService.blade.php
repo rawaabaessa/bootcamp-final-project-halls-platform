@@ -24,21 +24,21 @@
             <div class="card">
                 <div class="card-body" style="padding: 20px">
                     
-                  <div class="d-flex flex-column @if(empty($services)) align-items-center justify-content-center @endif">
-                    @if(empty($services))
-                      <p>لايوجد خدمات</p>
+                  <div class="d-flex flex-column @if($services->count() == 0) align-items-center justify-content-center @endif">
+                    @if($services->count() == 0)
+                      <p class="mb-0">لايوجد خدمات</p>
                     @else
                     @foreach ($services as $service)
                     <div class="row">
                         <div class="col d-flex justify-content-start">
-                            <p><i class="fa-solid fa-check crud-icon"></i>{{$service->name}}</p>
-                        </div>
-                        <div class="col d-flex justify-content-center">
-                            <p>{{$service->price}} {{$facility->currency}}</p>
+                            <p class="mb-0"><i class="fa-solid fa-check crud-icon"></i>{{$service->name}}</p>
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <a href="#" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
+                            <p class="mb-0">{{$service->price}} {{$facility->currency}}</p>
                         </div>
+                        {{-- <div class="col d-flex justify-content-end">
+                            <a href="#" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
+                        </div> --}}
                         
                     </div>
                       {{-- <div class="d-flex justify-content-between">

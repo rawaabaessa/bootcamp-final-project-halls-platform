@@ -19,12 +19,12 @@
             @endif
             <div class="card-body px-4 pt-0 card-wrap">
               @if (count($halls) == 0)
-                <div class="d-flex align-items-center justify-content-center pt-3">لا توجد قاعات</div>
+                <div class="d-flex align-items-center justify-content-center" style="padding-top: 28px">لا توجد قاعات</div>
               @endif
               @foreach ($halls as $hall)
               <div class="profile-card js-profile-cards" dir="rtl">
                 <div class="profile-card__img">
-                  <img src="{{asset('assets/images/tenant-logo.png')}}" alt="profile card">
+                  <img src="{{asset('storage/logo/'.$hall->facility->logo)}}" alt="profile card">
                 </div>
                 <div class="profile-card__cnt js-profile-cnt">
                   <div class="profile-card__name">{{$hall->title}}</div>

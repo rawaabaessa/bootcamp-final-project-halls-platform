@@ -22,11 +22,11 @@
                 <h1 class="mb-10">انشاء حساب</h1>
                 <input type="text" placeholder="الاسم الكامل" name="name" dir="rtl" id="">
                 @error('name')
-                    <div>{{$message}}</div>
+                    <small>{{$message}}</small>
                 @enderror
                 <input type="email" placeholder="البريد الالكتروني" name="email" dir="rtl">
                 @error('email')
-                    <div>{{$message}}</div>
+                    <small>{{$message}}</small>
                 @enderror
                 <input type="text" placeholder="رقم الهاتف" dir="rtl">
                 <div class="" style="display: flex;gap:4px">
@@ -34,7 +34,7 @@
                     <input type="password" placeholder="تاكيد كلمة السر" dir="rtl" name="password_confirmation">
                 </div>
                 @error('password')
-                    <div>{{$message}}</div>
+                    <small>{{$message}}</small>
                 @enderror
                 <div class="radio-group">
                     <input type="radio" name="role" value="customer" id="role1">
@@ -43,7 +43,7 @@
                     <label for="role2" class="radio-label label2">مستخدم <div class="done d-none"><i class="fa-solid fa-check"></i></div></label>
                 </div>
                 @error('role')
-                    <div>{{$message}}</div>
+                    <small>{{$message}}</small>
                 @enderror
                 <button>تسجيل</button>
                 <p>لديك حساب بالفعل ؟ <a href="#" class="forget">تسجيل الدخول</a></p>
@@ -55,19 +55,19 @@
                 <h1 class="mb-10">تسجيل الدخول</h1>
                 <input type="email" name="email" placeholder="البريد الالكتروني" dir="rtl">
                 @error('email')
-                    <div>{{$message}}</div>
+                    <small style="color:red;align-self:end">{{$message}}</small>
                 @enderror
                 <input type="password" name="password" placeholder="كلمة السر" dir="rtl">
                 @error('password')
-                    <div>{{$message}}</div>
+                    <small style="color:red;align-self:end">{{$message}}</small>
                 @enderror
-                <div class="forget-remmeber">
+                {{-- <div class="forget-remmeber">
                     <div class="remmeber">
                         <input type="checkbox" name="remmeber" id="">
                         <label for="remmeber">تذكرني</label>
                     </div>
                     <a href="#" class="forget">هل نسيت كلمة السر ؟</a>
-                </div>
+                </div> --}}
                 <button type="submit">تسجيل الدخول</button>
                 <p class="d-none">ليس لديك حساب ؟ <a href="{{route('signup.view')}}" class="forget">تسجيل</a></p>
             </form>

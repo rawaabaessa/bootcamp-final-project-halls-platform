@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('offer_hall_id');
-            $table->foreign('offer_hall_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('offer_hall_id')->references('id')->on('offer_halls')->onDelete('cascade');
             $table->unsignedBigInteger('hall_id');
             $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
             $table->float('hall_price');

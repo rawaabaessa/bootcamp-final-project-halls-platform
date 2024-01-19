@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="tab-pane fade text-justify" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-                <p style="text-align: right">{{$user->content->discription}}</p>
+                <p style="text-align: right">@if(!empty($user->content->discription)) {{ $user->content->discription }} @endif</p>
                 {{-- <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p> --}}
               </div>
 
@@ -260,21 +260,21 @@
           <!-- <h2 class="mb-2">Exclusive Offer For You</h2> -->
         </div>
       </div>
-      <div class="row">
-         @foreach ($facility->halls as $hall)
+      <div class="row" dir="rtl">
+         @foreach ($viewModels as $viewModel)
          <div class="col-md-4">
           <div class="property-wrap ftco-animate">
-              <a href="{{route('front.facilities.details',['name'=>$hall->name])}}" class="img" style="background-image: url({{asset('assets/images/work-1.jpg')}});"></a>
-              <div class="text text-right">
-                  <p class="price"><span class="orig-price"><span>{{$hall->offer_halls->min('price')}} {{$facility->currency}} تبدأ من </span></span></p>
+              <a href="{{route('front.facilities.details',['name'=>$viewModel->hall->name])}}" class="img" style="background-image: url({{asset('storage/images/'.$viewModel->firstImage->path)}});"></a>
+              <div class="text text-right" dir="ltr">
+                  <p class="price"><span class="orig-price"><span>{{$facility->currency}} {{$viewModel->hall->offer_halls->min('price')}} تبدأ من </span></span></p>
                   <ul class="property_list">
                       {{-- <li><span>3</span><span class="flaticon-bed"></span></li> --}}
-                      <li><span>{{$hall->people_count}}</span><i class="fa-solid fa-people-group"></i></li>
-                      <li><span>{{$hall->area}}</span><span class="flaticon-floor-plan"></span></li>
+                      <li><span>{{$viewModel->hall->people_count}}</span><i class="fa-solid fa-people-group"></i></li>
+                      <li><span>{{$viewModel->hall->area}}</span><span class="flaticon-floor-plan"></span></li>
                   </ul>
                   {{-- <form> --}}
                     
-                    <h3><a href="{{route('front.facilities.details',['name'=>$hall->name])}}" >{{$hall->title}}</button></h3>
+                    <h3><a href="{{route('front.facilities.details',['name'=>$viewModel->hall->name])}}" >{{$viewModel->hall->title}}</button></h3>
                   {{-- </form> --}}
                   <span class="location "><a style="color: #666666;">{{$facility->title}}</a></span>
           <span class="location" style="display: block;">{{$facility->directorate->governorate->name}} - {{$facility->directorate->name}}<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
@@ -302,16 +302,7 @@
           <div class="row">
               <div class="col-md-6">
                   <div class="row">
-                      <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-                  <div class="media block-6 services services-2">
-                    <div class="media-body py-md-4 text-center">
-                        <div class="icon mb-3 d-flex align-items-center justify-content-center"><span>01</span></div>
-                      <h3> أنشئ حسابك</h3>
-                      <p>قم بالتسجيل في منصتنا عن طريق إنشاء حساب جديد ببضع خطوات بسيطة.
-                  </p>
-                    </div>
-                  </div>      
-                </div>
+                  
                 <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                   <div class="media block-6 services services-2">
                     <div class="media-body py-md-4 text-center">
@@ -325,9 +316,10 @@
                 <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                   <div class="media block-6 services services-2">
                     <div class="media-body py-md-4 text-center">
-                        <div class="icon mb-3 d-flex align-items-center justify-content-center"><span>03</span></div>
-                      <h3>استعرض القاعات المتاحة</h3>
-                      <p> تصفح قائمة القاعات المتاحة في المدينة التي اخترتها، واطلع على معلومات القاعات والصور والتفاصيل الأخرى المهم</p>
+                        <div class="icon mb-3 d-flex align-items-center justify-content-center"><span>01</span></div>
+                      <h3> أنشئ حسابك</h3>
+                      <p>قم بالتسجيل في منصتنا عن طريق إنشاء حساب جديد ببضع خطوات بسيطة.
+                      </p>
                     </div>
                   </div>      
                 </div>
@@ -338,6 +330,15 @@
                       <h3>حدد التاريخ والوقت</h3>
                       <p>حدد التاريخ والوقت الذي ترغب فيه لاستخدام القاعة، وتأكد من توفرها في ذلك الوقت.
                   </p>
+                    </div>
+                  </div>      
+                </div>
+                <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
+                  <div class="media block-6 services services-2">
+                    <div class="media-body py-md-4 text-center">
+                        <div class="icon mb-3 d-flex align-items-center justify-content-center"><span>03</span></div>
+                      <h3>استعرض القاعات المتاحة</h3>
+                      <p> تصفح قائمة القاعات المتاحة في المدينة التي اخترتها، واطلع على معلومات القاعات والصور والتفاصيل الأخرى المهمة</p>
                     </div>
                   </div>      
                 </div>
@@ -370,7 +371,7 @@
         <div class="col-md-8 mb-md-5">
           <h2 class="text-center">إذا كان لديك أي أسئلة<br>
           من فضلك لا تتردد في ارسال رسالة  لنا</h2>
-          <form dir="rtl" action="#" method="POST" class="bg-light p-5 contact-form" style="background-color: #fbfaf2 !important">
+          <form dir="rtl" action="{{route('tenant.messages.store')}}" method="POST" class="bg-light p-5 contact-form" style="background-color: #fbfaf2 !important">
           @csrf
           <div class="form-group">
             <input type="text" class="form-control" name="name" placeholder="الاسم">
@@ -385,6 +386,7 @@
             <textarea id="" cols="30" rows="7" name="message" class="form-control" placeholder="الرسالة"></textarea>
           </div>
           <div class="form-group d-flex justify-content-start">
+            <input type="hidden" name="id" value="{{$user->id}}">
             <input type="submit" value="ارسل رسالة" class="btn btn-primary py-3 px-5">
           </div>
           </form>

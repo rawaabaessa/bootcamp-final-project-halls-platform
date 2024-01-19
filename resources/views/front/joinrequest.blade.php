@@ -28,7 +28,7 @@
                     </div>
                  </div>
                 <div class="">
-                    <a type="submit" class="return-home" href="{{route('front.home')}}">الرجوع للصفحة الرئيسية</a>
+                    <a class="return-home" href="{{route('front.home')}}">الرجوع للصفحة الرئيسية</a>
                 </div>
             </div>
         </div>

@@ -79,7 +79,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{asset('assets/js/jquery.timepicker.min.js')}}"></script>
 <script src="{{asset('assets/js/scrollax.min.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="{{asset('assets/js/google-map.js')}}"></script>
+{{-- <script src="{{asset('assets/js/google-map.js')}}"></script> --}}
 {{-- <script src="{{asset('assets/js/main2.js')}}"></script> --}}
 <script src="{{asset('assets/js/main.js')}}"></script>
   

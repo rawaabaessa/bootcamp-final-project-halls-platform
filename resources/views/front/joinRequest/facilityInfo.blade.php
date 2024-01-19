@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{{asset('admin/assets/images/logos/Blue & Red Overlapping House Realtor Logo (2).png')}}" />
     <title>طلب انضمام</title>
 </head>
 <body>
@@ -69,7 +70,8 @@
                 </div> --}}
                 <div class="col mb-3">
                     <label for="exampleInputEmail1" class="form-label">المحافظة</label>
-                    <select name="Governorate" id="" class="form-control">
+                    <select name="Governorate" id="governorateSelect" class="form-control" onchange="getDistricts()">
+                      {{-- <option>اختر محافظة</option> --}}
                       @foreach ($Governorates as $Governorate)
                       <option value="{{ $Governorate->id }}">{{ $Governorate->name }}</option>
                       @endforeach
@@ -80,7 +82,7 @@
                 </div>
                 <div class="col mb-3">
                     <label for="exampleInputEmail1" class="form-label">المديرية</label>
-                    <select name="Directorate" id="" class="form-control">
+                    <select name="Directorate" id="districts" id="directorateSelect" class="form-control">
                       @foreach ($Directorates as $Directorate)
                       <option value="{{ $Directorate->id }}">{{ $Directorate->name }}</option>
                       @endforeach
@@ -102,7 +104,18 @@
                 @error('logo')
                     <div>{{$message}}</div>
                 @enderror
-              </div>
+                </div>
+                <div class="col mb-3">
+                  <label for="exampleInputEmail1" class="form-label">العملة</label>
+                  <select class="form-control" name="currency">
+                    <option value="SAR">SAR</option>
+                    <option value="USD">USD</option>
+                    <option value="YER">YER</option>
+                  </select>
+                @error('currency')
+                    <div>{{$message}}</div>
+                @enderror
+                </div>
                 <div class="col mb-3">
                   <label for="exampleInputEmail1" class="form-label">العنوان</label>
                   <input type="text" class="form-control" name="address" value="{{old('id')}}" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -119,12 +132,40 @@
             </div>
             
             <div class="align-self-start">
-                <button type="submit" class="btn btn-primary submit-btn">التالي</button>
+                <button type="submit" class="btn btn-primary submit-btn">ارسال</button>
                 {{-- <button type="submit" class="btn btn-primary">رجوع</button> --}}
               </div>
             </form>
         </div>
         {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
     </div>
+    
+ <script>
+  function getDirectorates() {
+      var governorateId = document.getElementById('governorateSelect').value;
+      var xhr = new XMLHttpRequest();
+
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                  var directorates = JSON.parse(xhr.responseText);
+                  var directorateSelect = document.getElementById('directorateSelect');
+                  directorateSelect.innerHTML = '';
+
+                  for (var i = 0; i < directorates.length; i++) {
+                      var option = document.createElement('option');
+                      option.value = directorates[i].id;
+                      option.text = directorates[i].name;
+                      directorateSelect.appendChild(option);
+                  }
+              } else {
+                  console.log('حدث خطأ أثناء استرداد البيانات');
+              }
+          }
+      };
+      xhr.open('GET', '/getDirectorates?governorate_id=' + governorateId, true);
+      xhr.send();
+  }
+</script>
 </body>
 </html>

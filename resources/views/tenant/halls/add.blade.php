@@ -7,6 +7,7 @@
           <h5 class="card-title fw-semibold mb-4">اضافة قاعة</h5>
           <div class="card">
             <div class="card-body">
+              @if ($durations->count() > 0)
               <form action="{{route('tenant.hall.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row row-cols-1 row-cols-md-3">
@@ -101,7 +102,7 @@
                       @foreach ($durations as $duration)
                         <div class="input-group mb-3" dir="ltr">
                           <input dir="rtl" type="text" class="form-control"  name="prices[{{ $duration->id }}]" placeholder="السعر" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
-                          <span class="input-group-text price-sr" id="basic-addon2">{{ $duration->from }} - {{ $duration->to }}</span>
+                          <span class="input-group-text price-sr" id="basic-addon2">{{$duration->from()}} - {{$duration->to()}}</span>
                         </div>
                       @endforeach
                       {{-- <label for="formFileMultiple" class="form-label">Multiple files input example</label> --}}
@@ -115,6 +116,12 @@
                 </div>
 
               </form>
+              @else
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p style="color: red">يجب اكمال فترات المنشأة لتتمكن من اضافة قاعة</p>
+                  </div>
+              @endif
+             
             </div>
           </div>
         </div>

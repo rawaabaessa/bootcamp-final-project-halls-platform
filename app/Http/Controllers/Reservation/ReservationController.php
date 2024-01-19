@@ -42,22 +42,68 @@ class ReservationController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
-        if (auth()->check()) {
-            $bookingExists = Reservation::where('hall_id', $request->id)
-                            ->where('date', $request->input('date'))
-                            ->where('offer_hall_id', $request->input('duration'))
-                            ->exists();
-
-            if ($bookingExists) {
-                return redirect()->back()->withErrors(['error' => 'الفترة محجوزة, يرجى اختيار فترة أخرى.']);
-            } else {
-
-                $poeple = Hall::where('id',$request->id)->first()->people_count;
+        
+        $poeple = Hall::where('id',$request->id)->first()->people_count;
                 if($request->input('poeple') > $poeple){
                     return redirect()->back()->withErrors(['poeple.count' => 'عدد المدعوين يتجاوز طاقة القاعة']);
                 }
 
+        if (auth()->check()) {
+            $bookingExists = Reservation::where('hall_id', $request->id)
+                            ->where('date', $request->input('date'))
+                            ->where('offer_hall_id', $request->input('duration'))
+                            ->first();
+
+            if ($bookingExists) {
+                $stateId = $bookingExists->state_id;
+                if ($stateId == 2 || $stateId == 3) {
+                    // الفترة محجوزة أو قيد المراجعة
+                    return redirect()->back()->withErrors(['error' => 'الفترة محجوزة, يرجى اختيار فترة أخرى.']);
+                }
+                if ($stateId == 4 || $stateId == 5) {
+                    // الفترة ملغية أو  مرفوضة
+                    $reservation = Reservation::create([
+                        'user_id' => auth()->id(),
+                        'offer_hall_id' => $request->input('duration'),
+                        'hall_id' => $request->id,
+                        'hall_price' => OfferHall::where('id',$request->input('duration'))->first()->price,
+                        'occasion_id' => $request->input('occasions'),
+                        'date' => $request->input('date'),
+                        'poeple_count' => $request->input('poeple'),
+                        'state_id' => 1
+                    ]);
+                    $selectedServices = $request->input('extra');
+                    $selectedServicesop = $request->input('service');
+    
+                    // حفظ الخدمات المحددة في قاعدة البيانات
+                    if (!empty($selectedServices)) {
+                        foreach ($selectedServices as $serviceId) {
+                            order::create([
+                                'service_id' => $serviceId,
+                                'reservation_id' => $reservation->id,
+                                'price' => Service::where('id',$serviceId)->first()->price,
+                            ]);
+                        }
+                    }
+    
+                    if (!empty($selectedServicesop)) {
+                        foreach ($selectedServicesop as $serviceId) {
+                            order::create([
+                                'service_id' => $serviceId,
+                                'reservation_id' => $reservation->id,
+                                'price' => Service::where('id',$serviceId)->first()->price,
+                            ]);
+                        }
+                    }
+                    return redirect()->route('user.reservation',['id'=>$reservation->user_id]);
+                }
+                if($stateId == 1){
+
+                    return redirect()->back()->withErrors(['error' => 'الفترة محجوزة, يرجى اختيار فترة أخرى.']);
+                }
+            } 
+            else {
+                
                 $reservation = Reservation::create([
                     'user_id' => auth()->id(),
                     'offer_hall_id' => $request->input('duration'),
@@ -101,15 +147,24 @@ class ReservationController extends Controller
     //show user reservations
     public function userReservations(){
     $user=auth()->id();
-    $reservations = Reservation::where('user_id',$user)->get();
+    $reservations = Reservation::where('user_id',$user)
+                                ->orderBy('id', 'desc')
+                                ->paginate(3);
     // dd($reservations);
     return view('user.reservations.index',compact('reservations'));
     }
 
     public function reservationDetails($id){
         $reservation = Reservation::where('id',$id)->first();
+        // $hall = Hall::where('id',$reservation->hall_id)->first();
+        $image = File::where('target_id',$reservation->hall_id)
+                        ->where('target_name','hall')
+                        ->first();
+        $voucher = File::where('target_id',$reservation->id)
+                        ->where('target_name','reservation')
+                        ->first();
         // $order = Order::where('reservation_id',$id)->get();
-        return view('user.reservations.confirmation',compact('reservation'));
+        return view('user.reservations.confirmation',compact('reservation','image','voucher'));
     }
 
     public function upload(Request $request){
@@ -135,7 +190,16 @@ class ReservationController extends Controller
             $reservation->voucher_id = $file->id;
             $reservation->state_id = 2;
             $reservation->save();
-            return redirect()->back()->with('success', 'تمت العملية بنجاح');
+            return redirect()->route('user.reservation')->with('success', 'تمت العملية بنجاح');
+        }
+    }
+    public function reservationCancel(Request $request){
+        $reservation = Reservation::where('id', $request->id)->first();
+    
+        if ($reservation) {
+            $reservation->state_id = 4;
+            $reservation->save();
+            return redirect()->route('user.reservation')->with('success', 'تم إلغاء الحجز بنجاح.');
         }
     }
 }

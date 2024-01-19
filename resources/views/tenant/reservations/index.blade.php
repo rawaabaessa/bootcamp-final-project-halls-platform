@@ -1,11 +1,11 @@
 @extends('layouts.admin')
-
+<link rel="stylesheet" href="{{asset('admin/assets/css/pagination.css')}}">
 @section('content')
 <div class="container-fluid" dir="rtl">
     <!--  Row 1 -->
-    <div class="mb-3">
+    {{-- <div class="mb-3">
       <a class="btn btn-outline-primary m-1" href="{{route('tenant.reservations.add')}}"><i class="bi bi-person-add"></i> إضافة حجز</a>
-    </div>
+    </div> --}}
     <div class="row">
       <div class="col-lg d-flex align-items-stretch">
         <div class="card w-100">
@@ -37,10 +37,15 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @if (count($halls) == 0)
+                  <tr style="text-align:center">
+                    <td colspan="7" >لاتوجد قاعات</td>
+                  </tr>
+                @endif
                   @php
                     $counter = 1;
                   @endphp
-                  @foreach ($facility->halls as $hall)
+                  @foreach ($halls as $hall)
                   <tr>
                     <td class=""><h6 class="fw-semibold mb-0">{{$counter}}</h6></td>
                     <td class="">
@@ -59,6 +64,7 @@
                   @endforeach
                 </tbody>
               </table>
+              @include('common.pagination', ['paginator' => $halls]) 
             </div>
           </div>
         </div>

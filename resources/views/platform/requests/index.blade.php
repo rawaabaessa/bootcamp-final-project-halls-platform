@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<link rel="stylesheet" href="{{asset('admin/assets/css/pagination.css')}}">
 <div class="container-fluid" dir="rtl">
     <!--  Row 1 -->
     {{-- <div class="mb-3">
@@ -79,9 +80,10 @@
                     $counter++;
                   @endphp
                   @endforeach
-                      
+                  
                 </tbody>
               </table>
+              @include('common.pagination', ['paginator' => $requests])
             </div>
           </div>
         </div>

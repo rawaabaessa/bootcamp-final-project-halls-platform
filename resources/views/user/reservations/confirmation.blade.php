@@ -11,7 +11,7 @@
                 <div class="col">
                   <h4 class="fw-bold mb-3">تفاصيل الحجز</h4>
                   <p><i class="fa-solid fa-calendar-days crud-icon"></i>{{$reservation->date}}</p>
-                  <p><i class="fa-solid fa-clock crud-icon"></i>{{$reservation->offerHall->duration->from}} - {{$reservation->offerHall->duration->to}}</p>
+                  <p><i class="fa-solid fa-clock crud-icon"></i>{{$reservation->offerHall->duration->from()}} - {{$reservation->offerHall->duration->to()}}</p>
                   <p><i class="fa-solid fa-person crud-icon"></i>{{$reservation->poeple_count}}</p>
                   {{-- <h4 class="my-3">الخدمات المطلوبة</h4> --}}
                   <h4 class="my-3">الخدمات المطلوبة</h4>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col">
                   <div class="image">
-                    <img src="{{asset('assets/images/image_1.jpg')}}" width="300" alt="" srcset="" class="border-radius-7">
+                    <img src="{{asset('storage/images/'.$image->path)}}" width="300" alt="" srcset="" class="border-radius-7">
                   </div>
                   <div class="row mt-2">
                     <div class="col">
@@ -44,7 +44,7 @@
                   <div class="">
                     <div class="d-flex justify-content-between">
                       <p>القاعة</p>
-                      <p>{{$reservation->hall_price}} رس</p>
+                      <p>{{$reservation->hall_price}} {{$reservation->hall->facility->currency}}</p>
                     </div>
                     @php
                       $totalPrice = $reservation->hall_price; // تعيين القيمة الابتدائية للسعر الإجمالي بقيمة سعر القاعة
@@ -54,7 +54,7 @@
                     @if (!$order->service->is_free)
                       <div class="d-flex justify-content-between">
                         <p>{{$order->service->name}}</p>
-                        <p>{{$order->service->price}} رس</p>
+                        <p>{{$order->service->price}} {{$reservation->hall->facility->currency}}</p>
                       </div>
                       @php
                         $totalPrice += $order->service->price; // إضافة سعر الخدمة إلى السعر الإجمالي
@@ -63,10 +63,16 @@
                     @endforeach
                     <div class="d-flex justify-content-between border-top pt-2">
                       <p>الاجمالي</p>
-                      <p>{{$totalPrice}} رس</p>
+                      <p>{{$totalPrice}} {{$reservation->hall->facility->currency}}</p>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="row">
+                <h4>الحسابات البنكية</h4>
+                @foreach ($reservation->hall->facility->payments as $payment)
+                <p><i class="fa-solid fa-check crud-icon"></i>{{$payment->name}} : {{$payment->number}}</p>
+                @endforeach
               </div>
               @if ($reservation->state->name == 'unconfirmed')
               <div class="row">
@@ -79,11 +85,11 @@
                 </div>
               </div>
               @endif
-              @if ($reservation->state->name != 'unconfirmed')
+              @if ($reservation->state->name == 'confirmed' || $reservation->state->name == 'under_review' )
               <div class="row">
                 <div class="">
                   <h4>السند</h4>
-                  <img src="{{asset('assets/images/image_1.jpg')}}" width="300" alt="" srcset="" class="border-radius-7">
+                  <img src="{{asset('storage/reservation/'.$voucher->path)}}" width="300" alt="" srcset="" class="border-radius-7">
                 </div>
                 <input type="hidden" name="id" value="{{$reservation->id}}">
               </div>
@@ -92,7 +98,7 @@
                 @if ($reservation->state->name == 'unconfirmed')
                 <button type="submit" class="btn btn-primary">ارسال</button>
                 @endif
-                <a type="submit" class="btn btn-primary" href="{{route('tenant.hall')}}">رجوع</a>
+                <a type="submit" class="btn btn-primary" href="{{route('user.reservation')}}">رجوع</a>
               </div>
             </div>
           </form>

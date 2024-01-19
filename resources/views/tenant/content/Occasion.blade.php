@@ -23,14 +23,14 @@
               @endif
             <div class="card">
                 <div class="card-body" style="padding: 20px">
-                  <div class="d-flex flex-column @if(empty($occasions)) align-items-center justify-content-center @endif">
-                    @if(empty($occasions))
-                      <p>لايوجد مناسبات</p>
+                  <div class="row row-cols-1 row-cols-md-3 @if($occasions->count() == 0) align-items-center justify-content-center @endif">
+                    @if($occasions->count() == 0)
+                      <p class="mb-0 text-center">لايوجد مناسبات</p>
                     @else
                     @foreach ($occasions as $occasion)
-                      <div class="d-flex justify-content-between">
-                        <p><i class="fa-solid fa-check crud-icon"></i>{{$occasion->name}}</p>
-                        <a href="#" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
+                      <div class="col d-flex justify-content-between mb-2">
+                        <p class="mb-0"><i class="fa-solid fa-check crud-icon"></i>{{$occasion->name}}</p>
+                        {{-- <a href="#" class="crud-icon"><i class="fa-solid fa-trash"></i></a> --}}
                       </div>
                     @endforeach
                     @endif

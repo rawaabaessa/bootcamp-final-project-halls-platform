@@ -2,6 +2,12 @@
     margin-left: 5px;
     color: #cdac33;
 }
+.crud-icon:hover{
+    color:#a68b29 ;
+}
+.crud-icon:active{
+    color: #cdac33;
+}
 .submit-buttons{
     text-align: right;
 }

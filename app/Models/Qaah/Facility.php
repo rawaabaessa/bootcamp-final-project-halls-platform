@@ -10,6 +10,7 @@ use App\Models\Qaah\Occasion;
 use App\Models\Qaah\Duration;
 use App\Models\Qaah\Service;
 use App\Models\Location\Directorate;
+use App\Models\Payment\Payment;
 
 
 class Facility extends Model
@@ -53,5 +54,9 @@ class Facility extends Model
     public function durations()
     {
         return $this->hasMany(Duration::class);
+    }
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

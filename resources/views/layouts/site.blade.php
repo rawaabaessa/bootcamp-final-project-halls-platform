@@ -35,26 +35,44 @@
     <link rel="stylesheet" href="{{asset('assets/css/css/halldetails.css')}}">
         
     @endif
+    @php
+          $user = Auth::user();
+    @endphp
     @if (Route::currentRouteName() === 'mainhall')
     <link rel="stylesheet" href="{{asset('assets/css/css/rows.css')}}">
     @endif
     <link rel="stylesheet" href="{{asset('assets/vendor/fontawesome-free-6.4.2-web/css/all.css')}}">
-      </head>
+      <style>
+        .link:hover{
+          color: #cdac33 !important;
+        }  
+      </style>    
+  </head>
       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light scrolled awake" id="ftco-navbar">
 	    <div class="container">
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <li class="li-login"><a class="getstarted" href="#">دخول</a></li>
+              @auth
+          @if ($user->roles->contains('name', 'customer'))
+          <li class="nav-item"><a href="{{route('user.reservation')}}" class="nav-link">لوحة التحكم</a></li>
+          @elseif ($user->roles->contains('name', 'admin'))
+          <li class="nav-item"><a href="{{route('tenant.hall')}}" class="nav-link">لوحة التحكم</a></li>
+          @elseif ($user->roles->contains('name', 'super-admin'))
+          <li class="nav-item"><a href="{{route('platform.facility')}}" class="nav-link">لوحة التحكم</a></li>
+          @endif
+        @else
+        <li class="nav-item">
+          <!-- <button type="button" class="login-btn nav-link">التسجيل</button> -->
+          <li class="li-login"><a class="getstarted" href="{{route('signin')}}">دخول</a></li>
+          </li>
+        @endauth
+	          <li class="nav-item link"><a href="{{ route('front.home') }}#contact" class="nav-link">تواصل معنا</a></li>
+	          <li class="nav-item link"><a href="{{ route('front.home') }}#halls" class="nav-link">القاعات</a></li>
+	          <li class="nav-item link"><a href="{{ route('front.home') }}#services" class="nav-link">خدماتنا</a></li>
+	          <li class="nav-item link"><a href="{{ route('front.home') }}#aboutus" class="nav-link">من نحن</a></li>
+	          <li class="nav-item link"><a href="{{ route('front.home') }}" class="nav-link">الصفحة الرئيسية</a></li>
+	          <li class="nav-item link">
             </li>
-	          <li class="nav-item"><a href="#contact" class="nav-link">تواصل معنا</a></li>
-	          <li class="nav-item"><a href="#halls" class="nav-link">القاعات</a></li>
-	          <li class="nav-item"><a href="#services" class="nav-link">خدماتنا</a></li>
-	          <li class="nav-item"><a href="#aboutus" class="nav-link">من نحن</a></li>
-	          <li class="nav-item"><a href="index.html" class="nav-link">الصفحة الرئيسية</a></li>
-	          <li class="nav-item">
-            </li>
-            
 	        </ul>
 	      </div>
         <a class="navbar-brand" href="index.html"><img src="{{asset('assets/images/Blue & Red Overlapping House Realtor Logo (1).png')}}" width="80" alt="" srcset=""></a>

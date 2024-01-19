@@ -6,7 +6,7 @@
       <div class="col-lg d-flex align-items-stretch">
         <div class="card w-100">
           <div class="card-body p-4">
-            <h5 class="card-title fw-semibold mb-4">إدارة المحتوى</h5>
+            <h5 class="card-title fw-semibold mb-4">المحتوى</h5>
             <div class="card">
                 <div class="card-body" style="padding: 20px">
                     <div class="row">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-body" style="padding: 20px">
                     <div class="row">
                         <div class="col fw-semibold">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="card">
                 <div class="card-body" style="padding: 20px">
                     <div class="row">
@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-body" style="padding: 20px">
                     <div class="row">
                         <div class="col fw-semibold">
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>

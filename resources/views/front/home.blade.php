@@ -1,21 +1,33 @@
 @extends('layouts.page')
 @section('content')
 <body>
-    
+    @php
+          $user = Auth::user();
+    @endphp
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	  <div class="container">
 		<div class="collapse navbar-collapse" id="ftco-nav">
 		  <ul class="navbar-nav ml-auto">
-		  <li class="nav-item">
-			<!-- <button type="button" class="login-btn nav-link">التسجيل</button> -->
-			<li class="li-login"><a class="getstarted" href="{{route('signin')}}">دخول</a></li>
-		  </li>
+			@auth
+				@if ($user->roles->contains('name', 'customer'))
+				<li class="nav-item"><a href="{{route('user.reservation')}}" class="nav-link">لوحة التحكم</a></li>
+				@elseif ($user->roles->contains('name', 'admin'))
+				<li class="nav-item"><a href="{{route('tenant.hall')}}" class="nav-link">لوحة التحكم</a></li>
+				@elseif ($user->roles->contains('name', 'super-admin'))
+				<li class="nav-item"><a href="{{route('platform.facility')}}" class="nav-link">لوحة التحكم</a></li>
+				@endif
+			@else
+			<li class="nav-item">
+				<!-- <button type="button" class="login-btn nav-link">التسجيل</button> -->
+				<li class="li-login"><a class="getstarted" href="{{route('signin')}}">دخول</a></li>
+			  </li>
+			@endauth
+		  
 			<!-- <li class="nav-item"><a href="agent.html" class="nav-link">Agent</a></li> -->
 			<!-- <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li> -->
 			<!-- <li class="nav-item"><a href="properties.html" class="nav-link">Properties</a></li> -->
 			<!-- <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li> -->
 			{{-- <li class="nav-item"><a href="#contact" class="nav-link">تسجيل خروج</a></li> --}}
-			{{-- <li class="nav-item"><a href="#" class="nav-link">لوحة التحكم</a></li> --}}
 			<li class="nav-item"><a href="#contact" class="nav-link">تواصل معنا</a></li>
 			<li class="nav-item"><a href="#halls" class="nav-link">القاعات</a></li>
 			<li class="nav-item"><a href="#services" class="nav-link">خدماتنا</a></li>
@@ -49,7 +61,7 @@
 						  <div class="col-lg-10 align-items-end">
 							  <div class="form-group">
 								<div class="form-field" dir="rtl">
-					<input type="text" name="search" list="datalistOptions" class="form-control" placeholder="ادخل المدينة">
+					<input type="text" name="search" list="datalistOptions" class="form-control" placeholder="ادخل المدينة" required>
 					  {{-- <datalist id="datalistOptions">
 						@foreach ($Directorates as $Directorate)
 						<option value="{{$Directorate->name}}" name="{{$Directorate->id}}">
@@ -103,7 +115,7 @@
 		</div>
 	</div>
 </section>
-<section class="ftco-counter img" id="section-counter" dir="rtl">
+{{-- <section class="ftco-counter img" id="section-counter" dir="rtl">
   <div class="container">
 	<div class="row">
 	  <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
@@ -140,55 +152,8 @@
 	  </div>
 	</div>
   </div>
-</section>
-  <!-- <section class="ftco-section ftco-no-pb">
-	<div class="container">
-		<div class="row justify-content-center">
-		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-			<span class="subheading">Our Services</span>
-		  <h2 class="mb-2">The smartest way to buy a home</h2>
-		</div>
-	  </div>
-	  <div class="row d-flex">
-		<div class="col-md-3 d-flex align-self-stretch ftco-animate">
-		  <div class="media block-6 services d-block text-center">
-			  <div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-piggy-bank"></span></div>
-			<div class="media-body py-md-4">
-			  <h3>No Downpayment</h3>
-			  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-			</div>
-		  </div>      
-		</div>
-		<div class="col-md-3 d-flex align-self-stretch ftco-animate">
-		  <div class="media block-6 services d-block text-center">
-			  <div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-wallet"></span></div>
-			<div class="media-body py-md-4">
-			  <h3>All Cash Offer</h3>
-			  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-			</div>
-		  </div>      
-		</div>
-		<div class="col-md-3 d-flex align-self-stretch ftco-animate">
-		  <div class="media block-6 services d-block text-center">
-			  <div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-file"></span></div>
-			<div class="media-body py-md-4">
-			  <h3>Experts in Your Corner</h3>
-			  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-			</div>
-		  </div>      
-		</div>
-		<div class="col-md-3 d-flex align-self-stretch ftco-animate">
-		  <div class="media block-6 services d-block text-center">
-			  <div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-locked"></span></div>
-			<div class="media-body py-md-4">
-			  <h3>Lokced in Pricing</h3>
-			  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-			</div>
-		  </div>      
-		</div>
-	  </div>
-	</div>
-  </section> -->
+</section> --}}
+
   <section class="ftco-section ftco-no-pb" id="services">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -247,63 +212,29 @@
 		</div>
 	  </div>
 	  <div class="row">
-		  <div class="col-md-4">
-			  <div class="property-wrap ftco-animate">
-				  <a href="#" class="img" style="background-image: url({{asset('assets/images/work-1.jpg')}});"></a>
-				  <div class="text text-right">
-					  <p class="price"><span class="old-price">600</span><span class="orig-price"><span>500 رس</span></span></p>
-					  <ul class="property_list">
-						  {{-- <li><span>3</span><span class="flaticon-bed"></span></li> --}}
-						  <li><span>300</span><i class="fa-solid fa-people-group"></i></li>
-						  <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
-					  </ul>
-					  <h3><a >قاعة الاميرات</a></h3>
-					  <span class="location "><a href="#" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
-			  <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
-					  <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
-						  <i class="fa-regular fa-bookmark"></i>
-					  </a>
-				  </div>
-			  </div>
-		  </div>
-		  <div class="col-md-4">
-			  <div class="property-wrap ftco-animate">
-				  <a href="#" class="img" style="background-image: url({{asset('assets/images/work-1.jpg')}});"></a>
-				  <div class="text text-right">
-					  <p class="price"><span class="old-price">600</span><span class="orig-price"><span>500 رس</span></span></p>
-					  <ul class="property_list">
-						  {{-- <li><span>3</span><span class="flaticon-bed"></span></li> --}}
-						  <li><span>300</span><i class="fa-solid fa-people-group"></i></li>
-						  <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
-					  </ul>
-					  <h3><a >قاعة الاميرات</a></h3>
-					  <span class="location "><a href="#" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
-			  <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
-					  <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
-						  <i class="fa-regular fa-bookmark"></i>
-					  </a>
-				  </div>
-			  </div>
-		  </div>
-		  <div class="col-md-4">
-			  <div class="property-wrap ftco-animate">
-				  <a href="#" class="img" style="background-image: url('{{asset('assets/images/work-1.jpg')}}');"></a>
-				  <div class="text text-right">
-					  <p class="price"><span class="old-price">600</span><span class="orig-price"><span>500 رس</span></span></p>
-					  <ul class="property_list">
-						  {{-- <li><span>3</span><span class="flaticon-bed"></span></li> --}}
-						  <li><span>300</span><i class="fa-solid fa-people-group"></i></li>
-						  <li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
-					  </ul>
-					  <h3><a >قاعة الاميرات</a></h3>
-					  <span class="location "><a href="#" style="color: #666666;">قاعة ريماس للمناسبات</a></span>
-			  <span class="location" style="display: block;">غيل باوزير<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
-					  <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
-						  <i class="fa-regular fa-bookmark"></i>
-					  </a>
-				  </div>
-			  </div>
-		  </div>
+		@foreach ($viewModels as $viewModel)
+		<div class="col-md-4">
+			<div class="property-wrap ftco-animate">
+				<a href="{{route('front.facilities.main',['name'=>$viewModel->facility->name])}}" class="img" style="background-image: url({{asset('storage/images/'.$viewModel->firstImage->path)}});"></a>
+				<div class="text text-right">
+					<p class="price"><span class="orig-price"><span>{{$viewModel->facility->currency}} {{$viewModel->facility->halls->first()->getMinimumOfferPrice()}} تبدأ من</span></span></p>
+					{{-- <ul class="property_list"> --}}
+						{{-- <li><span>3</span><span class="flaticon-bed"></span></li> --}}
+						{{-- <li><span>300</span><i class="fa-solid fa-people-group"></i></li>
+						<li><span>1.857 متر</span><span class="flaticon-floor-plan"></span></li>
+					</ul> --}}
+					<h3><a href="{{route('front.facilities.main',['name'=>$viewModel->facility->name])}}">{{$viewModel->facility->title}}</a></h3>
+					{{-- <span class="location "><a href="#" style="color: #666666;">قاعة ريماس للمناسبات</a></span> --}}
+			<span class="location" style="display: block;">{{$viewModel->facility->directorate->governorate->name}} - {{$viewModel->facility->directorate->name}}<i class="fa-solid fa-location-dot" style="margin-left: 5px;"></i></span>
+					<a href="#" class="d-flex align-items-center justify-content-center btn-custom">
+						<i class="fa-regular fa-bookmark"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		@endforeach
+		  
+		  
 	  </div>
 	  </div>
   </section>

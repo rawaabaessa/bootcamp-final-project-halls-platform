@@ -23,14 +23,14 @@
               @endif
             <div class="card">
                 <div class="card-body" style="padding: 20px">
-                  <div class="d-flex flex-column @if(empty($durations)) align-items-center justify-content-center @endif">
-                    @if(empty($durations))
-                      <p>لايوجد فترات</p>
+                  <div class="row row-cols-1 row-cols-md-3 @if($durations->count() == 0) align-items-center justify-content-center @endif">
+                    @if($durations->count() == 0)
+                      <p class="mb-0 text-center">لايوجد فترات</p>
                     @else
                     @foreach ($durations as $duration)
-                      <div class="d-flex justify-content-between">
-                        <p><i class="fa-solid fa-check crud-icon"></i>{{$duration->from}} - {{$duration->to}}</p>
-                        <a href="#" class="crud-icon"><i class="fa-solid fa-trash"></i></a>
+                      <div class="col d-flex justify-content-between mb-2">
+                        <p class="mb-0"><i class="fa-solid fa-check crud-icon"></i>{{$duration->from()}} - {{$duration->to()}}</p>
+                        {{-- <a href="#" class="crud-icon"><i class="fa-solid fa-trash"></i></a> --}}
                       </div>
                     @endforeach
                     @endif

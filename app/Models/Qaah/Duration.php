@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Qaah\OfferHall;
 use App\Models\Qaah\Facility;
-use Carbon\Carbo;
+use Carbon\Carbon;
+
 
 class Duration extends Model
 {
@@ -46,16 +47,34 @@ class Duration extends Model
     public function from()
     {
         $fromTime = Carbon::parse($this->from)->format('h:i A');
+        $fromTime = $this->translateToArabic($fromTime);
         return $fromTime;
     }
 
     public function to()
     {
         $toTime = Carbon::parse($this->to)->format('h:i A');
+        $toTime = $this->translateToArabic($toTime);
         return $toTime;
     }
     public function facility()
     {
         return $this->belongsTo(Facility::class);
+    }
+    public function getFormattedTimeAttribute()
+    {
+        $from = Carbon::parse($this->duration->from)->locale('ar')->isoFormat('h:mm A');
+        $to = Carbon::parse($this->duration->to)->locale('ar')->isoFormat('h:mm A');
+
+        $from = $this->translateToArabic($from);
+        $to = $this->translateToArabic($to);
+
+        return $from . ' - ' . $to;
+    }
+
+    private function translateToArabic($time)
+    {
+        $time = str_replace(['AM', 'PM'], ['ص', 'م'], $time);
+        return $time;
     }
 }

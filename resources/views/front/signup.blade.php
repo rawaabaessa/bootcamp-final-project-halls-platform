@@ -25,11 +25,11 @@
                 <h1 class="mb-10">انشاء حساب</h1>
                 <input type="text" placeholder="الاسم الكامل" name="name" dir="rtl" id="">
                 @error('name')
-                    <div>{{$message}}</div>
+                <small style="color:red;align-self:end">{{$message}}</small>
                 @enderror
                 <input type="email" placeholder="البريد الالكتروني" name="email" dir="rtl">
                 @error('email')
-                    <div>{{$message}}</div>
+                <small style="color:red;align-self:end">{{$message}}</small>
                 @enderror
                 <input type="text" placeholder="رقم الهاتف" dir="rtl" name="phone">
                 <div class="" style="display: flex;gap:4px">
@@ -37,7 +37,7 @@
                     <input type="password" placeholder="كلمة السر" dir="rtl" name="password">
                 </div>
                 @error('password')
-                    <div>{{$message}}</div>
+                <small style="color:red;align-self:end">{{$message}}</small>
                 @enderror
                 <div class="radio-group">
                     <input type="radio" name="role" value="admin" id="role1">
@@ -46,7 +46,7 @@
                     <label for="role2" class="radio-label label2">مستخدم <div class="done d-none"><i class="fa-solid fa-check"></i></div></label>
                 </div>
                 @error('role')
-                    <div>{{$message}}</div>
+                <small style="color:red;align-self:end">{{$message}}</small>
                 @enderror
                 <button>تسجيل</button>
                 <p class="d-none">لديك حساب بالفعل ؟ <a href="{{route('signin')}}" class="forget">تسجيل الدخول</a></p>

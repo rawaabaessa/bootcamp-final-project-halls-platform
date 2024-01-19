@@ -5,12 +5,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 </head>
 <body>
-    <div style="text-align: center;">
-        <img src="{{asset('assets/images/Blue & Red Overlapping House Realtor Logo (1).png')}}" width="80" alt="" srcset="">
-    </div>
-    <p style="text-align: center; font-size: 16px;">تم الموافقة على طلب الانضمام. قم بتسجيل الدخول لاستكمال تفاصيل منشأتك.</p>
-    <div style="text-align: center;">
-        <a href="{{route('signin')}}" class="btn btn-primary">تسجيل الدخول</a>
+    <p style="text-align: center; font-size: 16px;color:black">تم الموافقة على طلب الانضمام. قم بتسجيل الدخول لاستكمال تفاصيل منشأتك.</p>
+    <div style="text-align: center;margin-bottom: 50px">
+        <a href="{{route('signin')}}" style="padding: 6px 25px;margin-left:30px;border-radius:50px;background-color:#cdac33;border:2px solid #cdac33;color:white;text-decoration: none">الدخول</a>
     </div>
 </body>
 </html>
