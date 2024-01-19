@@ -126,7 +126,7 @@ Route::controller(TenantMessageController::class)->group(function(){
     Route::get('tenant/messages/view/{id}', 'view')->name('tenant.messages.view');
     Route::delete('tenant/messages/delete', 'destroy')->name('tenant.messages.destroy');
 });
-Route::post('/tenant/messages/replay',[TenantMessageController::class,'sendreplay'])->name('tenant.messages.replay');
+Route::post('/tenant/messages/replay',[TenantMessageController::class,'sendreplay'])->name('tenant.messages.sendreplay');
 
 // Route::get('joinerequest', function(){
 //     return view('front.joinrequest');
@@ -185,7 +185,7 @@ Route::controller(MessageController::class)->group(function(){
     Route::get('/platform/messages/index','index')->name('messages.index');
     Route::get('/platform/messages/view/{id}', 'view')->name('messages.view');
     Route::delete('/platform/messages/delete/{id}', 'destroy')->name('messages.destroy');
-    Route::post('/tenant/messages/replay', 'sendreplay')->name('messages.sendreplay');
+    Route::post('/platform/messages/replay', 'sendreplay')->name('messages.sendreplay');
 });
 
 Route::controller(ProfileController::class)->group(function(){

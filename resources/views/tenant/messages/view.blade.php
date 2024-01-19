@@ -44,7 +44,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('tenant.messages.replay')}}">
+          <form method="post" action="{{route('tenant.messages.sendreplay')}}">
             @csrf
           <!-- Use the message ID to display relevant message content -->
           <textarea type="text" class="form-control" name="reply"></textarea>

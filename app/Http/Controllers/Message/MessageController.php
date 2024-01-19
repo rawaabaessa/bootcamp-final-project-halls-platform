@@ -37,7 +37,7 @@ class MessageController extends Controller
         // Delete the record
         $record->delete();
 
-        return redirect()->route('messages.index')->with('success', 'Record deleted successfully');
+        return redirect()->route('messages.index')->with('success', 'تم الحذف بنجاح');
     }
     public function sendreplay(Request $request){
         Mail::to('fatimabukran@gmail.com')->send(new MessageMail($request->reply));

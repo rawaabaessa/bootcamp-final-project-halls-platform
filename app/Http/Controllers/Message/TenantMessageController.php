@@ -18,7 +18,7 @@ class TenantMessageController extends Controller
         return view('tenant.messages.index',compact('Messages'));
     }
     public function view($id){
-        $record = Message::findOrFail($id);
+        $record = Message::where('id',$id)->first();
         return view('tenant.messages.view', compact('record'));
     }
     public function store(Request $request){

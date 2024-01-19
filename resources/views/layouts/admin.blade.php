@@ -40,7 +40,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-end">
-          <a href="./index.html" class="text-nowrap logo-img">
+          <a href="{{route('front.home')}}" class="text-nowrap logo-img">
               {{-- <img/ src="{{asset('storage/images/'.$user->facility->logo)}}" width="180" alt="" /> --}}
              
               <img src="{{asset('admin/assets/images/logos/Blue_&_Red_Overlapping_House_Realtor_Logo_(3)[1].png')}}" width="180" alt="" />
