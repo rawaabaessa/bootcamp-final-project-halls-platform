@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Arabic\Arabic;
 use Illuminate\Support\Facades\Lang;
+use App\Models\Reservation\Reservation;
 
 class Hall extends Model
 {
@@ -58,11 +59,15 @@ class Hall extends Model
         return $times;
     }
 
-public function translateToArabic($string)
-{
-    $englishStrings = ['AM', 'PM'];
-    $arabicStrings = ['صباحًا', 'مساءً'];
+    public function translateToArabic($string)
+    {
+        $englishStrings = ['AM', 'PM'];
+        $arabicStrings = ['صباحًا', 'مساءً'];
 
-    return str_replace($englishStrings, $arabicStrings, $string);
-}
+        return str_replace($englishStrings, $arabicStrings, $string);
+    }
+    public function reservations()
+        {
+            return $this->hasMany(Reservation::class);
+        }
 }

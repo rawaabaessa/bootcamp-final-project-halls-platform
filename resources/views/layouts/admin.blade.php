@@ -58,19 +58,19 @@
                 <h3>المنصة</h3>
             </div> --}}
           <ul id="sidebarnav">
-            {{-- <li class="nav-small-cap">
+            <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu text-right">الرئيسية</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link @if (Route::currentRouteName() === 'users.create' || Route::currentRouteName() === 'users.edit' || Route::currentRouteName() === 'users.delete' || Route::currentRouteName() === 'users.view') active @endif" href="{{route('users')}}" aria-expanded="false">
+              <a class="sidebar-link" href="{{route('platform.dashboard')}}" aria-expanded="false">
                 <span class="hide-menu">الرئيسية</span>
                 <span>
-                  <i class="bi bi-people"></i>
+                  <i class="ti ti-layout-dashboard"></i>
                 </span>
               </a>
             </li>
-            <li class="nav-small-cap">
+            {{-- <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu text-right">العناوين</span>
             </li>
@@ -218,6 +218,18 @@
         </li> --}}
         <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu text-right">الرئيسية</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{{route('tenant.dashboard')}}" aria-expanded="false">
+            <span class="hide-menu">الرئيسية</span>
+            <span>
+              <i class="ti ti-layout-dashboard"></i>
+            </span>
+          </a>
+        </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
           <span class="hide-menu">القاعات</span>
         </li>
         <li class="sidebar-item">
@@ -245,7 +257,7 @@
         <a class="sidebar-link" href="{{route('front.facilities.main',['name'=>$user->facility->name])}}" aria-expanded="false">
           <span class="hide-menu">موقعي</span>
           <span>
-            <i class="bi bi-envelope-paper"></i>
+            <i class="bi bi-globe"></i>
           </span>
         </a>
       </li>
@@ -354,6 +366,23 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" dir="rtl" aria-labelledby="drop2">
                   <div class="message-body">
+                    <p class="text-center m-1" style="color: var(--bs-card-title-color);">
+                      {{$user->name}}
+                    </p>
+                    <small class="d-block text-center m-0">
+                      @if ($user->roles->contains('name', 'admin'))
+                      مدير منشأة
+                      @endif
+                      @if ($user->roles->contains('name', 'super-admin'))
+                      مدير المنصة
+                      @endif
+                      @if ($user->roles->contains('name', 'customer'))
+                       عميل
+                      @endif
+                    </small>
+                    {{-- <small class="d-flex text-center">
+                      {{$user->name}}
+                    </small> --}}
                     {{-- <a href="{{route('front.signup')}}" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="bi bi-bank"></i>
                       <p class="mb-0 fs-3">تسجيل منشأة</p>

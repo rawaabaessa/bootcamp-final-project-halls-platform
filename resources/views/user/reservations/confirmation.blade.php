@@ -14,12 +14,14 @@
                   <p><i class="fa-solid fa-clock crud-icon"></i>{{$reservation->offerHall->duration->from()}} - {{$reservation->offerHall->duration->to()}}</p>
                   <p><i class="fa-solid fa-person crud-icon"></i>{{$reservation->poeple_count}}</p>
                   {{-- <h4 class="my-3">الخدمات المطلوبة</h4> --}}
+                  @if ($reservation->orders->count() > 0)
                   <h4 class="my-3">الخدمات المطلوبة</h4>
                   @foreach ($reservation->orders as $order)
                     @if ($order->service->is_free)
                       <p><i class="fa-solid fa-check crud-icon"></i>{{$order->service->name }}</p>
                     @endif
                   @endforeach
+                  @endif
                   {{-- <p><i class="fa-solid fa-check crud-icon"></i>فريق تنظيم</p>
                   <p><i class="fa-solid fa-check crud-icon"></i>مسؤولة عبايات</p>
                   <p><i class="fa-solid fa-check crud-icon"></i>جهاز تتبع</p> --}}

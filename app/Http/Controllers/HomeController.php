@@ -16,12 +16,14 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\File\File;
 use App\ViewModels\FacilityViewModel;
 use App\ViewModels\HallViewModel;
+// use Illuminate\Support\Facades\Auth;
 
 
 class HomeController extends Controller
 {
     public function show()
     {
+        // Auth::logout();
         $options = [];
         $governorates = Governorate::all();
 

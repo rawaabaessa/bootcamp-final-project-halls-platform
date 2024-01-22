@@ -9,25 +9,24 @@
             <div class="card-body">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">الاسم</label>
-                <p>{{$record->name}}</p>
+                <p>{{$message->name}}</p>
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">الايميل</label>
-                <p>{{$record->email}}</p>
+                <p>{{$message->email}}</p>
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">العنوان</label>
-                <p>{{$record->subject}}</p>
+                <p>{{$message->subject}}</p>
               </div> 
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">الموضوع</label>
-                <p>{{$record->message}}</p>
-                {{-- <p><i class="fa-solid fa-check checked"></i>تعديل </p> --}}
-                {{-- <p><i class="fa-solid fa-check checked"></i>حذف مستخدم</p> --}}
-                {{-- <p><i class="fa-solid fa-check checked"></i>تعديل محتوى</p> --}}
+                <p>{{$message->message}}</p>
               </div>
              <div class="mt-3 submit-buttons">
-                <a type="button" class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal_1">رد</a>
+                @if ($message->is_replied == 0)
+                  <a type="button" class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal_1">رد</a>
+                @endif
                 <a type="submit" class="btn btn-primary" href="{{route('messages.index')}}">رجوع</a>
               </div>
             </div>
@@ -47,9 +46,10 @@
           <form method="post" action="{{route('messages.sendreplay')}}">
           <!-- Use the message ID to display relevant message content -->
           <textarea type="text" class="form-control" name="reply"></textarea>
+          <input type="hidden" name="id" value="{{$message->id}}">
+          <input type="hidden" name="email" value="{{$message->email}}">
         </div>
         <div class="modal-footer justify-content-start">
-          
             @csrf
             <button type="submit" class="btn btn-primary">ارسال</button>
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">رجوع</button>

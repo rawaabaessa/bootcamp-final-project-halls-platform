@@ -11,6 +11,7 @@ use App\Models\Reservation\Reservation;
 use App\Models\Account\User;
 use App\Mail\ReservationMail;
 use App\Mail\ReservationRejectMail;
+use App\Mail\CancelMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\File\File;
 
@@ -35,7 +36,8 @@ class TenantReservationController extends Controller
         $hall = Hall::where('name',$name)->first();
         // dd($hall);
         $reservations = Reservation::where('hall_id',$hall->id)
-                                    ->whereNotIn('state_id', [1, 4])
+                                    ->whereNotNull('voucher_id')
+                                    // ->whereNotIn('state_id', [1, 4])
                                     ->orderByDesc('id')
                                     ->paginate(3);
         return view('tenant.reservations.list',compact('reservations'));
@@ -58,7 +60,7 @@ class TenantReservationController extends Controller
         if ($reservation) {
             $reservation->state_id = 3;
             $reservation->save();
-            Mail::to('fatimabukran@gmail.com')->send(new ReservationMail());
+            Mail::to($reservation->user->email)->send(new ReservationMail($reservation));
             return redirect()->route('tentant.reservation.list',['name'=>$reservation->hall->name])->with('success', 'تم  قبول الحجز بنجاح');
         } else {
             return response()->json(['message' => 'الحجز غير موجود'], 404);
@@ -70,8 +72,21 @@ class TenantReservationController extends Controller
         if ($reservation) {
             $reservation->state_id = 5;
             $reservation->save();
-            Mail::to('fatimabukran@gmail.com')->send(new ReservationRejectMail($request->reason));
-            return redirect()->back()->with('success', 'تم  رفض الحجز بنجاح');
+            Mail::to($reservation->user->email)->send(new ReservationRejectMail($request->reason,$reservation));
+            return redirect()->route('tentant.reservation.list',['name'=>$reservation->hall->name])->with('success', 'تم  رفض الحجز بنجاح');
+        } else {
+            return response()->json(['message' => 'الحجز غير موجود'], 404);
+        }
+    }
+    public function canceleReservation(Request $request){
+        $reservation = Reservation::find($request->id);
+
+        if ($reservation) {
+            $reservation->state_id = 4;
+            $reservation->save();
+            // dd($reservation);
+            Mail::to($reservation->user->email)->send(new CancelMail($reservation));
+            return redirect()->route('tentant.reservation.list',['name'=>$reservation->hall->name])->with('success', 'تم الغاء الحجز بنجاح');
         } else {
             return response()->json(['message' => 'الحجز غير موجود'], 404);
         }

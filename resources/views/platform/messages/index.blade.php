@@ -35,6 +35,9 @@
                       <h6 class="fw-semibold mb-0">العنوان</h6>
                     </th>
                     <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">حالة الرسالة</h6>
+                    </th>
+                    <th class="border-bottom-0">
                       <h6 class="fw-semibold mb-0"></h6>
                     </th>
                   </tr>
@@ -55,6 +58,16 @@
                     <td class="">
                       <p class="mb-0 fw-normal">{{$Message->subject}}</p>
                     </td>
+                    @if ($Message->is_replied == 0)
+                    <td class="">
+                      <p class="mb-0 fw-normal">جديد</p>
+                    </td>
+                    @else
+                    <td class="">
+                      <p class="mb-0 fw-normal">تم الرد</p>
+                    </td>
+                    @endif
+                    
                     <td>
                         <a href="{{route('messages.view',['id' => $Message->id ])}}" class="crud-icon"><i class="fa-regular fa-eye"></i></a>
                         {{-- <a href="{{route('messages.edit')}}" class="crud-icon"><i class="fa-regular fa-pen-to-square"></i></a> --}}
@@ -75,7 +88,7 @@
                         </div>
                         <div class="modal-footer justify-content-start">
                           <form method="post" action="{{route('messages.destroy',['id'=>$Message->id])}}">
-                            @csrf
+                            @csrf 
                             @method('DELETE')
                             <button type="submit" class="btn btn-primary">حذف</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">اغلاق</button>

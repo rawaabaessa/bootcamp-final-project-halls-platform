@@ -15,6 +15,8 @@ use App\Http\Controllers\Platform\FacilitiesController;
 use App\Http\Controllers\Message\TenantMessageController;
 use App\Http\Controllers\Location\DirectorateController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Tenant\DashbordController;
+use App\Http\Controllers\Platform\DashboardController;
 // use App\Http\Controllers\Content\ContentController;
 // use App\Http\Controllers\Message\Message;
 
@@ -82,6 +84,7 @@ Route::controller(TenantReservationController::class)->group(function(){
     Route::get('/tenant/reservations/{id}/view','view')->name('tentant.reservation.view');
     Route::post('/tenant/reservations/confirm','confirm')->name('tentant.reservation.confirming');
     Route::post('/tenant/reservations/reject','reject')->name('tentant.reservation.reject');
+    Route::post('/tenant/reservations/cancel','canceleReservation')->name('tentant.reservation.cancel');
 });
 
 Route::controller(HallController::class)->group(function(){
@@ -128,14 +131,15 @@ Route::controller(TenantMessageController::class)->group(function(){
 });
 Route::post('/tenant/messages/replay',[TenantMessageController::class,'sendreplay'])->name('tenant.messages.sendreplay');
 
-// Route::get('joinerequest', function(){
-//     return view('front.joinrequest');
-// })->name('front.joinerequest');
+Route::get('/tenant/dashboard',[DashbordController::class,'index'])->name('tenant.dashboard');
+
+Route::get('/platform/dashboard',[DashboardController::class,'index'])->name('platform.dashboard');
+
 //platform
 // user
-Route::get('platform/dashboard', function(){
-    return view('platform.dashboard');
-})->name('platform.dashboard');
+// Route::get('platform/dashboard', function(){
+//     return view('platform.dashboard');
+// })->name('platform.dashboard');
 
 Route::get('platform/users', function(){
     return view('platform.users.index');

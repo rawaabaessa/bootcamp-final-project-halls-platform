@@ -26,8 +26,8 @@ class MessageController extends Controller
         return redirect()->route('front.home');
     }
     public function view($id){
-        $record = Message::findOrFail($id);
-        return view('platform.messages.view', compact('record'));
+        $message = Message::findOrFail($id);
+        return view('platform.messages.view', compact('message'));
     }
     public function destroy($id)
     {
@@ -40,7 +40,8 @@ class MessageController extends Controller
         return redirect()->route('messages.index')->with('success', 'تم الحذف بنجاح');
     }
     public function sendreplay(Request $request){
-        Mail::to('fatimabukran@gmail.com')->send(new MessageMail($request->reply));
+        Mail::to($request->email)->send(new MessageMail($request->reply));
+        Message::where('id',$request->id)->update(['is_replied' => 1]);
         return redirect()->route('messages.index')->with('success', 'تم ارسال الرد بنجاح');
     }
 }

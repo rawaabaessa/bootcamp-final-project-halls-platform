@@ -39,6 +39,9 @@
                       <h6 class="fw-semibold mb-0">العنوان</h6>
                     </th>
                     <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">حالة الرسالة</h6>
+                    </th>
+                    <th class="border-bottom-0">
                       <h6 class="fw-semibold mb-0"></h6>
                     </th>
                   </tr>
@@ -59,6 +62,15 @@
                     <td class="">
                       <p class="mb-0 fw-normal">{{$Message->subject}}</p>
                     </td>
+                    @if ($Message->is_replied == 0)
+                    <td class="">
+                      <p class="mb-0 fw-normal">جديد</p>
+                    </td>
+                    @else
+                    <td class="">
+                      <p class="mb-0 fw-normal">تم الرد</p>
+                    </td>
+                    @endif
                     <td>
                         <a href="{{route('tenant.messages.view',['id' => $Message->id ])}}" class="crud-icon"><i class="fa-regular fa-eye"></i></a>
                         {{-- <a href="{{route('messages.edit')}}" class="crud-icon"><i class="fa-regular fa-pen-to-square"></i></a> --}}
@@ -102,8 +114,5 @@
       </div>
     </div>
     
-    {{-- <div class="py-6 px-6 text-center">
-      <p class="mb-0 fs-4">Design and Developed by <a href="https://adminmart.com/" target="_blank" class="pe-1 text-primary text-decoration-underline">AdminMart.com</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
-    </div> --}}
   </div>
 @endsection

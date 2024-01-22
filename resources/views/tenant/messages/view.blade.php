@@ -48,6 +48,8 @@
             @csrf
           <!-- Use the message ID to display relevant message content -->
           <textarea type="text" class="form-control" name="reply"></textarea>
+          <input type="hidden" name="email" value="{{$record->email}}">
+          <input type="hidden" name="email" value="{{$record->id}}">
         </div>
         <div class="modal-footer justify-content-start">
             <button type="submit" class="btn btn-primary">ارسال</button>

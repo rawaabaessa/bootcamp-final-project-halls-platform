@@ -48,3 +48,15 @@ outline : none ;
 ::-webkit-file-upload-button:hover{
     background: #a68b29;
 } */
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .card-container {
+      grid-template-columns: 1fr;
+    }
+  }

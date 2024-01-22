@@ -187,15 +187,16 @@ class JoinRequestController extends Controller
 
         $facility = Facility::where('name', $name)->update(['state' => 'approved']);
         if ($facility > 0) {
-            //ارسال ايميل لصاحب القاعة
-
-            Mail::to('fatimabukran@gmail.com')->send(new ApproveMail());
+            $facilityuser = Facility::where('name', $name)->first()->user_id;
+            $user = User::where('id',$facilityuser)->first();
+            // dd($user->email);
+            Mail::to($user->email)->send(new ApproveMail());
             return redirect()->route('requests.index')->with('success', 'تم قبول الطلب بنجاح');
         } elseif ($facility === 0) {
-            // لم يتم العثور على سجل يطابق الشرط أو لم يتم تحديث أي سجل
+            
             return redirect()->route('requests.index')->with('error',  'حدث خطا ما');
         } else {
-            // حدث خطأ أثناء التحديث
+            
             return redirect()->route('requests.index')->with('error', 'حدث خطا ما');
         }
     }
@@ -204,15 +205,16 @@ class JoinRequestController extends Controller
 
         $facility = Facility::where('name', $name)->update(['state' => 'reject']);
         if ($facility > 0) {
-            //ارسال ايميل لصاحب القاعة
-            Mail::to('fatimabukran@gmail.com')->send(new RejectMail($request->reason));
+            $facilityuser = Facility::where('name', $name)->first()->user_id;
+            $user = User::where('id',$facilityuser)->first();
+            Mail::to($user->email)->send(new RejectMail($request->reason));
 
             return redirect()->route('requests.index')->with('success', 'تم رفض الطلب بنجاح');
         } elseif ($facility === 0) {
-            // لم يتم العثور على سجل يطابق الشرط أو لم يتم تحديث أي سجل
+            
             return redirect()->route('requests.index')->with('error',  'حدث خطا ما');
         } else {
-            // حدث خطأ أثناء التحديث
+            
             return redirect()->route('requests.index')->with('error', 'حدث خطا ما');
         }
     }
@@ -221,37 +223,20 @@ class JoinRequestController extends Controller
     }
     public function viewDetailsstore(Request $request){
 
-        $services = $request->input('services');
-        $prices = $request->input('prices');
-        $currency = $request->input('currency');
-        $occasions = $request->input('occasions');
-        $bookingTimes = $request->input('booking_times');
+        // $services = $request->input('services');
+        // $prices = $request->input('prices');
+        // $currency = $request->input('currency');
+        // $occasions = $request->input('occasions');
+        // $bookingTimes = $request->input('booking_times');
 
-        // تنفيذ العمليات اللازمة مع البيانات المستلمة هنا
-
-        // على سبيل المثال، يمكنك طباعة البيانات للتحقق منها
-        echo "Services: " . implode(", ", $services) . "<br>";
-        echo "Prices: " . implode(", ", $prices) . "<br>";
-        echo "Currency: " . $currency . "<br>";
-        echo "Occasions: " . implode(", ", $occasions) . "<br>";
-        echo "Booking Times: " . implode(", ", $bookingTimes) . "<br>";
-        return view('front.step2');
+        // echo "Services: " . implode(", ", $services) . "<br>";
+        // echo "Prices: " . implode(", ", $prices) . "<br>";
+        // echo "Currency: " . $currency . "<br>";
+        // echo "Occasions: " . implode(", ", $occasions) . "<br>";
+        // echo "Booking Times: " . implode(", ", $bookingTimes) . "<br>";
+        // return view('front.step2');
     }
     public function storeDetails(Request $request){
-        // استرداد قيمة المصفوفة من الطلب
-        $servicesArray = json_decode($request->input('services_array'));
-
-        // استخدام المصفوفة كما ترغب
-        foreach ($servicesArray as $service) {
-            // افعل شيئًا مع كل عنصر في المصفوفة
-            // ...
-        }
-
-        // رد على الطلب بنجاح
-        return response()->json(['message' => 'تم حفظ البيانات بنجاح']);
-    }
-    public function handleFormSubmission(Request $request)
-    {
         
     }
 }

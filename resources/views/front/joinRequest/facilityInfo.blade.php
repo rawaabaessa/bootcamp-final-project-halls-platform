@@ -37,7 +37,7 @@
                   @enderror
                 </div>
                 <div class="col mb-3">
-                  <label for="exampleInputEmail1" class="form-label">اسم المنشأة(بالانجليزي)</label>
+                  <label for="exampleInputEmail1" class="form-label">اسم المنشأة (بالانجليزي)</label>
                   <input type="text" name="name" value="{{old('name')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                   @error('name')
                       <div>{{$message}}</div>

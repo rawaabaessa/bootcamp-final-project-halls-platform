@@ -14,6 +14,7 @@ class MessageMail extends Mailable
     use Queueable, SerializesModels;
 
     public $reason;
+    public $path;
 
     /**
      * Create a new message instance.
@@ -21,6 +22,8 @@ class MessageMail extends Mailable
     public function __construct($reason)
     {
         $this->reason = $reason;
+        // $this->path = public_path('assets/images/Blue & Red Overlapping House Realtor Logo (1).png');
+
     }
 
     /**
@@ -30,7 +33,13 @@ class MessageMail extends Mailable
      */
     public function build()
     {
+        // $logoPath = public_path('assets/images/Blue & Red Overlapping House Realtor Logo (1).png');
+        // $logoData = file_get_contents($logoPath);
+        // $logo = $this->embedData($logoData, 'logo.png', 'image/png');
+
         return $this->subject('رد الاستفسار')
             ->view('emails.MessageMail');
+            // ->attachData($logoData, 'logo.png', ['mime' => 'image/png'])
+            // ->with('logo', $logo);
     }
 }

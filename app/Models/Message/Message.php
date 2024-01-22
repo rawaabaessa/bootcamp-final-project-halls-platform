@@ -13,6 +13,7 @@ class Message extends Model
         'email',
         'subject',
         'message',
-        'user_id'
+        'user_id',
+        'is_replied'
     ];
 }

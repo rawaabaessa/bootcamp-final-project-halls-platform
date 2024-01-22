@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('services', function (Blueprint $table) {
-            //
+        Schema::table('messages', function (Blueprint $table) {
+            $table->boolean('is_replied')->default(false);
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('services', function (Blueprint $table) {
-            $table->boolean('is_visible')->default(true);
+        Schema::table('messages', function (Blueprint $table) {
+            //
         });
     }
 };

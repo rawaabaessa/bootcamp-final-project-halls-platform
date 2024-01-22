@@ -18,12 +18,14 @@
                   <p><i class="fa-solid fa-calendar-days crud-icon"></i>{{$reservation->date}}</p>
                   <p><i class="fa-solid fa-clock crud-icon"></i>{{$reservation->offerHall->duration->from()}} - {{$reservation->offerHall->duration->to()}}</p>
                   <p><i class="fa-solid fa-person crud-icon"></i>{{$reservation->poeple_count}}</p>
+                  @if ($reservation->orders->count() > 0)
                   <h4 class="my-3">الخدمات المطلوبة</h4>
                   @foreach ($reservation->orders as $order)
                     @if ($order->service->is_free)
                       <p><i class="fa-solid fa-check crud-icon"></i>{{$order->service->name }}</p>
                     @endif
                   @endforeach
+                  @endif
                 </div>
                 <div class="col">
                   <div class="image">
@@ -45,27 +47,25 @@
                   <div class="">
                     <div class="d-flex justify-content-between">
                       <p>القاعة</p>
-                      <p>{{$reservation->hall_price}} رس</p>
+                      <p>{{$reservation->hall_price}} {{$reservation->hall->facility->currency}}</p>
                     </div>
-                    {{-- الخدمات الاضافية --}}
                     @php
-                      $totalPrice = $reservation->hall_price; // تعيين القيمة الابتدائية للسعر الإجمالي بقيمة سعر القاعة
+                      $totalPrice = $reservation->hall_price; 
                     @endphp
-                    {{-- الخدمات الاضافية --}}
                     @foreach ($reservation->orders as $order )
                     @if (!$order->service->is_free)
                       <div class="d-flex justify-content-between">
                         <p>{{$order->service->name}}</p>
-                        <p>{{$order->service->price}} رس</p>
+                        <p>{{$order->service->price}} {{$reservation->hall->facility->currency}}</p>
                       </div>
                       @php
-                        $totalPrice += $order->service->price; // إضافة سعر الخدمة إلى السعر الإجمالي
+                        $totalPrice += $order->service->price; 
                       @endphp
                     @endif
                     @endforeach
                     <div class="d-flex justify-content-between border-top pt-2">
                       <p>الاجمالي</p>
-                      <p>{{ $totalPrice }} رس</p>
+                      <p>{{ $totalPrice }} {{$reservation->hall->facility->currency}}</p>
                     </div>
                   </div>
                 </div>
@@ -86,15 +86,40 @@
                   <button type="submit" class="btn btn-primary">تاكيد</button>
                 </form>
                 <form  style="display: inline-block">
-                  @csrf
+                  {{-- @csrf --}}
                   {{-- <input type="hidden" name="id" value="{{$reservation->id}}"> --}}
                   <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal_1">رفض</button>
                 </form>
+                @endif
+                @if ($reservation->state->name == 'confirmed')
+                  <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal_2">الغاء الحجز</button>
                 @endif
                 <a type="submit" class="btn btn-primary" href="{{ route('tentant.reservation.list',['name'=> $reservation->hall->name])}}">رجوع</a>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div dir="rtl" class="modal fade" id="exampleModal_2" tabindex="-1" aria-labelledby="exampleModalLabel_2" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel_2">الغاء حجز</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Use the message ID to display relevant message content -->
+          <p>هل انت متاكد ؟</p>
+        </div>
+        <div class="modal-footer justify-content-start">
+          <form method="post" action="{{route('tentant.reservation.cancel')}}">
+            @csrf
+            <input type="hidden" name="id" value="{{$reservation->id}}">
+            <button type="submit" class="btn btn-primary">الغاء</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">رجوع</button>
+          </form>
         </div>
       </div>
     </div>

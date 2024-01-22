@@ -11,6 +11,8 @@ use App\Models\Qaah\Duration;
 use App\Models\Qaah\Service;
 use App\Models\Location\Directorate;
 use App\Models\Payment\Payment;
+use App\Models\Reservation\Reservation;
+
 
 
 class Facility extends Model
@@ -58,5 +60,11 @@ class Facility extends Model
     public function payments()
     {
         return $this->hasMany(Payment::class);
+    }
+    public function getReservationsCountAttribute()
+    {
+        return $this->halls->sum(function ($hall) {
+            return $hall->reservations->count();
+        });
     }
 }

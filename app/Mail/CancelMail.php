@@ -9,30 +9,28 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ReservationRejectMail extends Mailable
+class CancelMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $reason;
     public $info;
-
-    /**
-     * Create a new message instance.
-     */
-    public function __construct($reason,$info)
+    public function __construct($info)
     {
-        $this->reason = $reason;
         $this->info = $info;
     }
 
     /**
-     * Build the message.
+     * Get the message envelope.
+     */
+    
+    /**
+     * Get the attachments for the message.
      *
-     * @return $this
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
     public function build()
     {
-        return $this->subject('رفض الحجز')
-            ->view('emails.reservationreject');
+        return $this->subject('الغاء الحجز')
+            ->view('emails.reservationCancel');
     }
 }
