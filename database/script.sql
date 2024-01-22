@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2024 at 10:56 AM
+-- Generation Time: Jan 22, 2024 at 07:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -90,7 +90,7 @@ CREATE TABLE `durations` (
 --
 
 INSERT INTO `durations` (`id`, `from`, `to`, `facility_id`, `created_at`, `updated_at`) VALUES
-(10, '09:00:00', '03:00:00', 9, '2024-01-14 05:32:44', '2024-01-14 05:32:44'),
+(10, '09:00:00', '15:00:00', 9, '2024-01-14 05:32:44', '2024-01-14 05:32:44'),
 (11, '20:00:00', '01:00:00', 9, '2024-01-14 05:34:32', '2024-01-14 05:34:32'),
 (12, '09:00:00', '15:00:00', 10, '2024-01-15 14:26:52', '2024-01-15 14:26:52'),
 (13, '20:00:00', '01:00:00', 10, '2024-01-15 15:20:17', '2024-01-15 15:20:17'),
@@ -135,7 +135,7 @@ INSERT INTO `facilities` (`id`, `name`, `title`, `email`, `address`, `logo`, `li
 (11, 'meral', 'قاعة ميرال للاحتفالات', 'meral@gmail.com', 'الشرج', '20240115_204757_WhatsApp Image 2024-01-15 at 17.04.58_ba8555c6.png', '20240115_204757_licence.jpg', 14, 1, 785214797, 30254785655, 'SAR', 'approved', '2024-01-15 17:47:57', '2024-01-15 17:49:08'),
 (12, 'tahani', 'قصر التهاني للمناسبات', 'tahani@gmail.com', 'فوة', '20240117_193721_logo.jpg', '20240117_193720_licence.jpg', 19, 1, 735896547, 3000014785, 'SAR', 'approved', '2024-01-17 16:37:21', '2024-01-18 02:39:10'),
 (15, 'andalushye', 'قاعة الاندلس للمناسبات', 'andalushye@gmail.com', 'فوة', '20240118_131740_Screenshot_20240118_151910_com.instagram.android (1).png', '20240118_131740_licence.jpg', 22, 1, 777720517, 3004588831, 'SAR', 'approved', '2024-01-18 10:17:40', '2024-01-18 10:40:29'),
-(16, 'alamoudi', 'قاعة العمودي للمناسبات', 'alamodi@gmail.com', 'فوة', '20240118_194844_Screenshot_20240118_151910_com.instagram.android (1).png', '20240118_194843_licence.jpg', 27, 1, 784963222, 3000544655, 'SAR', 'approved', '2024-01-18 16:48:44', '2024-01-18 16:49:29');
+(18, 'alamoudi', 'قاعة العمودي للمناسبات', 'alamodi@gmail.com', 'فوة', '20240122_161956_WhatsApp Image 2024-01-15 at 17.04.58_ba8555c6.png', '20240122_161956_licence.jpg', 32, 1, 784963222, 3000555666, 'SAR', 'approved', '2024-01-22 13:19:56', '2024-01-22 13:36:34');
 
 -- --------------------------------------------------------
 
@@ -240,7 +240,9 @@ INSERT INTO `files` (`id`, `path`, `fileType_id`, `target_id`, `target_name`, `c
 (64, '20240118_154031_voucher.jpg', 1, 13, 'reservation', '2024-01-18 12:40:31', '2024-01-18 12:40:31'),
 (65, '20240118_154436_voucher.jpg', 1, 14, 'reservation', '2024-01-18 12:44:36', '2024-01-18 12:44:36'),
 (66, '20240118_154840_voucher.jpg', 1, 15, 'reservation', '2024-01-18 12:48:40', '2024-01-18 12:48:40'),
-(67, '20240119_090726_voucher.jpg', 1, 16, 'reservation', '2024-01-19 06:07:28', '2024-01-19 06:07:28');
+(67, '20240119_090726_voucher.jpg', 1, 16, 'reservation', '2024-01-19 06:07:28', '2024-01-19 06:07:28'),
+(68, '20240120_074029_voucher.jpg', 1, 17, 'reservation', '2024-01-20 04:40:30', '2024-01-20 04:40:30'),
+(69, '20240121_165100_voucher.jpg', 1, 18, 'reservation', '2024-01-21 13:51:01', '2024-01-21 13:51:01');
 
 -- --------------------------------------------------------
 
@@ -306,7 +308,7 @@ CREATE TABLE `halls` (
 --
 
 INSERT INTO `halls` (`id`, `name`, `title`, `discription`, `people_count`, `area`, `facility_id`, `created_at`, `updated_at`) VALUES
-(17, 'hall1', 'القاعة الملكية', 'مساحة فسيحة ومهيأة بشكل أنيق وملكي. ديكورات فاخرة وتصميم داخلي راقٍ لإضفاء جو من الرفاهية والأناقة. نظام إضاءة متقدم لتوفير الإضاءة المثالية للمناسبات المختلفة. منصة مرتفعة للمناسبات الخاصة مثل العروض الموسيقية أو الخطب العامة. تجهيزات صوتية وبصرية عالية الجودة لتلبية احتياجات الفعاليات المختلفة. منطقة مخصصة لتناول الطعام وتقديم الوجبات.', 600, 1025, 9, '2024-01-14 05:41:57', '2024-01-14 05:41:57'),
+(17, 'hall1', 'القاعة الصغرى', 'جو هادئ وأنيق يناسب المناسبات الصغيرة والحفلات الخاصة. تصميم داخلي أنيق ورومانسي يضفي جوًا ساحرًا. مساحة مرنة لتنظيم الفعاليات المختلفة مثل الاحتفالات الخاصة وحفلات الخطوبة. نظام صوتي متطور ومعدات إضاءة متنوعة لإضفاء الأجواء المثالية.', 500, 1050, 9, '2024-01-14 05:41:57', '2024-01-22 07:40:10'),
 (18, 'kobra', 'القاعة الكبرى', 'مساحة فسيحة ومهيأة بشكل أنيق وملكي. ديكورات فاخرة وتصميم داخلي راقٍ لإضفاء جو من الرفاهية والأناقة. نظام إضاءة متقدم لتوفير الإضاءة المثالية للمناسبات المختلفة. منصة مرتفعة للمناسبات الخاصة مثل العروض الموسيقية أو الخطب العامة. تجهيزات صوتية وبصرية عالية الجودة لتلبية احتياجات الفعاليات المختلفة. منطقة مخصصة لتناول الطعام وتقديم الوجبات.', 600, 1025, 10, '2024-01-15 15:31:19', '2024-01-15 15:31:19'),
 (19, 'soghra', 'القاعة الصغرى', 'جو هادئ وأنيق يناسب المناسبات الصغيرة والحفلات الخاصة. تصميم داخلي أنيق ورومانسي يضفي جوًا ساحرًا. مساحة مرنة لتنظيم الفعاليات المختلفة مثل الاحتفالات الخاصة وحفلات الخطوبة. نظام صوتي متطور ومعدات إضاءة متنوعة لإضفاء الأجواء المثالية.', 500, 1002, 10, '2024-01-15 17:40:01', '2024-01-15 17:40:01'),
 (20, 'meralhall', 'قاعة ميرال', 'مساحة فسيحة ومهيأة بشكل أنيق وملكي. ديكورات فاخرة وتصميم داخلي راقٍ لإضفاء جو من الرفاهية والأناقة. نظام إضاءة متقدم لتوفير الإضاءة المثالية للمناسبات المختلفة. منصة مرتفعة للمناسبات الخاصة مثل العروض الموسيقية أو الخطب العامة. تجهيزات صوتية وبصرية عالية الجودة لتلبية احتياجات الفعاليات المختلفة. منطقة مخصصة لتناول الطعام وتقديم الوجبات.', 900, 1058, 11, '2024-01-15 18:26:08', '2024-01-15 18:26:08'),
@@ -327,19 +329,18 @@ CREATE TABLE `messages` (
   `message` text NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_replied` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'صالح احمد جوبان', 'saleh@gmail.com', 'استفسار', 'هل لديكم مرافق لذوي الاحتياجات الخاصة في القاعة؟', 12, '2024-01-16 14:31:01', '2024-01-16 14:31:01'),
-(2, 'سالم اليزيدي', 'salem@gmail.com', 'استفسار', 'هل تتوفر خدمات الإنترنت اللاسلكي في القاعة؟', 12, '2024-01-16 14:33:03', '2024-01-16 14:33:03'),
-(3, 'حسين العموي', 'hussain@gmail.com', 'استفسار', 'كم يستغرق قبول طلب الانضمام كمنشئة ؟', 1, '2024-01-18 03:00:40', '2024-01-18 03:00:40'),
-(4, 'احمد التميمي', 'ahmed@gmail.com', 'استفسار', 'كم يستغرق قبول طلب الانضمام كمنشئة ؟', 1, '2024-01-18 03:01:51', '2024-01-18 03:01:51'),
-(6, 'صالح المشجري', 'saleh@gmail.com', 'استفسار', 'كم يستغرق قبول طلب الانضمام كمنشئة ؟', 1, '2024-01-18 03:24:15', '2024-01-18 03:24:15');
+INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`, `user_id`, `created_at`, `updated_at`, `is_replied`) VALUES
+(2, 'سالم اليزيدي', 'salem@gmail.com', 'استفسار', 'هل تتوفر خدمات الإنترنت اللاسلكي في القاعة؟', 12, '2024-01-16 14:33:03', '2024-01-16 14:33:03', 0),
+(3, 'حسين العموي', 'hussain@gmail.com', 'استفسار', 'كم يستغرق قبول طلب الانضمام كمنشئة ؟', 1, '2024-01-18 03:00:40', '2024-01-18 03:00:40', 0),
+(4, 'احمد التميمي', 'rawaabaessa@gmail.com', 'استفسار', 'كم يستغرق قبول طلب الانضمام كمنشئة ؟', 1, '2024-01-18 03:01:51', '2024-01-22 14:33:16', 1);
 
 -- --------------------------------------------------------
 
@@ -386,7 +387,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (26, '2024_01_09_181320_create_orders_table', 2),
 (27, '2024_01_13_135633_create_contents_table', 3),
 (28, '2024_01_13_140236_create_contents_table', 4),
-(29, '2024_01_14_112147_create_reservations_table', 5);
+(29, '2024_01_14_112147_create_reservations_table', 5),
+(30, '2024_01_21_130235_add_is_replied_to_messages_table', 6);
 
 -- --------------------------------------------------------
 
@@ -528,7 +530,10 @@ INSERT INTO `orders` (`id`, `service_id`, `reservation_id`, `price`, `created_at
 (72, 38, 16, 1500.00, '2024-01-19 06:07:01', '2024-01-19 06:07:01'),
 (73, 35, 16, 0.00, '2024-01-19 06:07:01', '2024-01-19 06:07:01'),
 (74, 36, 16, 0.00, '2024-01-19 06:07:01', '2024-01-19 06:07:01'),
-(75, 37, 16, 0.00, '2024-01-19 06:07:02', '2024-01-19 06:07:02');
+(75, 37, 16, 0.00, '2024-01-19 06:07:02', '2024-01-19 06:07:02'),
+(76, 48, 17, 1500.00, '2024-01-20 04:40:12', '2024-01-20 04:40:12'),
+(77, 44, 17, 0.00, '2024-01-20 04:40:12', '2024-01-20 04:40:12'),
+(78, 45, 17, 0.00, '2024-01-20 04:40:12', '2024-01-20 04:40:12');
 
 -- --------------------------------------------------------
 
@@ -701,8 +706,10 @@ INSERT INTO `reservations` (`id`, `user_id`, `offer_hall_id`, `hall_id`, `hall_p
 (12, 23, 37, 22, 3000.00, 17, '2024-01-22', 400, 63, 3, '2024-01-18 12:22:29', '2024-01-18 12:50:05'),
 (13, 24, 38, 22, 3500.00, 16, '2024-01-24', 596, 64, 3, '2024-01-18 12:40:17', '2024-01-18 12:49:20'),
 (14, 25, 38, 22, 3500.00, 17, '2024-01-30', 800, 65, 3, '2024-01-18 12:43:51', '2024-01-18 12:49:42'),
-(15, 26, 37, 22, 3000.00, 17, '2024-01-20', 600, 66, 3, '2024-01-18 12:48:29', '2024-01-18 12:52:15'),
-(16, 3, 30, 18, 3000.00, 12, '2024-01-25', 400, 67, 3, '2024-01-19 06:07:01', '2024-01-19 06:08:50');
+(15, 26, 37, 22, 3000.00, 17, '2024-01-20', 600, 66, 3, '2024-01-18 12:48:29', '2024-01-22 10:19:38'),
+(16, 3, 30, 18, 3000.00, 12, '2024-01-25', 400, 67, 3, '2024-01-19 06:07:01', '2024-01-19 06:08:50'),
+(17, 29, 38, 22, 3500.00, 16, '2024-01-29', 400, 68, 3, '2024-01-20 04:40:12', '2024-01-22 12:50:26'),
+(18, 30, 37, 22, 3000.00, 16, '2024-01-25', 400, 69, 4, '2024-01-21 13:50:36', '2024-01-22 10:47:36');
 
 -- --------------------------------------------------------
 
@@ -755,6 +762,8 @@ INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
 (2, 19),
 (2, 22),
 (2, 27),
+(2, 31),
+(2, 32),
 (3, 3),
 (3, 15),
 (3, 16),
@@ -765,7 +774,9 @@ INSERT INTO `role_user` (`role_id`, `user_id`) VALUES
 (3, 23),
 (3, 24),
 (3, 25),
-(3, 26);
+(3, 26),
+(3, 29),
+(3, 30);
 
 -- --------------------------------------------------------
 
@@ -890,13 +901,17 @@ INSERT INTO `users` (`id`, `parent_id`, `name`, `email`, `email_verified_at`, `p
 (18, NULL, 'صالح محمد العمودي', 'salehmohammed@gmail.com', NULL, '$2y$12$qaVgflzLgfaG/mGXKOp4F.nbUf7fqEeU2Zi0worDNR7C6lWGrWWJ.', 784521368, NULL, '2024-01-17 14:16:52', '2024-01-17 14:16:52'),
 (19, NULL, 'سالم احمد اليزيدي', 'salemahmed@gmail.com', NULL, '$2y$12$VUD1qCvXuJOP2cSmhogM4.qZCsbIC3lEDQB.eZoKD17Ati6Xj/D4C', 78521469, NULL, '2024-01-17 16:35:14', '2024-01-17 16:35:14'),
 (20, NULL, 'مي محمد باعيسى', 'maymohammed@gmail.com', NULL, '$2y$12$ImfJXpd4iaqsXTj42hYDvuc/9dmxHOA05YmhKh29t1BjC.NfpsrPO', 785632985, NULL, '2024-01-18 03:42:00', '2024-01-18 03:42:00'),
-(21, NULL, 'علي احمد الاشولي', 'ali@gmail.com', NULL, '$2y$12$eNJOjav3vaoCK0lBMT4ip.m/Xq.ZZfORRsaEEi8X2mtGefU5kuhHu', 731266588, NULL, '2024-01-18 03:47:02', '2024-01-18 07:51:24'),
+(21, NULL, 'علي احمد الاشولي', 'alialashwaly@gmail.com', NULL, '$2y$12$eNJOjav3vaoCK0lBMT4ip.m/Xq.ZZfORRsaEEi8X2mtGefU5kuhHu', 731266588, NULL, '2024-01-18 03:47:02', '2024-01-18 07:51:24'),
 (22, NULL, 'سالم احمد باوزير', 'salembawazeer@gmail.com', NULL, '$2y$12$.3mFdzAEArw8R4EkSOcQXu0fv4pbcl7tJDBWFE3qCF663xibOAi3a', 781234555, NULL, '2024-01-18 09:39:44', '2024-01-18 09:39:44'),
 (23, NULL, 'سارة محمد التميمي', 'saratamimi@gmail.com', NULL, '$2y$12$NFXIJ0VDAdnCR/YE4eq6nuCg7Mz1VgmC94VgHxJttMexwchEWS6AW', 784555334, NULL, '2024-01-18 11:51:26', '2024-01-18 11:51:26'),
 (24, NULL, 'حنين محمد جوبان', 'hannenjoban@gmail.com', NULL, '$2y$12$XCVlZuXGb5eNDvmNZvrnc.Xlshd5V1lQ6uc3Hbf/aWyZP0EBkwDV.', 784544421, NULL, '2024-01-18 12:33:45', '2024-01-18 12:33:45'),
 (25, NULL, 'محمد صالح حمران', 'mohammedhomran@gmail.com', NULL, '$2y$12$W9ka1DeyZVJHMIghQMTLKOnZq7EqcZM2d5PmUmm5vgAE7nFv9g8Bi', 734562888, NULL, '2024-01-18 12:42:36', '2024-01-18 12:42:36'),
 (26, NULL, 'سمية عمر باصمد', 'somiabasamd@gmail.com', NULL, '$2y$12$vfLidRu7K/BfkaaoWWr5XOPlwZmMcKerz0T04Wxa5d8hrNPH8O9Ue', 784566899, NULL, '2024-01-18 12:47:41', '2024-01-18 12:47:41'),
-(27, NULL, 'محمد سعيد العمودي', 'mohammedsaeed@gmail.com', NULL, '$2y$12$ervVmyZvB4MVGRULTYs9re95E4SW2lnMcQ0NxCdcv9pqYMrzWvx0y', 785412658, NULL, '2024-01-18 16:46:33', '2024-01-18 16:46:33');
+(27, NULL, 'محمد سعيد العمودي', 'mohammedsaeed@gmail.com', NULL, '$2y$12$ervVmyZvB4MVGRULTYs9re95E4SW2lnMcQ0NxCdcv9pqYMrzWvx0y', 785412658, NULL, '2024-01-18 16:46:33', '2024-01-18 16:46:33'),
+(29, NULL, 'فاطمة بن عبدالعزيز', 'fatimabukran@gmail.com', NULL, '$2y$12$Mcow1FtQvdXHQr4bzqD2b.6E9h3DQF7cDlaK0m8mAfpx8BXuWrAM2', 785367888, NULL, '2024-01-20 04:15:27', '2024-01-20 04:15:27'),
+(30, NULL, 'احمد محمد التريمي', 'ahmedmohammed@gmail.com', NULL, '$2y$12$R63hX/f.lDbb/H3uj0sjlO3.0kuGoM2FPttcFQBl8KQjRjUjUG6aC', 735554669, NULL, '2024-01-21 13:49:37', '2024-01-21 13:49:37'),
+(31, NULL, 'خالد التميمي', 'fff@gmail.com', NULL, '$2y$12$lRvPTcMmkomcmh.UjYwMpeE/zlPiA9EkmS3lUDVmnqUSq8zkVivW6', 784588845, NULL, '2024-01-22 08:08:48', '2024-01-22 08:08:48'),
+(32, NULL, 'خديجة سالم الرامي', 'rawaabaessa@gmail.com', NULL, '$2y$12$IOCM3IAf9Cx6sd.moS9/p.0L26XMF47T9EvpckrOW82ikhSXk6142', 734567892, NULL, '2024-01-22 13:16:05', '2024-01-22 13:16:05');
 
 --
 -- Indexes for dumped tables
@@ -1112,7 +1127,7 @@ ALTER TABLE `durations`
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1124,7 +1139,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `file_types`
@@ -1154,7 +1169,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `occasions`
@@ -1172,7 +1187,7 @@ ALTER TABLE `offer_halls`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -1196,7 +1211,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1226,7 +1241,7 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables
